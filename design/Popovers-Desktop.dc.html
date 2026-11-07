@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Settings popovers desktop</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>body{margin:0}.code3{font-weight:700;width:40px;font-variant-numeric:tabular-nums}</style>
+</helmet>
+<div class="page" style="width:1440px;height:760px">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+<symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></symbol>
+<symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></symbol>
+<symbol id="coffee" viewBox="0 0 24 24"><path d="M4 8h12v6a5 5 0 01-5 5H9a5 5 0 01-5-5V8zM16 10h2a2.5 2.5 0 010 5h-2M7 3v2M11 3v2"/></symbol>
+<symbol id="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+</defs></svg>
+
+<header class="top">
+<a class="logo" href="#"><b>PS3</b><i>Digital Legacy</i><svg class="wave" viewBox="0 0 30 9" aria-hidden="true"><path d="M1 4.5c3-5 5-5 7 0s5 5 7 0 5-5 7 0 4 4 6 1"/></svg></a>
+<button class="sbtn" type="button"><svg class="ic"><use href="#search"/></svg><span>Search games</span><kbd>/</kbd></button>
+<div class="row-f right" style="gap:12px">
+<button class="fld open" type="button" aria-haspopup="listbox" aria-expanded="true" aria-label="Language: English"><svg class="ic ic-s"><use href="#globe"/></svg>EN<svg class="ic ic-s"><use href="#chev"/></svg></button>
+<button class="fld" type="button" aria-label="Currency: PLN"><svg class="ic ic-s"><use href="#globe" style="display:none"/></svg>PLN<svg class="ic ic-s"><use href="#chev"/></svg></button>
+<a class="btn btn-out btn-sm" href="#"><svg class="ic ic-s"><use href="#coffee"/></svg>Buy me a coffee</a>
+<button class="btn" type="button"><svg class="ic"><use href="#user"/></svg>Sign in</button>
+</div>
+</header>
+<nav class="nav"><a href="#" class="on">Catalog</a><a href="#">Games</a><a href="#">DLC</a><a href="#">My list</a><a href="#">About</a></nav>
+<div class="strip st-on"><svg class="ic"><use href="#clock"/></svg><span>Store closes in</span><span class="t">173 d 05:12:33</span></div>
+
+<div class="pop" role="listbox" aria-label="Language" style="position:absolute;left:790px;top:72px;width:220px;padding:6px 0">
+<div class="it on" role="option" aria-selected="true"><svg class="ic ic-s"><use href="#check"/></svg>English<span class="n">EN</span></div>
+<div class="it" role="option" aria-selected="false"><span style="width:16px"></span>Polski<span class="n">PL</span></div>
+<div style="border-top:1px solid var(--line);margin:6px 0;padding:8px 14px 4px" class="xs muted">Applies to the interface only. Game titles and descriptions stay in English.</div>
+</div>
+
+<div class="pop" role="dialog" aria-label="Currency" style="position:absolute;left:1030px;top:72px;width:380px;padding:12px 0 6px">
+<div style="padding:0 12px 8px"><div class="inp" style="display:flex;align-items:center;gap:8px;border-color:var(--focus);box-shadow:0 0 0 3px rgba(79,195,240,.4)"><svg class="ic ic-s"><use href="#search"/></svg><span class="muted">Search currencies</span></div>
+<p class="xs muted" style="margin-top:8px">33 currencies in the catalog data</p></div>
+<div style="max-height:400px;overflow:hidden">
+<div class="it on" style="min-height:48px"><svg class="ic ic-s"><use href="#check"/></svg><span class="code3">PLN</span><span class="grow">Polish zloty</span><span class="bd bd-sky">Detected from your browser</span></div>
+<div class="it" style="min-height:44px"><span style="width:16px"></span><span class="code3">USD</span><span class="grow">US dollar</span><span class="n">Default</span></div>
+<div class="it" style="min-height:44px"><span style="width:16px"></span><span class="code3">EUR</span><span class="grow">Euro</span></div>
+<div class="it" style="min-height:44px"><span style="width:16px"></span><span class="code3">GBP</span><span class="grow">British pound</span></div>
+<div class="it" style="min-height:44px"><span style="width:16px"></span><span class="code3">CAD</span><span class="grow">Canadian dollar</span></div>
+<div class="it" style="min-height:44px"><span style="width:16px"></span><span class="code3">AUD</span><span class="grow">Australian dollar</span></div>
+<div class="it" style="min-height:44px"><span style="width:16px"></span><span class="code3">CZK</span><span class="grow">Czech koruna</span></div>
+<div class="it" style="min-height:44px"><span style="width:16px"></span><span class="code3">JPY</span><span class="grow">Japanese yen</span></div>
+</div>
+<div style="border-top:1px solid var(--line);margin-top:6px;padding:10px 14px" class="xs muted">Prices show in this currency when available. Otherwise USD, then EUR, each labeled with its code. Nothing is converted.</div>
+</div>
+
+<div style="position:absolute;left:32px;top:300px;width:700px" class="muted sm">Annotation: both popovers are shown open for review. The language control is a segmented EN / PL switch in the header (see catalog) or this compact list on tablet and phone. Currency choice is independent of language.</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":760}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

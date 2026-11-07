@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Katalog mobile</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>body{margin:0}.hs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}.hs .chip{flex:none}</style>
+</helmet>
+<div class="page m" style="width:390px;min-height:2100px">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+<symbol id="heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9-9.2C1.9 8 4 5 7 5c1.9 0 3.5 1 5 2.8C13.5 6 15.1 5 17 5c3 0 5.1 3 4 6.3-1.5 4.6-9 9.2-9 9.2z"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+<symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></symbol>
+<symbol id="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+<symbol id="x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="grid" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></symbol>
+<symbol id="list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></symbol>
+<symbol id="image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 16l-5-5-8 8"/></symbol>
+<symbol id="alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2L12 3zM12 10v5M12 18h.01"/></symbol>
+<symbol id="info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="sort" viewBox="0 0 24 24"><path d="M7 4v16M4 17l3 3 3-3M17 20V4M14 7l3-3 3 3"/></symbol>
+<symbol id="filter" viewBox="0 0 24 24"><path d="M4 5h16l-6 8v6l-4-2v-4L4 5z"/></symbol>
+<symbol id="trophy" viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 01-8 0V4zM8 6H4v1a4 4 0 004 4M16 6h4v1a4 4 0 01-4 4M12 13v4M8 20h8M10 17h4"/></symbol>
+</defs></svg>
+
+<header class="top" style="height:56px;padding:0 8px;gap:2px">
+<button class="btn btn-icon" type="button" aria-label="Menu" style="border:0"><svg class="ic"><use href="#menu"/></svg></button>
+<a class="logo" href="#" style="font-size:17px;margin-right:auto;margin-left:2px"><b>PS3</b><i>Digital Legacy</i></a>
+<button class="btn btn-icon" type="button" aria-label="Szukaj gier" style="border:0"><svg class="ic"><use href="#search"/></svg></button>
+<button class="btn btn-icon" type="button" aria-label="Zaloguj się" style="border:0"><svg class="ic"><use href="#user"/></svg></button>
+</header>
+<div class="strip st-on"><svg class="ic ic-s"><use href="#clock"/></svg><span>Sklep zamknie się za</span><span class="t">173 d 05:12</span></div>
+
+<main class="wrap">
+<div class="row-f" style="align-items:baseline;gap:8px;margin-bottom:12px"><h1 class="h1" style="font-size:26px;line-height:32px">Katalog</h1><span class="muted">212 wyników</span></div>
+<div class="row-f" style="gap:8px;margin-bottom:12px">
+<button class="btn grow" type="button"><svg class="ic"><use href="#filter"/></svg>Filtry<span class="bd bd-bt" style="background:var(--red);padding:0 7px">4</span></button>
+<button class="btn grow" type="button"><svg class="ic"><use href="#sort"/></svg>Nazwa A-Z</button>
+<div class="seg" role="group" aria-label="Widok"><button class="on" type="button" aria-label="Widok listy" aria-pressed="true"><svg class="ic"><use href="#list"/></svg></button><button type="button" aria-label="Widok siatki" aria-pressed="false"><svg class="ic"><use href="#grid"/></svg></button></div>
+</div>
+<div class="hs" style="margin-bottom:12px">
+<span class="chip">Gry<button type="button" aria-label="Usuń filtr: Gry" style="width:28px;height:28px"><svg class="ic ic-s"><use href="#x"/></svg></button></span>
+<span class="chip">Region: EU<button type="button" aria-label="Usuń filtr: Region EU" style="width:28px;height:28px"><svg class="ic ic-s"><use href="#x"/></svg></button></span>
+<span class="chip">Akcja<button type="button" aria-label="Usuń filtr: Akcja" style="width:28px;height:28px"><svg class="ic ic-s"><use href="#x"/></svg></button></span>
+<span class="chip">Tylko cyfrowe<button type="button" aria-label="Usuń filtr: Tylko cyfrowe" style="width:28px;height:28px"><svg class="ic ic-s"><use href="#x"/></svg></button></span>
+<a class="link sm" href="#" style="flex:none;align-self:center;padding:0 8px">Wyczyść wszystko</a>
+</div>
+
+<div class="stack-s">
+<article class="mrow want">
+<div class="cover" aria-hidden="true"><svg class="ic ic-l"><use href="#image"/></svg></div>
+<div class="col-f" style="gap:4px"><h2 class="ttl">Example action game</h2><div class="meta">2009 · Action, Adventure</div>
+<div class="tags"><span class="tag">NA</span><span class="tag">EU</span><span class="bd bd-ok">Dostępna</span></div>
+<div class="tags"><span class="bd bd-dig"><svg class="ic ic-s"><use href="#check"/></svg>Tylko cyfrowo</span><span class="bd bd-sky">4 DLC</span></div></div>
+<div class="mbot"><div class="price">119,99 zł</div><div class="acts"><button class="ib heart on" type="button" aria-label="Usuń z listy Chcę kupić" aria-pressed="true"><svg class="ic"><use href="#heart"/></svg></button><button class="ib check" type="button" aria-label="Oznacz jako kupione" aria-pressed="false"><svg class="ic"><use href="#check"/></svg></button></div></div>
+</article>
+
+<article class="mrow">
+<div class="cover" aria-hidden="true"><svg class="ic ic-l"><use href="#image"/></svg></div>
+<div class="col-f" style="gap:4px"><h2 class="ttl">Racing: digital edition</h2><div class="meta">2010 · Racing</div>
+<div class="tags"><span class="tag">NA</span><span class="bd bd-del"><svg class="ic ic-s"><use href="#alert"/></svg>Wycofana</span></div>
+<div class="tags"><span class="bd bd-dig"><svg class="ic ic-s"><use href="#check"/></svg>Tylko cyfrowo</span></div></div>
+<div class="mbot"><div class="price">19,99 USD<small>Brak ceny w PLN, pokazano USD</small></div><div class="acts"><button class="ib heart" type="button" aria-label="Dodaj do listy Chcę kupić" aria-pressed="false"><svg class="ic"><use href="#heart"/></svg></button><button class="ib check" type="button" aria-label="Oznacz jako kupione" aria-pressed="false"><svg class="ic"><use href="#check"/></svg></button></div></div>
+</article>
+
+<article class="mrow">
+<div class="cover" aria-hidden="true"><svg class="ic ic-l"><use href="#image"/></svg></div>
+<div class="col-f" style="gap:4px"><h2 class="ttl">Indie adventure</h2><div class="meta">2011 · Indie, Adventure</div>
+<div class="tags"><span class="tag">JP</span><span class="bd bd-unk"><svg class="ic ic-s"><use href="#info"/></svg>Status nieznany</span></div>
+<div class="tags"><span class="bd bd-dig"><svg class="ic ic-s"><use href="#check"/></svg>Tylko cyfrowo</span></div></div>
+<div class="mbot"><div class="price na" style="font-size:14px">Cena niedostępna</div><div class="acts"><button class="ib heart" type="button" aria-label="Dodaj do listy Chcę kupić" aria-pressed="false"><svg class="ic"><use href="#heart"/></svg></button><button class="ib check" type="button" aria-label="Oznacz jako kupione" aria-pressed="false"><svg class="ic"><use href="#check"/></svg></button></div></div>
+</article>
+
+<article class="mrow bought">
+<div class="cover" aria-hidden="true"><svg class="ic ic-l"><use href="#image"/></svg></div>
+<div class="col-f" style="gap:4px"><h2 class="ttl">Puzzle gem</h2><div class="meta">2008 · Puzzle</div>
+<div class="tags"><span class="tag">NA</span><span class="tag">EU</span><span class="bd bd-ok">Dostępna</span><span class="bd bd-gold"><svg class="ic ic-s"><use href="#trophy"/></svg>Platyna</span></div>
+<div class="tags"><span class="bd bd-bt"><svg class="ic ic-s"><use href="#check"/></svg>Kupione</span></div></div>
+<div class="mbot"><div class="price">27,99 zł</div><div class="acts"><button class="ib heart" type="button" aria-label="Dodaj do listy Chcę kupić" aria-pressed="false"><svg class="ic"><use href="#heart"/></svg></button><button class="ib check on" type="button" aria-label="Kupione, odznacz" aria-pressed="true"><svg class="ic"><use href="#check"/></svg></button></div></div>
+</article>
+
+<article class="mrow">
+<div class="cover er" aria-label="Okładka niedostępna"><svg class="ic ic-l"><use href="#image"/></svg></div>
+<div class="col-f" style="gap:4px"><h2 class="ttl">The long chronicles of the forgotten kingdom: extended digital edition</h2><div class="meta">2010 · Role-playing</div>
+<div class="tags"><span class="tag">EU</span><span class="bd bd-ok">Dostępna</span><span class="bd bd-sky">12 DLC</span></div>
+<div class="tags"><span class="bd bd-dig"><svg class="ic ic-s"><use href="#check"/></svg>Tylko cyfrowo</span></div></div>
+<div class="mbot"><div class="price">59,99 zł</div><div class="acts"><button class="ib heart" type="button" aria-label="Dodaj do listy Chcę kupić" aria-pressed="false"><svg class="ic"><use href="#heart"/></svg></button><button class="ib check" type="button" aria-label="Oznacz jako kupione" aria-pressed="false"><svg class="ic"><use href="#check"/></svg></button></div></div>
+</article>
+
+<article class="mrow" aria-busy="true" aria-label="Ładowanie">
+<div class="sk" style="width:64px;height:86px;border-radius:8px"></div>
+<div class="col-f" style="gap:10px"><div class="sk" style="height:18px;width:70%"></div><div class="sk" style="height:14px;width:40%"></div><div class="sk" style="height:18px;width:55%"></div></div>
+<div class="mbot"><div class="sk" style="height:22px;width:80px"></div><div class="acts"><div class="sk" style="width:44px;height:44px"></div><div class="sk" style="width:44px;height:44px"></div></div></div>
+</article>
+</div>
+
+<div class="more"><p class="muted sm">Wyświetlono 6 z 212 wyników</p><button class="btn btn-lg btn-blk" type="button">Pokaż kolejne 50</button></div>
+</main>
+
+<footer class="foot">
+<div><a class="logo" href="#" style="text-decoration:none"><b>PS3</b><i>Digital Legacy</i></a><p>Projekt fanowski, niezwiązany z firmą Sony Interactive Entertainment. Serwis niczego nie sprzedaje, tylko pokazuje, co jeszcze można kupić.</p></div>
+<div><h4>Dane</h4><p>Metadane gier z <a href="#">IGDB</a>. Trofea na <a href="#">PSNProfiles</a>. Ceny są ostatnio znanymi cenami.</p></div>
+<div><h4>Projekt</h4><p><a href="#">Repozytorium GitHub</a><br><a href="#">Postaw mi kawę</a></p></div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":2100}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

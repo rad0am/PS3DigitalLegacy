@@ -18,7 +18,7 @@ All code, identifiers, comments, docs and commit messages are in **English**.
 The owner's choices are **Svelte**, **TypeScript** and **Firebase**. Do not propose other frameworks or languages.
 
 - **Svelte** with **TypeScript** (strict mode). Recommended setup: SvelteKit with `adapter-static`; plain Svelte + Vite is acceptable if routing stays trivial. Set `paths.base` to the repo name (GitHub Pages serves the site under `/<repo>/`). Use prerendering or hash routing, because Pages has no SPA fallback.
-- **Firebase** (client only, no custom backend): **Authentication** (start with Google Sign-In) and **Firestore**.
+- **Firebase** (client only, no custom backend): **Authentication** (providers: Google, Discord, Facebook and Reddit, see "Sign-in providers") and **Firestore**.
 - **Deploy:** GitHub Actions, a push to `main` publishes the site.
 - Node.js is **not installed yet** on the dev machine (`node`/`npm` not found). Install Node LTS before starting.
 
@@ -37,7 +37,7 @@ As of `2026-11-02`: 892 games, 679 of them with `digitalOnly: true`, about 3,100
 | `id` | stable UUID, **the per-user key in localStorage and Firestore, never change it** |
 | `title`, `alternativeNames` | name and alternative names (useful for search) |
 | `regions` | subset of `NA`, `EU`, `JP` |
-| `digitalOnly` | show only `true` by default; `false` means a physical release exists |
+| `digitalOnly` | about the **game itself**: show only `true` by default; `false` means the game has a disc release. It says nothing about its DLC, see "Digital only and disc releases" |
 | `prices` | array of `{ currency, amount }` in many currencies (USD, PLN, EUR, and more); may be empty |
 | `storeStatus` | `available`, `delisted` or `unknown` |
 | `trophies` | `{ supported, hasPlatinum }`, plus `psnprofilesUrl` |
@@ -53,6 +53,18 @@ As of `2026-11-02`: 892 games, 679 of them with `digitalOnly: true`, about 3,100
 - Surface `storeStatus: "delisted"` and `"unknown"` clearly, so users know a game may no longer be purchasable.
 - Covers and screenshots come from `images.igdb.com`. Load them lazily (`loading="lazy"`) and handle errors with a placeholder. Do not copy them into the repo (copyright).
 - Add data validation (JSON Schema, e.g. `ajv`) as a CI step. An invalid file must never reach production.
+
+## Digital only and disc releases
+
+"Has a physical release" means the **game itself** exists on a disc (`digitalOnly: false`). Such a game may still have **DLC that can only be bought digitally**, and that DLC is exactly what this site is about.
+
+- **DLC is always digital only.** DLC cannot be bought physically, so every DLC entry counts as digital only regardless of its parent's `digitalOnly`. The "Digital only" filter applies to games, never hides DLC.
+- **Default view:** games with `digitalOnly: true`, plus all DLC when the type filter includes DLC.
+- **Disc games with DLC stay reachable.** With "Digital only" on, the disc game is hidden as a game row but its DLC is still listed under the DLC type, each entry naming its parent game. The disc game's details page is still reachable (from DLC rows and from search).
+- **With "Digital only" off**, disc games appear with a neutral "Disc release" badge and a count such as "6 DLC, digital only". The base game has no digital price to show, so the row shows "DLC from <lowest DLC price>" or "Price unavailable".
+- **Game details of a disc game** shows a note: "This game has a disc release. Only its DLC is available digitally." The existing note for a disc that exists only in another region stays: "A physical release exists in another region."
+- The sidebar toggle's helper text says: "Hides games that have a disc release. Their DLC stays listed."
+- Do not claim the base game cannot be bought digitally; the data only says a disc exists. Wording stays neutral.
 
 ## Features (MVP)
 
@@ -78,6 +90,21 @@ Later: sign-in and Firebase sync, export/import of the list as JSON.
 - Firestore: one document `users/{uid}` holding a map of games. Rules: read and write only when `request.auth.uid == uid`.
 - The Firebase config (`apiKey` etc.) is public by design. Security comes from the rules.
 - In the Firebase console, add `<login>.github.io` to Authorized domains.
+
+## Sign-in providers
+
+Signing in is optional and offers four providers, shown as four equal "Continue with ..." buttons in the sign-in dialog (no provider is preferred):
+
+1. **Google**
+2. **Discord**
+3. **Facebook**
+4. **Reddit**
+
+- The header control and menu say just "Sign in" (not "Sign in with Google"). The dialog explains that the list is stored on the device and syncs after signing in.
+- Use neutral monogram marks in buttons; do not ship the providers' logos or brand artwork unless their brand guidelines are followed.
+- Store only the list, language and currency. Request the minimum scopes (identity only), never friends, posts or guilds.
+- **Provider support caveat:** Firebase Authentication has built-in support for Google and Facebook only. Discord and Reddit are OAuth 2.0 providers without OIDC discovery, so they cannot be added as Firebase custom OIDC providers; they need a small token-exchange backend (for example a Cloud Function that mints a Firebase custom token), because the OAuth client secret must not live in site code. That conflicts with "client only, no custom backend" and may need a plan beyond Spark. Until the owner decides, build Google and Facebook first and keep the provider list data-driven so Discord and Reddit can be switched on later.
+- **Account linking:** the same person may sign in with different providers. Decide whether to link accounts by verified email (Firebase default is one account per email) so the list does not split across several `users/{uid}` documents.
 
 ## Currency selection
 
@@ -149,8 +176,10 @@ Do not enter a date without an official announcement from PlayStation.
 
 ## Open decisions
 
-- How to treat games with a physical release in another region (`notes` and `digitalOnly`)? For now `digitalOnly` is authoritative.
+- How to treat a disc release that exists only in another region (`notes` and `digitalOnly`)? For now `digitalOnly` is authoritative for the game; DLC always counts as digital only (see "Digital only and disc releases").
 - Can users submit missing games? For now no, they only pick from the catalog.
 - i18n library (Paraglide JS recommended) and locale strategy (per-locale routes vs client-side switching).
 - SvelteKit (recommended) or plain Svelte + Vite.
 - Repo name and `paths.base` for Pages.
+- Discord and Reddit sign-in need a token-exchange backend (see "Sign-in providers"). Accept a small serverless function, or ship Google and Facebook only?
+- Link accounts across providers by verified email, or keep one account per provider?

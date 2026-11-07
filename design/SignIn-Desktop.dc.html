@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sign-in dialog desktop</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>body{margin:0}.gbtn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;height:52px;border-radius:8px;border:1px solid var(--ctl);background:#fff;font:600 16px/24px var(--font);color:var(--text);cursor:pointer}.gbtn:hover{background:#f0f1f4}.gm{width:24px;height:24px;border-radius:50%;border:2px solid var(--text);display:grid;place-items:center;font:700 13px/1 var(--font)}</style>
+</helmet>
+<div class="page" style="width:1440px;height:900px">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+<symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></symbol>
+<symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></symbol>
+<symbol id="coffee" viewBox="0 0 24 24"><path d="M4 8h12v6a5 5 0 01-5 5H9a5 5 0 01-5-5V8zM16 10h2a2.5 2.5 0 010 5h-2M7 3v2M11 3v2"/></symbol>
+<symbol id="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+<symbol id="x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="cloud" viewBox="0 0 24 24"><path d="M7 18a4 4 0 01-.5-8A6 6 0 0118 9.5 4.3 4.3 0 0117.5 18H7z"/></symbol>
+<symbol id="sync" viewBox="0 0 24 24"><path d="M20 11a8 8 0 00-14-4M4 4v4h4M4 13a8 8 0 0014 4M20 20v-4h-4"/></symbol>
+<symbol id="merge" viewBox="0 0 24 24"><circle cx="6" cy="5" r="2"/><circle cx="18" cy="5" r="2"/><circle cx="12" cy="19" r="2"/><path d="M6 7v2a4 4 0 004 4h4a4 4 0 004-4V7M12 13v4"/></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></symbol>
+</defs></svg>
+
+<header class="top">
+<a class="logo" href="#"><b>PS3</b><i>Digital Legacy</i><svg class="wave" viewBox="0 0 30 9" aria-hidden="true"><path d="M1 4.5c3-5 5-5 7 0s5 5 7 0 5-5 7 0 4 4 6 1"/></svg></a>
+<button class="sbtn" type="button"><svg class="ic"><use href="#search"/></svg><span>Search games</span></button>
+<div class="row-f right" style="gap:12px"><div class="lang"><a href="#" class="on">EN</a><a href="#">PL</a></div><button class="fld" type="button"><svg class="ic ic-s"><use href="#globe"/></svg>USD<svg class="ic ic-s"><use href="#chev"/></svg></button><a class="btn btn-out btn-sm" href="#"><svg class="ic ic-s"><use href="#coffee"/></svg>Buy me a coffee</a><button class="btn" type="button"><svg class="ic"><use href="#user"/></svg>Sign in</button></div>
+</header>
+<nav class="nav"><a href="#">Catalog</a><a href="#">Games</a><a href="#">DLC</a><a href="#" class="on">My list</a><a href="#">About</a></nav>
+<div class="strip st-on"><svg class="ic"><use href="#clock"/></svg><span>Store closes in</span><span class="t">173 d 05:12:33</span></div>
+<div class="wrap" aria-hidden="true"><h1 class="h1">My list</h1><div class="card" style="margin-top:16px;height:120px"></div></div>
+<div class="ov"></div>
+
+<div class="modal" role="dialog" aria-label="Sign in" style="position:absolute;left:300px;top:150px;width:480px;padding:32px">
+<div class="row-f" style="margin-bottom:8px"><h2 class="h2">Sign in</h2><button class="btn btn-icon right" type="button" aria-label="Close" style="border:0"><svg class="ic"><use href="#x"/></svg></button></div>
+<p style="font-size:15px;line-height:24px;margin-bottom:20px">Your list is stored on this device. Sign in with Google, Discord, Facebook or Reddit to sync it across your phone, tablet and computer.</p>
+<div class="stack" style="gap:8px"><button class="gbtn" type="button"><span class="gm" aria-hidden="true">G</span>Continue with Google</button><button class="gbtn" type="button"><span class="gm" aria-hidden="true">D</span>Continue with Discord</button><button class="gbtn" type="button"><span class="gm" aria-hidden="true">f</span>Continue with Facebook</button><button class="gbtn" type="button"><span class="gm" aria-hidden="true">R</span>Continue with Reddit</button></div>
+<ul style="margin:20px 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px">
+<li class="row-f" style="align-items:flex-start"><svg class="ic" style="color:var(--ok)"><use href="#check"/></svg><span>Lists on both sides are merged. The newer change wins per game, and nothing is overwritten blindly.</span></li>
+<li class="row-f" style="align-items:flex-start"><svg class="ic" style="color:var(--ok)"><use href="#lock"/></svg><span>Only you can read your list. We store the list, your language and currency, nothing else.</span></li>
+</ul>
+<div class="note"><svg class="ic"><use href="#info" style="display:none"/></svg><svg class="ic"><use href="#cloud"/></svg><div>Signing in is optional. Everything works without an account.</div></div>
+<div class="row-f" style="margin-top:20px;justify-content:center"><a class="link sm" href="#" style="font-weight:500">Not now, continue without signing in</a></div>
+</div>
+
+<aside class="card" style="position:absolute;left:880px;top:150px;width:460px;box-shadow:0 8px 24px rgba(29,29,31,.2)" aria-label="Sync status states">
+<h2 class="h4">Sync status, shown in the header after sign-in</h2>
+<p class="muted sm" style="margin:2px 0 16px">Annotation: states of the account control.</p>
+<div class="stack-s">
+<div class="row-f"><span class="sync sync-ing"><svg class="ic ic-s"><use href="#sync"/></svg>Syncing</span><span class="muted sm">Spinner while the list is uploading or downloading.</span></div>
+<div class="row-f"><span class="sync sync-ok"><svg class="ic ic-s"><use href="#check"/></svg>Synced</span><span class="muted sm">Last synced just now.</span></div>
+<div class="row-f"><span class="sync sync-mg"><svg class="ic ic-s"><use href="#merge"/></svg>Merge conflicts resolved</span></div>
+<p class="muted sm" style="margin-top:-4px">3 games differed between this device and your account. The newer change was kept for each. <a class="link" href="#" style="font-weight:500">Review changes</a></p>
+<div class="row-f"><span class="sync sync-off"><svg class="ic ic-s"><use href="#cloud"/></svg>Offline, saved on this device</span></div>
+</div></aside>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

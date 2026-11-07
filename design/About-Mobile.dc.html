@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>About mobile</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>body{margin:0}.prose p{font-size:15px;line-height:24px;margin:0 0 10px}</style>
+</helmet>
+<div class="page m" style="width:390px;min-height:2300px">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+<symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></symbol>
+<symbol id="coffee" viewBox="0 0 24 24"><path d="M4 8h12v6a5 5 0 01-5 5H9a5 5 0 01-5-5V8zM16 10h2a2.5 2.5 0 010 5h-2M7 3v2M11 3v2"/></symbol>
+<symbol id="ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></symbol>
+<symbol id="info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></symbol>
+</defs></svg>
+
+<header class="top" style="height:56px;padding:0 8px;gap:2px">
+<button class="btn btn-icon" type="button" aria-label="Menu" style="border:0"><svg class="ic"><use href="#menu"/></svg></button>
+<a class="logo" href="#" style="font-size:17px;margin-right:auto;margin-left:2px"><b>PS3</b><i>Digital Legacy</i></a>
+<button class="btn btn-icon" type="button" aria-label="Search games" style="border:0"><svg class="ic"><use href="#search"/></svg></button>
+<button class="btn btn-icon" type="button" aria-label="Sign in" style="border:0"><svg class="ic"><use href="#user"/></svg></button>
+</header>
+<div class="strip st-off"><svg class="ic ic-s"><use href="#info"/></svg><span style="white-space:normal;line-height:18px">The store has closed. This is an archive.</span></div>
+
+<main class="wrap" style="display:flex;flex-direction:column;gap:16px">
+<div><h1 class="h1" style="font-size:28px;line-height:34px">About PS3 Digital Legacy</h1>
+<svg viewBox="0 0 240 12" width="200" height="10" fill="none" stroke="#4fc3f0" stroke-width="2.4" stroke-linecap="round" style="margin-top:8px" aria-hidden="true"><path d="M2 6c10-8 20-8 30 0s20 8 30 0 20-8 30 0 20 8 30 0 20-8 30 0 20 8 30 0 20-8 26-2"/></svg></div>
+
+<section class="card prose"><h2 class="h3" style="margin-bottom:8px">What this project is</h2>
+<p>A catalog of PlayStation 3 games and DLC that can only be bought digitally on the PS3 PlayStation Store. Use it to find what is still purchasable, keep a want-to-buy list and mark what you own.</p>
+<p style="margin:0">About 900 games and 3,100 DLC. The site sells nothing.</p></section>
+
+<div class="note warn"><svg class="ic"><use href="#info"/></svg><div><b>Disclaimer.</b> A fan project, not affiliated with, endorsed by or sponsored by Sony Interactive Entertainment. Prices are last known prices and may be out of date.</div></div>
+
+<section class="card"><h2 class="h3" style="margin-bottom:8px">Data sources</h2>
+<p style="margin-bottom:12px">Covers and metadata come from IGDB. Trophy pages are on PSNProfiles. Game titles and descriptions are shown in English.</p>
+<div class="stack"><a class="btn btn-blk" href="#" target="_blank" rel="noopener noreferrer">IGDB<svg class="ic ic-s"><use href="#ext"/></svg></a><a class="btn btn-blk" href="#" target="_blank" rel="noopener noreferrer">PSNProfiles<svg class="ic ic-s"><use href="#ext"/></svg></a><a class="btn btn-blk" href="#" target="_blank" rel="noopener noreferrer">GitHub repository<svg class="ic ic-s"><use href="#ext"/></svg></a></div></section>
+
+<section class="card"><h2 class="h3" style="margin-bottom:8px">Platinum trophies</h2>
+<p>This site does not decide whether a platinum is obtainable. The PSNProfiles button only opens the game page there.</p></section>
+
+<section class="card"><h2 class="h3" style="margin-bottom:12px">How digital only is defined</h2>
+<div class="col-f" style="gap:12px">
+<div class="col-f" style="gap:4px"><span class="bd bd-dig" style="font-size:14px"><svg class="ic ic-s"><use href="#check"/></svg>Digital only</span><p>The game has no physical release in any region. Shown by default.</p></div>
+<div class="col-f" style="gap:4px"><span class="bd bd-unk" style="font-size:14px;align-self:flex-start">Disc release</span><p>The game exists on a disc in at least one region, so it is not digital only. Hidden by default; turn off the filter to see it.</p></div>
+<div class="col-f" style="gap:4px"><span class="bd bd-sky" style="font-size:14px;align-self:flex-start">DLC</span><p>Always digital only, because DLC can only be bought in the store. DLC of a disc game stays in the catalog, under the DLC type and on that game's page.</p></div>
+</div></section>
+
+<section class="card"><h2 class="h3" style="margin-bottom:6px">Support the project</h2>
+<p style="margin-bottom:12px">Free, no ads. If it helped, you can buy me a coffee. It is a plain link.</p>
+<a class="btn btn-red btn-lg btn-blk" href="#" target="_blank" rel="noopener noreferrer"><svg class="ic"><use href="#coffee"/></svg>Buy me a coffee<svg class="ic ic-s"><use href="#ext"/></svg></a></section>
+</main>
+
+<footer class="foot">
+<div><a class="logo" href="#" style="text-decoration:none"><b>PS3</b><i>Digital Legacy</i></a><p>A fan project, not affiliated with Sony Interactive Entertainment. This site sells nothing.</p></div>
+<div><h4>Data</h4><p>Metadata from <a href="#">IGDB</a>. Trophies on <a href="#">PSNProfiles</a>.</p></div>
+<div><h4>Project</h4><p><a href="#">GitHub repository</a><br><a href="#">Buy me a coffee</a></p></div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":2300}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

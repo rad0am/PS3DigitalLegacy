@@ -1,0 +1,41 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-11-07T12:00:00Z" },
+  "title": "PS3 Digital Legacy design",
+  "launch": { "view": "canvas" },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 0, "w": 1440, "h": 1800, "title": "Catalog - desktop 1440", "expand": "fill" },
+    "Catalog-Mobile.dc.html": { "x": 1520, "y": 0, "w": 390, "h": 2100, "title": "Catalog - mobile 390 (Polish UI)" },
+    "Filters-Mobile.dc.html": { "x": 1990, "y": 0, "w": 390, "h": 844, "title": "Filters bottom sheet - mobile" },
+    "Game-Desktop.dc.html": { "x": 0, "y": 1920, "w": 1440, "h": 2150, "title": "Game details - desktop", "expand": "fill" },
+    "Game-Mobile.dc.html": { "x": 1520, "y": 2220, "w": 390, "h": 2700, "title": "Game details - mobile" },
+    "Search-Desktop.dc.html": { "x": 0, "y": 5040, "w": 1440, "h": 900, "title": "Search modal - desktop" },
+    "Search-Mobile.dc.html": { "x": 1520, "y": 5040, "w": 390, "h": 844, "title": "Search modal - mobile" },
+    "MyList-Desktop.dc.html": { "x": 0, "y": 6060, "w": 1440, "h": 1500, "title": "My list - desktop", "expand": "fill" },
+    "MyList-Mobile.dc.html": { "x": 1520, "y": 6060, "w": 390, "h": 1500, "title": "My list, empty - mobile (Polish UI)" },
+    "SignIn-Desktop.dc.html": { "x": 0, "y": 7680, "w": 1440, "h": 900, "title": "Sign-in dialog and sync states - desktop" },
+    "SignIn-Mobile.dc.html": { "x": 1520, "y": 7680, "w": 390, "h": 844, "title": "Sign-in dialog - mobile" },
+    "About-Desktop.dc.html": { "x": 0, "y": 8700, "w": 1440, "h": 1500, "title": "About - desktop", "expand": "fill" },
+    "About-Mobile.dc.html": { "x": 1520, "y": 8700, "w": 390, "h": 2450, "title": "About - mobile" },
+    "Popovers-Desktop.dc.html": { "x": 0, "y": 11120, "w": 1440, "h": 760, "title": "Language and currency popovers - desktop" },
+    "Menu-Mobile.dc.html": { "x": 1520, "y": 11120, "w": 390, "h": 844, "title": "Menu drawer - mobile" },
+    "Settings-Mobile.dc.html": { "x": 1990, "y": 11120, "w": 390, "h": 844, "title": "Currency sheet - mobile" },
+    "Guide.dc.html": { "x": 0, "y": 12080, "w": 1440, "h": 1800, "title": "Style guide" },
+    "Components.dc.html": { "x": 0, "y": 14000, "w": 1440, "h": 3650, "title": "Component inventory and states" }
+  },
+  "order": [
+    "Main.dc.html", "Catalog-Mobile.dc.html", "Filters-Mobile.dc.html",
+    "Game-Desktop.dc.html", "Game-Mobile.dc.html",
+    "Search-Desktop.dc.html", "Search-Mobile.dc.html",
+    "MyList-Desktop.dc.html", "MyList-Mobile.dc.html",
+    "SignIn-Desktop.dc.html", "SignIn-Mobile.dc.html",
+    "About-Desktop.dc.html", "About-Mobile.dc.html",
+    "Popovers-Desktop.dc.html", "Menu-Mobile.dc.html", "Settings-Mobile.dc.html",
+    "Guide.dc.html", "Components.dc.html"
+  ],
+  "notes": {
+    "t1": { "x": 0, "y": -300, "text": "PS3 Digital Legacy: screens, style guide and components", "kind": "title1", "maxW": 2380 }
+  },
+  "designSystems": []
+}

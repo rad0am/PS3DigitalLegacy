@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Component inventory</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>body{margin:0}.cap{font:600 12px/16px var(--font);color:var(--muted);margin-bottom:6px;display:block}.g5{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;align-items:end}.inv{width:100%;border-collapse:collapse;font-size:13px;line-height:18px}.inv th,.inv td{text-align:left;padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}.inv th{font-weight:700;background:#f7f8fa;border-top:0}.inv td:first-child{font-weight:700;width:200px}</style>
+</helmet>
+<div class="page" style="width:1440px;min-height:3200px;padding:48px 64px;display:flex;flex-direction:column;gap:24px">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9-9.2C1.9 8 4 5 7 5c1.9 0 3.5 1 5 2.8C13.5 6 15.1 5 17 5c3 0 5.1 3 4 6.3-1.5 4.6-9 9.2-9 9.2z"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+<symbol id="ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></symbol>
+<symbol id="x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="trophy" viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 01-8 0V4zM8 6H4v1a4 4 0 004 4M16 6h4v1a4 4 0 01-4 4M12 13v4M8 20h8M10 17h4"/></symbol>
+<symbol id="alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2L12 3zM12 10v5M12 18h.01"/></symbol>
+<symbol id="info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></symbol>
+<symbol id="image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 16l-5-5-8 8"/></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 00-14-4M4 4v4h4M4 13a8 8 0 0014 4M20 20v-4h-4"/></symbol>
+</defs></svg>
+
+<div><h1 class="h1" style="font-size:36px;line-height:42px">Component inventory and states</h1>
+<p class="muted" style="margin-top:4px;font-size:16px">Everything below is built from the shared tokens. Hover, focus and pressed are drawn statically for review.</p></div>
+
+<section class="gsec"><h2 class="h2">Countdown strip, three states</h2>
+<div class="stack-s">
+<div><span class="cap">Date announced: countdown in days and hours, live seconds</span><div class="strip st-on" style="border-radius:8px"><svg class="ic"><use href="#clock"/></svg><span>Store closes in</span><span class="t">173 d 05:12:33</span></div></div>
+<div><span class="cap">Date not announced</span><div class="strip st-na" style="border-radius:8px"><svg class="ic"><use href="#info"/></svg><span>Closing date not announced</span></div></div>
+<div><span class="cap">Store closed: archive mode</span><div class="strip st-off" style="border-radius:8px"><svg class="ic"><use href="#info"/></svg><span>The store has closed. This is an archive.</span></div></div>
+<div style="display:flex;gap:16px"><div style="width:390px"><span class="cap">Mobile, collapsed to one line</span><div class="m"><div class="strip st-on" style="border-radius:8px"><svg class="ic ic-s"><use href="#clock"/></svg><span>Store closes in</span><span class="t">173 d 05:12</span></div></div></div>
+<div style="width:390px"><span class="cap">&nbsp;</span><div class="m"><div class="strip st-na" style="border-radius:8px"><svg class="ic ic-s"><use href="#info"/></svg><span>Closing date not announced</span></div></div></div>
+<div style="width:390px"><span class="cap">&nbsp;</span><div class="m"><div class="strip st-off" style="border-radius:8px"><svg class="ic ic-s"><use href="#info"/></svg><span style="white-space:normal;line-height:16px">Store closed. Archive.</span></div></div></div></div>
+</div></section>
+
+<section class="gsec"><h2 class="h2">Buttons: default, hover, focus, pressed, selected, disabled</h2>
+<div class="stack-s">
+<div class="g5"><div><span class="cap">Primary default</span><span class="btn btn-red">Sign in</span></div><div><span class="cap">Hover</span><span class="btn btn-red is-hover">Sign in</span></div><div><span class="cap">Focus</span><span class="btn btn-red is-focus">Sign in</span></div><div><span class="cap">Pressed</span><span class="btn btn-red is-pressed">Sign in</span></div><div><span class="cap">Selected</span><span class="btn sel">Compact</span></div><div><span class="cap">Disabled</span><span class="btn btn-red is-disabled">Sign in</span></div></div>
+<div class="g5"><div><span class="cap">Outlined default</span><span class="btn btn-out">Buy me a coffee</span></div><div><span class="cap">Hover</span><span class="btn btn-out is-hover">Buy me a coffee</span></div><div><span class="cap">Focus</span><span class="btn btn-out is-focus">Buy me a coffee</span></div><div><span class="cap">Pressed</span><span class="btn btn-out is-pressed">Buy me a coffee</span></div><div><span class="cap">Selected pill</span><span class="pill on">Games</span></div><div><span class="cap">Disabled</span><span class="btn btn-out is-disabled">Buy me a coffee</span></div></div>
+<div class="g5"><div><span class="cap">Neutral default</span><span class="btn">Export JSON</span></div><div><span class="cap">Hover</span><span class="btn is-hover">Export JSON</span></div><div><span class="cap">Focus</span><span class="btn is-focus">Export JSON</span></div><div><span class="cap">Pressed</span><span class="btn is-pressed">Export JSON</span></div><div><span class="cap">Pill default</span><span class="pill">DLC</span></div><div><span class="cap">Disabled</span><span class="btn is-disabled">Export JSON</span></div></div>
+</div></section>
+
+<section class="gsec"><h2 class="h2">List actions: heart and check</h2>
+<div class="stack-s">
+<div class="g5"><div><span class="cap">Heart default</span><button class="ib heart" type="button" aria-label="Add to want to buy"><svg class="ic"><use href="#heart"/></svg></button></div><div><span class="cap">Hover</span><button class="ib heart is-hover" type="button" aria-label="Add to want to buy"><svg class="ic"><use href="#heart"/></svg></button></div><div><span class="cap">Focus</span><button class="ib heart is-focus" type="button" aria-label="Add to want to buy"><svg class="ic"><use href="#heart"/></svg></button></div><div><span class="cap">Pressed</span><button class="ib heart is-pressed" type="button" aria-label="Add to want to buy"><svg class="ic"><use href="#heart"/></svg></button></div><div><span class="cap">Selected, on list</span><button class="ib heart on" type="button" aria-label="Remove from want to buy"><svg class="ic"><use href="#heart"/></svg></button></div><div><span class="cap">Disabled</span><button class="ib heart" type="button" disabled aria-label="Add to want to buy"><svg class="ic"><use href="#heart"/></svg></button></div></div>
+<div class="g5"><div><span class="cap">Check default</span><button class="ib check" type="button" aria-label="Mark as bought"><svg class="ic"><use href="#check"/></svg></button></div><div><span class="cap">Hover</span><button class="ib check is-hover" type="button" aria-label="Mark as bought"><svg class="ic"><use href="#check"/></svg></button></div><div><span class="cap">Focus</span><button class="ib check is-focus" type="button" aria-label="Mark as bought"><svg class="ic"><use href="#check"/></svg></button></div><div><span class="cap">Pressed</span><button class="ib check is-pressed" type="button" aria-label="Mark as bought"><svg class="ic"><use href="#check"/></svg></button></div><div><span class="cap">Selected, bought</span><button class="ib check on" type="button" aria-label="Unmark as bought"><svg class="ic"><use href="#check"/></svg></button></div><div><span class="cap">Disabled</span><button class="ib check" type="button" disabled aria-label="Mark as bought"><svg class="ic"><use href="#check"/></svg></button></div></div>
+<div class="row-f wrapf" style="gap:24px;align-items:flex-start"><div><span class="cap">Tooltip on hover or focus (icon-only buttons)</span><div style="position:relative;height:84px;width:220px"><button class="ib heart is-hover" type="button" aria-label="Add to want to buy" style="position:absolute;left:0;top:40px"><svg class="ic"><use href="#heart"/></svg></button><div style="position:absolute;left:0;top:0;background:var(--text);color:#fff;border-radius:6px;padding:4px 10px;font-size:12px;line-height:16px;white-space:nowrap">Add to want to buy</div></div></div>
+<div><span class="cap">Checkbox and switch</span><div class="row-f" style="gap:16px"><span class="cb"><svg class="ic"><use href="#check"/></svg></span><span class="cb on"><svg class="ic"><use href="#check"/></svg></span><span class="tg"></span><span class="tg on"></span></div></div></div>
+</div></section>
+
+<section class="gsec"><h2 class="h2">Inputs, chips and badges</h2>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px">
+<div><span class="lbl">Default</span><input class="inp" value="Search games" aria-label="Default"></div>
+<div><span class="lbl">Focus</span><input class="inp is-focus" value="puzzle" aria-label="Focus"></div>
+<div><span class="lbl">Error</span><input class="inp err" value="games.json" aria-label="Error"><p class="errmsg"><svg class="ic ic-s"><use href="#alert"/></svg>This file is not a valid list</p></div>
+<div><span class="lbl">Disabled</span><input class="inp" value="Unavailable" disabled aria-label="Disabled"></div>
+</div>
+<div class="row-f wrapf" style="gap:12px;margin-top:24px"><span class="chip">Games<button type="button" aria-label="Remove filter"><svg class="ic ic-s"><use href="#x"/></svg></button></span><span class="chip sky">Currency: PLN<button type="button" aria-label="Remove filter"><svg class="ic ic-s"><use href="#x"/></svg></button></span><span class="tag">NA</span><span class="tag">EU</span><span class="tag">JP</span><span class="bd bd-ok">Available</span><span class="bd bd-del"><svg class="ic ic-s"><use href="#alert"/></svg>Delisted</span><span class="bd bd-unk"><svg class="ic ic-s"><use href="#info"/></svg>Status unknown</span><span class="bd bd-dig"><svg class="ic ic-s"><use href="#check"/></svg>Digital only</span><span class="bd bd-bt"><svg class="ic ic-s"><use href="#check"/></svg>Bought</span><span class="bd bd-gold"><svg class="ic ic-s"><use href="#trophy"/></svg>Platinum</span><span class="bd bd-sky">4 DLC</span></div></section>
+
+<section class="gsec"><h2 class="h2">PSNProfiles button variants</h2>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:start">
+<div><span class="cap">Game has a platinum: extra prominence</span><a class="btn btn-red btn-xl btn-blk" href="#"><svg class="ic"><use href="#trophy"/></svg>Check platinum status on PSNProfiles<svg class="ic ic-s"><use href="#ext"/></svg></a></div>
+<div><span class="cap">Has a PSNProfiles page, no platinum</span><a class="btn btn-lg btn-blk" href="#">Check trophies on PSNProfiles<svg class="ic ic-s"><use href="#ext"/></svg></a></div>
+<div><span class="cap">No PSNProfiles page</span><div class="note" style="border:1px dashed var(--ctl);background:#fff;color:var(--muted)"><svg class="ic"><use href="#info"/></svg><div>No button is rendered. No disabled or broken state.</div></div></div>
+</div></section>
+
+<section class="gsec"><h2 class="h2">Game row and card states</h2>
+<div class="stack-s">
+<div><span class="cap">Default</span><article class="row"><div class="cover"><svg class="ic ic-l"><use href="#image"/></svg></div><div class="col-f" style="gap:6px"><h3 class="ttl">Example action game</h3><div class="meta">2009 · Action</div><div class="tags"><span class="tag">NA</span><span class="tag">EU</span><span class="bd bd-ok">Available</span></div></div><div class="price">$29.99</div><div class="acts"><button class="ib heart" type="button" aria-label="Add to want to buy"><svg class="ic"><use href="#heart"/></svg></button><button class="ib check" type="button" aria-label="Mark as bought"><svg class="ic"><use href="#check"/></svg></button></div></article></div>
+<div><span class="cap">Hover</span><article class="row is-hover"><div class="cover"><svg class="ic ic-l"><use href="#image"/></svg></div><div class="col-f" style="gap:6px"><h3 class="ttl">Example action game</h3><div class="meta">2009 · Action</div><div class="tags"><span class="tag">NA</span><span class="tag">EU</span><span class="bd bd-ok">Available</span></div></div><div class="price">$29.99</div><div class="acts"><button class="ib heart" type="button" aria-label="Add to want to buy"><svg class="ic"><use href="#heart"/></svg></button><button class="ib check" type="button" aria-label="Mark as bought"><svg class="ic"><use href="#check"/></svg></button></div></article></div>
+<div><span class="cap">On want-to-buy list</span><article class="row want"><div class="cover"><svg class="ic ic-l"><use href="#image"/></svg></div><div class="col-f" style="gap:6px"><h3 class="ttl">Example action game</h3><div class="meta">2009 · Action</div><div class="tags"><span class="tag">NA</span><span class="tag">EU</span><span class="bd bd-ok">Available</span></div></div><div class="price">$29.99</div><div class="acts"><button class="ib heart on" type="button" aria-label="Remove from want to buy"><svg class="ic"><use href="#heart"/></svg></button><button class="ib check" type="button" aria-label="Mark as bought"><svg class="ic"><use href="#check"/></svg></button></div></article></div>
+<div><span class="cap">Bought: muted with a solid mark</span><article class="row bought"><div class="cover"><svg class="ic ic-l"><use href="#image"/></svg></div><div class="col-f" style="gap:6px"><div class="row-f"><h3 class="ttl">Puzzle gem</h3><span class="bd bd-bt"><svg class="ic ic-s"><use href="#check"/></svg>Bought</span></div><div class="meta">2008 · Puzzle</div><div class="tags"><span class="tag">NA</span><span class="bd bd-ok">Available</span></div></div><div class="price">$6.99</div><div class="acts"><button class="ib heart" type="button" aria-label="Add to want to buy"><svg class="ic"><use href="#heart"/></svg></button><button class="ib check on" type="button" aria-label="Unmark as bought"><svg class="ic"><use href="#check"/></svg></button></div></article></div>
+<div><span class="cap">Loading skeleton</span><article class="row" aria-busy="true"><div class="sk" style="width:72px;height:96px;border-radius:8px"></div><div class="col-f" style="gap:10px"><div class="sk" style="height:18px;width:60%"></div><div class="sk" style="height:14px;width:30%"></div><div class="sk" style="height:18px;width:50%"></div></div><div class="sk" style="height:22px;width:80px;margin-left:auto"></div><div class="acts"><div class="sk" style="width:40px;height:40px"></div><div class="sk" style="width:40px;height:40px"></div></div></article></div>
+<div><span class="cap">Image failed to load: neutral placeholder. Compact density below</span><article class="row compact"><div class="cover er"><svg class="ic"><use href="#image"/></svg></div><div class="col-f" style="gap:2px"><h3 class="ttl" style="font-size:15px">Racing: digital edition</h3><div class="tags"><span class="tag">NA</span><span class="bd bd-del"><svg class="ic ic-s"><use href="#alert"/></svg>Delisted</span></div></div><div class="price" style="font-size:16px">$19.99</div><div class="acts"><button class="ib heart" type="button" style="width:36px;height:36px" aria-label="Add to want to buy"><svg class="ic"><use href="#heart"/></svg></button><button class="ib check" type="button" style="width:36px;height:36px" aria-label="Mark as bought"><svg class="ic"><use href="#check"/></svg></button></div></article></div>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px"><div><span class="cap">Grid card, default</span><article class="gcard"><div class="cover"><svg class="ic ic-l"><use href="#image"/></svg></div><h3 class="ttl">Puzzle gem</h3><div class="tags"><span class="tag">NA</span><span class="bd bd-ok">Available</span></div><div class="row-f"><div class="price" style="text-align:left">$6.99</div><div class="acts right"><button class="ib heart" type="button" aria-label="Add"><svg class="ic"><use href="#heart"/></svg></button><button class="ib check" type="button" aria-label="Mark"><svg class="ic"><use href="#check"/></svg></button></div></div></article></div>
+<div><span class="cap">Grid card, on list</span><article class="gcard" style="box-shadow:inset 0 4px 0 var(--red)"><div class="cover"><svg class="ic ic-l"><use href="#image"/></svg></div><h3 class="ttl">Example action game</h3><div class="tags"><span class="tag">NA</span><span class="bd bd-ok">Available</span></div><div class="row-f"><div class="price" style="text-align:left">$29.99</div><div class="acts right"><button class="ib heart on" type="button" aria-label="Remove"><svg class="ic"><use href="#heart"/></svg></button><button class="ib check" type="button" aria-label="Mark"><svg class="ic"><use href="#check"/></svg></button></div></div></article></div>
+<div><span class="cap">Grid card, loading</span><article class="gcard"><div class="sk" style="height:160px;border-radius:8px"></div><div class="sk" style="height:18px;width:70%"></div><div class="sk" style="height:14px;width:40%"></div><div class="sk" style="height:36px"></div></article></div>
+<div><span class="cap">Grid card, bought</span><article class="gcard" style="background:#f8f9fa"><div class="cover" style="opacity:.55"><svg class="ic ic-l"><use href="#image"/></svg></div><div class="row-f"><h3 class="ttl" style="opacity:.55">Puzzle gem</h3><span class="bd bd-bt"><svg class="ic ic-s"><use href="#check"/></svg>Bought</span></div><div class="tags" style="opacity:.55"><span class="tag">NA</span></div><div class="row-f"><div class="price" style="text-align:left;opacity:.55">$6.99</div><div class="acts right"><button class="ib check on" type="button" aria-label="Unmark"><svg class="ic"><use href="#check"/></svg></button></div></div></article></div></div>
+</div></section>
+
+<section class="gsec"><h2 class="h2">Empty and error states</h2>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
+<div class="card" style="text-align:center;border-style:dashed;border-color:var(--ctl)"><div style="width:56px;height:56px;border-radius:50%;background:var(--red-t);color:var(--red);display:grid;place-items:center;margin:0 auto 12px"><svg class="ic ic-l"><use href="#heart"/></svg></div><h3 class="h4">Your list is empty</h3><p class="muted sm" style="margin:6px 0 14px">Tap the heart on a game to save it before the store closes.</p><span class="btn btn-red">Browse the catalog</span></div>
+<div class="card" style="text-align:center"><div style="width:56px;height:56px;border-radius:50%;background:var(--gray-t);color:var(--muted);display:grid;place-items:center;margin:0 auto 12px"><svg class="ic ic-l"><use href="#search"/></svg></div><h3 class="h4">No games match these filters</h3><p class="muted sm" style="margin:6px 0 14px">Try removing a filter or turning off Digital only.</p><span class="btn">Clear all filters</span></div>
+<div class="note del" style="flex-direction:column"><div class="row-f"><svg class="ic"><use href="#alert"/></svg><b>The catalog could not be loaded</b></div><p>Check your connection and try again. Your list is safe on this device.</p><span class="btn btn-red btn-sm" style="align-self:flex-start"><svg class="ic ic-s"><use href="#refresh"/></svg>Try again</span></div>
+</div></section>
+
+<section class="gsec"><h2 class="h2">Disc release: the game on a disc, its DLC digital only</h2>
+<div class="stack-s">
+<div><span class="cap">Shown when the Digital only filter is off, or in the DLC type</span><article class="row"><div class="cover"><svg class="ic ic-l"><use href="#image"/></svg></div><div class="col-f" style="gap:6px"><h3 class="ttl">Example racing game</h3><div class="meta">2010 · Racing</div><div class="tags"><span class="tag">NA</span><span class="tag">EU</span><span class="bd bd-unk"><svg class="ic ic-s"><use href="#info"/></svg>Disc release</span><span class="bd bd-sky">6 DLC, digital only</span></div></div><div class="price na">DLC from $1.99</div><div class="acts"><button class="ib heart" type="button" aria-label="Add to want to buy"><svg class="ic"><use href="#heart"/></svg></button><button class="ib check" type="button" aria-label="Mark as bought"><svg class="ic"><use href="#check"/></svg></button></div></article></div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
+<div><span class="cap">Game page note, disc in another region</span><div class="note warn"><svg class="ic"><use href="#info"/></svg><div><b>A physical release exists in another region.</b> A disc version was released in JP. This listing covers the NA and EU digital versions only.</div></div></div>
+<div><span class="cap">Game page note, game on a disc</span><div class="note warn"><svg class="ic"><use href="#info"/></svg><div><b>This game has a disc release.</b> Only its DLC is available digitally. The DLC below can be bought in the store.</div></div></div>
+</div></div></section>
+
+<section class="gsec"><h2 class="h2">Component inventory</h2>
+<table class="inv"><thead><tr><th>Component</th><th>Variants and notes</th></tr></thead><tbody>
+<tr><td>Top bar</td><td>Desktop: wordmark, search button, language, currency, coffee, account. Mobile: menu, wordmark, search, account.</td></tr>
+<tr><td>Navigation</td><td>Desktop: red bar with sky line below, text links (Catalog, Games, DLC, My list, About), active item dark red. Mobile: slide-over menu drawer opened from the menu icon, same items as large touch rows, with language, currency, coffee and sign-in. Bought lives inside My list as a tab.</td></tr>
+<tr><td>Countdown strip</td><td>announced, not announced, closed; full and one-line mobile form.</td></tr>
+<tr><td>Button</td><td>primary, outlined, neutral, dark; sm, md, lg, xl; icon-only; states default, hover, focus, pressed, selected, disabled.</td></tr>
+<tr><td>List action button</td><td>heart (want to buy), check (bought); icon-only with tooltip, or labeled on the game page.</td></tr>
+<tr><td>Chip, tag, badge</td><td>filter chip with remove, region tag, status badge, digital-only mark, bought, platinum, DLC count.</td></tr>
+<tr><td>Input and search</td><td>text input, large search input, price min and max, searchable currency list; default, focus, error, disabled.</td></tr>
+<tr><td>Filter group</td><td>checkbox rows with counts, pill region toggles, price range, switch; sidebar on desktop, bottom sheet on mobile.</td></tr>
+<tr><td>Game row and card</td><td>list row, compact row, mobile row, grid card; states default, hover, on list, bought, loading, image error.</td></tr>
+<tr><td>Cover</td><td>72 x 96 list, 340 x 453 details; neutral placeholder with icon on loading or error.</td></tr>
+<tr><td>Price</td><td>selected currency, labeled fallback (9.99 USD), price unavailable; last known price note.</td></tr>
+<tr><td>Tabs and pills</td><td>underline tabs (My list), pill tabs (search modal).</td></tr>
+<tr><td>Progress bar</td><td>You own X of Y, with accessible label.</td></tr>
+<tr><td>Modal, sheet, popover, drawer</td><td>search modal, sign-in dialog, filters sheet, currency sheet, menu drawer, language and currency popovers.</td></tr>
+<tr><td>Note</td><td>info, warning (physical release elsewhere), delisted, success.</td></tr>
+<tr><td>Sync pill</td><td>syncing, synced, merge conflicts resolved, offline.</td></tr>
+<tr><td>Footer</td><td>disclaimer, links, data credits (IGDB, PSNProfiles), coffee link, GitHub link.</td></tr>
+</tbody></table></section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3200}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

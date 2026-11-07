@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sign-in dialog mobile</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>body{margin:0}.gbtn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;height:52px;border-radius:8px;border:1px solid var(--ctl);background:#fff;font:600 16px/24px var(--font);color:var(--text);cursor:pointer}.gm{width:24px;height:24px;border-radius:50%;border:2px solid var(--text);display:grid;place-items:center;font:700 13px/1 var(--font)}</style>
+</helmet>
+<div class="page m" style="width:390px;height:844px">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+<symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></symbol>
+<symbol id="x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="cloud" viewBox="0 0 24 24"><path d="M7 18a4 4 0 01-.5-8A6 6 0 0118 9.5 4.3 4.3 0 0117.5 18H7z"/></symbol>
+<symbol id="sync" viewBox="0 0 24 24"><path d="M20 11a8 8 0 00-14-4M4 4v4h4M4 13a8 8 0 0014 4M20 20v-4h-4"/></symbol>
+<symbol id="merge" viewBox="0 0 24 24"><circle cx="6" cy="5" r="2"/><circle cx="18" cy="5" r="2"/><circle cx="12" cy="19" r="2"/><path d="M6 7v2a4 4 0 004 4h4a4 4 0 004-4V7M12 13v4"/></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></symbol>
+</defs></svg>
+
+<header class="top" style="height:56px;padding:0 8px;gap:2px" aria-hidden="true">
+<button class="btn btn-icon" type="button" style="border:0"><svg class="ic"><use href="#menu"/></svg></button>
+<a class="logo" href="#" style="font-size:17px;margin-right:auto;margin-left:2px"><b>PS3</b><i>Digital Legacy</i></a>
+<button class="btn btn-icon" type="button" style="border:0"><svg class="ic"><use href="#search"/></svg></button>
+<button class="btn btn-icon" type="button" style="border:0"><svg class="ic"><use href="#user"/></svg></button>
+</header>
+<div class="ov"></div>
+
+<section class="sheet" role="dialog" aria-label="Sign in" style="padding:0 20px 24px">
+<div class="grab"></div>
+<div class="row-f" style="padding:8px 0"><h2 class="h2">Sign in</h2><button class="btn btn-icon right" type="button" aria-label="Close" style="border:0"><svg class="ic"><use href="#x"/></svg></button></div>
+<p style="font-size:15px;line-height:24px;margin-bottom:16px">Your list is stored on this device. Choose Google, Discord, Facebook or Reddit to sync it across your phone, tablet and computer.</p>
+<div class="stack" style="gap:8px"><button class="gbtn" type="button" style="height:48px"><span class="gm" aria-hidden="true">G</span>Continue with Google</button><button class="gbtn" type="button" style="height:48px"><span class="gm" aria-hidden="true">D</span>Continue with Discord</button><button class="gbtn" type="button" style="height:48px"><span class="gm" aria-hidden="true">f</span>Continue with Facebook</button><button class="gbtn" type="button" style="height:48px"><span class="gm" aria-hidden="true">R</span>Continue with Reddit</button></div>
+<ul style="margin:16px 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14px">
+<li class="row-f" style="align-items:flex-start"><svg class="ic" style="color:var(--ok)"><use href="#check"/></svg><span>Both lists are merged. The newer change wins per game.</span></li>
+<li class="row-f" style="align-items:flex-start"><svg class="ic" style="color:var(--ok)"><use href="#lock"/></svg><span>Only you can read your list.</span></li>
+</ul>
+<div class="note"><svg class="ic"><use href="#cloud"/></svg><div>Signing in is optional. Everything works without an account.</div></div>
+<button class="btn btn-blk" type="button" style="margin-top:8px;border:0;color:var(--red)">Not now</button>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

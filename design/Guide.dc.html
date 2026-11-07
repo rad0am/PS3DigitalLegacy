@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Style guide</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>body{margin:0}.sg{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}.sg b{display:block;font-size:13px;margin-top:8px}.sg .code{display:block;margin-top:2px}.sg .u{font-size:12px;line-height:16px;color:var(--muted);margin-top:2px}.tr{display:grid;grid-template-columns:140px 150px minmax(0,1fr);gap:16px;align-items:baseline;padding:10px 0;border-top:1px solid var(--line)}.sp{display:flex;align-items:flex-end;gap:20px}.sp div{background:var(--sky);border-radius:2px}.spec{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:13px;line-height:18px}.spec li{display:flex;gap:8px}.spec b{width:92px;flex:none}</style>
+</helmet>
+<div class="page" style="width:1440px;min-height:1800px;padding:48px 64px;display:flex;flex-direction:column;gap:24px">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9-9.2C1.9 8 4 5 7 5c1.9 0 3.5 1 5 2.8C13.5 6 15.1 5 17 5c3 0 5.1 3 4 6.3-1.5 4.6-9 9.2-9 9.2z"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+<symbol id="ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></symbol>
+<symbol id="trophy" viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 01-8 0V4zM8 6H4v1a4 4 0 004 4M16 6h4v1a4 4 0 01-4 4M12 13v4M8 20h8M10 17h4"/></symbol>
+<symbol id="alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2L12 3zM12 10v5M12 18h.01"/></symbol>
+<symbol id="info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></symbol>
+<symbol id="image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 16l-5-5-8 8"/></symbol>
+<symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></symbol>
+<symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></symbol>
+<symbol id="coffee" viewBox="0 0 24 24"><path d="M4 8h12v6a5 5 0 01-5 5H9a5 5 0 01-5-5V8zM16 10h2a2.5 2.5 0 010 5h-2M7 3v2M11 3v2"/></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="filter" viewBox="0 0 24 24"><path d="M4 5h16l-6 8v6l-4-2v-4L4 5z"/></symbol>
+<symbol id="menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+</defs></svg>
+
+<div style="display:flex;align-items:center;gap:24px"><a class="logo" href="#" style="font-size:32px"><b style="border-radius:8px;padding:6px 12px">PS3</b><i>Digital Legacy</i><svg class="wave" viewBox="0 0 30 9" aria-hidden="true" style="width:48px;height:14px"><path d="M1 4.5c3-5 5-5 7 0s5 5 7 0 5-5 7 0 4 4 6 1"/></svg></a>
+<div class="muted" style="font-size:16px;line-height:24px;max-width:640px">Style guide. Light, editorial catalog look: white surfaces on a pale gray page, a solid red navigation bar with a thin sky-blue line, 8 px controls and 12 px cards. Original wordmark; no Sony or PlayStation artwork.</div></div>
+
+<section class="gsec"><h2 class="h2">Color tokens</h2>
+<div class="sg">
+<div><div class="sw" style="background:#f4f5f7"></div><b>bg</b><span class="code">#f4f5f7</span><div class="u">Page background</div></div>
+<div><div class="sw" style="background:#fff"></div><b>surface</b><span class="code">#ffffff</span><div class="u">Cards, rows, top bar</div></div>
+<div><div class="sw" style="background:#b3201a"></div><b>red</b><span class="code">#b3201a</span><div class="u">Nav bar, primary action. White text 6.7:1</div></div>
+<div><div class="sw" style="background:#9a1b16"></div><b>red-hover</b><span class="code">#9a1b16</span><div class="u">Hover on red</div></div>
+<div><div class="sw" style="background:#7d1511"></div><b>red-dark</b><span class="code">#7d1511</span><div class="u">Active nav item, pressed</div></div>
+<div><div class="sw" style="background:#fbeceb"></div><b>red-tint</b><span class="code">#fbeceb</span><div class="u">Delisted badge, want-to-buy fill</div></div>
+<div><div class="sw" style="background:#4fc3f0"></div><b>sky</b><span class="code">#4fc3f0</span><div class="u">Accent line, focus glow. Never text</div></div>
+<div><div class="sw" style="background:#e5f6fd"></div><b>sky-tint</b><span class="code">#e5f6fd</span><div class="u">Countdown strip, info</div></div>
+<div><div class="sw" style="background:#0b5d82"></div><b>sky-dark</b><span class="code">#0b5d82</span><div class="u">Text on sky-tint, 6.5:1</div></div>
+<div><div class="sw" style="background:#0f6fa3"></div><b>focus</b><span class="code">#0f6fa3</span><div class="u">2 px focus ring, 5.5:1 on white</div></div>
+<div><div class="sw" style="background:#1d1d1f"></div><b>text</b><span class="code">#1d1d1f</span><div class="u">Body text, footer</div></div>
+<div><div class="sw" style="background:#5b6270"></div><b>muted</b><span class="code">#5b6270</span><div class="u">Secondary text, 6.1:1 on white</div></div>
+<div><div class="sw" style="background:#d4d7dd"></div><b>line</b><span class="code">#d4d7dd</span><div class="u">Hairline borders</div></div>
+<div><div class="sw" style="background:#8a909c"></div><b>control</b><span class="code">#8a909c</span><div class="u">Checkbox, input border, 3.2:1</div></div>
+<div><div class="sw" style="background:#266a2a"></div><b>ok</b><span class="code">#266a2a</span><div class="u">Digital only, bought. 6.6:1</div></div>
+<div><div class="sw" style="background:#e8f4e9"></div><b>ok-tint</b><span class="code">#e8f4e9</span><div class="u">Available, bought fill</div></div>
+<div><div class="sw" style="background:#eceef1"></div><b>gray-tint</b><span class="code">#eceef1</span><div class="u">Unknown status, skeleton base</div></div>
+<div><div class="sw" style="background:#fff1bf"></div><b>gold-tint</b><span class="code">#fff1bf</span><div class="u">Platinum badge, text #5c4300</div></div>
+<div><div class="sw" style="background:#fff4e0"></div><b>warn-tint</b><span class="code">#fff4e0</span><div class="u">Notes, merge state, text #6b4200</div></div>
+</div>
+<p class="muted sm" style="margin-top:16px">Status never relies on color alone: every badge pairs a label with an icon. Available is green, delisted red with a warning icon, unknown gray with an info icon.</p></section>
+
+<div style="display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:24px">
+<section class="gsec"><h2 class="h2">Type scale</h2>
+<p class="muted sm" style="margin-bottom:8px">Inter, falling back to system-ui. Sentence case everywhere, no all caps, tabular numerals for prices and the countdown.</p>
+<div class="tr"><span class="sm muted">Display</span><span class="code">36 / 42 · 700</span><span style="font:700 36px/42px var(--font)">Game page title</span></div>
+<div class="tr"><span class="sm muted">H1</span><span class="code">30 / 36 · 700</span><span class="h1">Catalog</span></div>
+<div class="tr"><span class="sm muted">H2</span><span class="code">22 / 28 · 700</span><span class="h2">Section heading</span></div>
+<div class="tr"><span class="sm muted">H3</span><span class="code">18 / 26 · 700</span><span class="h3">Card heading</span></div>
+<div class="tr"><span class="sm muted">H4, game title</span><span class="code">16 / 22 · 700</span><span class="h4">Racing: digital edition</span></div>
+<div class="tr"><span class="sm muted">Body</span><span class="code">14 / 20 · 400</span><span>Slide, match and chain colourful gems across boards.</span></div>
+<div class="tr"><span class="sm muted">Body large</span><span class="code">16 / 26 · 400</span><span style="font-size:16px;line-height:26px">Longer reading text on the About page.</span></div>
+<div class="tr"><span class="sm muted">Small</span><span class="code">13 / 18 · 400</span><span class="sm">2009 · Action, Adventure</span></div>
+<div class="tr"><span class="sm muted">Caption, badge</span><span class="code">12 / 16 · 600</span><span class="xs" style="font-weight:600">NA · EU · Available</span></div>
+<div class="tr"><span class="sm muted">Price</span><span class="code">18 / 24 · 700</span><span style="font:700 18px/24px var(--font);font-variant-numeric:tabular-nums">$29.99 · 9.99 USD</span></div>
+</section>
+
+<div style="display:flex;flex-direction:column;gap:24px">
+<section class="gsec"><h2 class="h2">Spacing scale</h2>
+<div class="sp"><div style="width:4px;height:4px"></div><div style="width:8px;height:8px"></div><div style="width:12px;height:12px"></div><div style="width:16px;height:16px"></div><div style="width:24px;height:24px"></div><div style="width:32px;height:32px"></div><div style="width:48px;height:48px"></div></div>
+<p class="code" style="margin-top:8px">4 · 8 · 12 · 16 · 24 · 32 · 48 px. Page gutter 32 desktop, 16 mobile. Row gap 12. Sidebar 272, gap 24.</p></section>
+<section class="gsec"><h2 class="h2">Radius</h2>
+<div class="row-f" style="gap:16px;align-items:flex-end">
+<div><div style="width:56px;height:56px;border:2px solid var(--text);border-radius:6px"></div><div class="code" style="margin-top:6px">6 tag</div></div>
+<div><div style="width:56px;height:56px;border:2px solid var(--text);border-radius:8px"></div><div class="code" style="margin-top:6px">8 control</div></div>
+<div><div style="width:56px;height:56px;border:2px solid var(--text);border-radius:12px"></div><div class="code" style="margin-top:6px">12 card</div></div>
+<div><div style="width:56px;height:56px;border:2px solid var(--text);border-radius:16px"></div><div class="code" style="margin-top:6px">16 modal</div></div>
+<div><div style="width:56px;height:56px;border:2px solid var(--text);border-radius:999px"></div><div class="code" style="margin-top:6px">pill</div></div>
+</div></section>
+<section class="gsec"><h2 class="h2">Icon style</h2>
+<div class="row-f wrapf" style="gap:16px"><svg class="ic ic-l"><use href="#heart"/></svg><svg class="ic ic-l"><use href="#check"/></svg><svg class="ic ic-l"><use href="#search"/></svg><svg class="ic ic-l"><use href="#ext"/></svg><svg class="ic ic-l"><use href="#trophy"/></svg><svg class="ic ic-l"><use href="#alert"/></svg><svg class="ic ic-l"><use href="#info"/></svg><svg class="ic ic-l"><use href="#coffee"/></svg><svg class="ic ic-l"><use href="#globe"/></svg><svg class="ic ic-l"><use href="#clock"/></svg></div>
+<p class="code" style="margin-top:8px">24 grid, 1.75 px stroke, round caps and joins, currentColor. 16 px in badges, 20 px in buttons, 28 px for placeholders. Filled only for the active heart.</p></section>
+</div>
+</div>
+
+<section class="gsec"><h2 class="h2">Component specs</h2>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px">
+<div><h3 class="h4" style="margin-bottom:8px">Buttons</h3>
+<ul class="spec"><li><b>Height</b>40 desktop, 44 min on mobile; sm 34, lg 48, xl 56</li><li><b>Radius</b>8, padding 0 16, label 14 / 600</li><li><b>Variants</b>primary red, outlined red, neutral, dark, icon-only 40 x 40</li><li><b>States</b>hover darker, focus 2 px ring offset 2, pressed darker plus 1 px down, disabled 50%</li></ul>
+<div class="row-f wrapf" style="margin-top:12px"><span class="btn btn-red">Primary</span><span class="btn btn-out">Outlined</span><span class="btn">Neutral</span></div></div>
+<div><h3 class="h4" style="margin-bottom:8px">Chips, tags, badges</h3>
+<ul class="spec"><li><b>Filter chip</b>32 high, pill, remove button 22</li><li><b>Region tag</b>12 / 600, 6 radius, hairline border</li><li><b>Badge</b>12 / 600, 6 radius, icon 16 plus label, tint fill</li><li><b>Statuses</b>available, delisted, unknown, bought, platinum, DLC count</li></ul>
+<div class="row-f wrapf" style="margin-top:12px"><span class="chip">Region: EU<button type="button" aria-label="Remove"><svg class="ic ic-s"><use href="#check" style="display:none"/></svg></button></span><span class="tag">NA</span><span class="bd bd-ok">Available</span><span class="bd bd-del"><svg class="ic ic-s"><use href="#alert"/></svg>Delisted</span><span class="bd bd-unk"><svg class="ic ic-s"><use href="#info"/></svg>Unknown</span></div></div>
+<div><h3 class="h4" style="margin-bottom:8px">Inputs</h3>
+<ul class="spec"><li><b>Height</b>44, radius 8, 1 px #8a909c border</li><li><b>Focus</b>2 px border #0f6fa3 plus 3 px sky glow</li><li><b>Error</b>red border plus message with icon</li><li><b>Search</b>large field 56 high, 2 px blue border, sky ring 4 px</li></ul>
+<div style="margin-top:12px"><input class="inp is-focus" value="puzzle" aria-label="Sample input"></div></div>
+<div><h3 class="h4" style="margin-bottom:8px">Game row</h3>
+<ul class="spec"><li><b>Layout</b>cover 72 x 96, info, price 170, actions</li><li><b>Container</b>white, 1 px line, radius 12, padding 12 16, gap 16</li><li><b>On list</b>4 px red inset edge, filled heart</li><li><b>Bought</b>content at 55%, solid Bought badge, green check</li><li><b>Compact</b>cover 44 x 58, padding 6 12</li></ul></div>
+<div><h3 class="h4" style="margin-bottom:8px">Card</h3>
+<ul class="spec"><li><b>Surface</b>white, 1 px line, radius 12, padding 20 (16 mobile)</li><li><b>Shadow</b>none; shadows only on popovers and modals</li><li><b>Grid card</b>cover 160 high, title, tags, price, actions</li><li><b>Note</b>tinted card with icon: info, warning, delisted, ok</li></ul></div>
+<div><h3 class="h4" style="margin-bottom:8px">Modal and sheet</h3>
+<ul class="spec"><li><b>Modal</b>radius 16, padding 24, width 480 to 680, scrim #1d1d1f at 58%</li><li><b>Sheet</b>mobile, top radius 16, grab handle, sticky action bar</li><li><b>Popover</b>radius 12, 1 px line, soft shadow, rows 40 (48 mobile)</li><li><b>Focus</b>trapped, Esc closes, returns focus to trigger</li></ul></div>
+</div></section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1800}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
