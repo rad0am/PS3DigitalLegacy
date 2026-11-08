@@ -103,6 +103,16 @@ Players cannot edit the catalog. They report through **GitHub Issues**, and the 
 - The Firebase config (`apiKey` etc.) is public by design. Security comes from the rules.
 - In the Firebase console, add `<login>.github.io` to Authorized domains.
 
+### Sync strategy and Firebase setup
+
+- **Writes:** a change goes to `localStorage` immediately. When signed in, it is marked dirty and sent to Firestore with a debounce, never more often than every 10 seconds. Send the whole `users/{uid}` document in one write, and skip the write when nothing changed.
+- **`lastWrite`:** every write sets `lastWrite: serverTimestamp()`. `firestore.rules` rejects a write that does not, and rejects an update less than 10 seconds after the previous one. On a rejected write, retry later and never drop local data. Try a best-effort flush when the page is hidden.
+- **Reads:** one read after sign-in, then merge as described above. No realtime listeners, to save quota.
+- **Plan:** the Firebase project is `ps3digitallegacy` on the free **Spark** plan. Never upgrade to Blaze or link a billing account without the owner's agreement; Spark cannot charge, it only stops serving when a daily quota runs out (the app keeps working locally).
+- **Rules:** `firestore.rules` is the source of truth but is published by hand in the Firebase console (Firestore Database, Rules). Changing the file does not update the live rules.
+- **App Check:** deliberately not used. The only supported web provider is reCAPTCHA Enterprise, which may require billing. Do not enable it without the owner's agreement.
+- **Config:** the public web config lives in `src/lib/firebase/config.ts`, not in `.env` (it is shipped to the browser anyway). `.env` stays for real secrets only. Access Firebase through `getFirebaseApp`, `getFirebaseAuth` and `getFirestoreDb` in `src/lib/firebase/client.ts`; they run only in the browser because all routes are prerendered.
+
 ## Sign-in providers
 
 Signing in is optional and offers four providers, shown as four equal "Continue with ..." buttons in the sign-in dialog (no provider is preferred):
