@@ -1,0 +1,40 @@
+name: Remove or correct a game
+description: A game is delisted, has a disc release, is a duplicate, or has wrong data
+title: '[Fix] '
+labels: ['remove-game', 'needs-triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form when a listed game is no longer available in the store, has a physical (disc) release, or has incorrect data. A proof link is required.
+  - type: input
+    id: title
+    attributes:
+      label: Title on the site
+      description: Paste the game page link if you can.
+    validations:
+      required: true
+  - type: dropdown
+    id: reason
+    attributes:
+      label: What is wrong?
+      options:
+        - No longer on the PlayStation Store (delisted)
+        - The game has a physical (disc) release
+        - Duplicate entry
+        - Wrong data (region, price, DLC, trophies)
+    validations:
+      required: true
+  - type: input
+    id: proof
+    attributes:
+      label: Proof
+      description: A store page, a disc listing, a PSNProfiles page or a screenshot link.
+      placeholder: https://
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Region, edition, a disc that exists only in another region, and so on.
