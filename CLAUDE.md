@@ -79,8 +79,20 @@ As of `2026-11-02`: 892 games, 679 of them with `digitalOnly: true`, about 3,100
 9. Language switcher (English and Polish), see "Internationalization".
 10. "PSNProfiles" button on the game details view (and on list items that have a platinum), see "PSNProfiles link".
 11. Currency selector with a browser-based default and a USD fallback, see "Currency selection".
+12. Links to report a missing game, a game to remove or correct, or a bug, see "Community reports".
 
 Later: sign-in and Firebase sync, export/import of the list as JSON.
+
+## Community reports
+
+Players cannot edit the catalog. They report through **GitHub Issues**, and the owner changes `ps3-digital.json` by hand or with the generator script.
+
+- Issue forms live in `.github/ISSUE_TEMPLATE/`: `missing-game.yml` (label `missing-game`), `remove-game.yml` (label `remove-game`) and `bug.yml` (label `bug`). Every form also adds `needs-triage`. `config.yml` sets `blank_issues_enabled: false`. Labels already exist in the repo; the form `labels` must match them exactly.
+- Missing-game and remove forms require a proof link. Do not change the catalog without one.
+- Handling a report: a game gone from the store is set to `storeStatus: "delisted"`, not deleted. A disc release sets `digitalOnly: false` (its DLC stays listed). Delete an entry only for a duplicate or an error. Never change an `id`.
+- The app links to the forms with `https://github.com/<owner>/<repo>/issues/new?template=<file>.yml`. The repository URL is a single config value, not scattered through components. Links open in a new tab with `rel="noopener noreferrer"`, and all labels come from the i18n catalog (`en` and `pl`).
+- Where the links appear: the game details page ("Report a problem", prefilled with `&title=%5BFix%5D+<game title>`, using `remove-game.yml`), the search modal and an empty search result ("Can't find a game? Report it", `missing-game.yml`), the About page ("Help improve the catalog", all three forms) and the footer (missing game, bug).
+- A GitHub account is needed to open an issue. Say so on the About page. If this turns out to block too many players, consider a form alternative later (needs a decision, see the backend rule).
 
 ## User state: local-first
 
