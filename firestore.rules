@@ -3,17 +3,34 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     // One document per user holding the wishlist/bought map, language and currency.
+    // Every write must set `lastWrite` to the server time (serverTimestamp()),
+    // and a user may write their document at most once per 10 seconds.
     match /users/{uid} {
-      allow read: if request.auth != null && request.auth.uid == uid;
-      allow create, update: if request.auth != null
-                            && request.auth.uid == uid
-                            && request.resource.size() < 200 * 1024;
-      allow delete: if request.auth != null && request.auth.uid == uid;
+      allow read: if isOwner(uid);
+
+      allow create: if isOwner(uid)
+                    && isValidWrite();
+
+      allow update: if isOwner(uid)
+                    && isValidWrite()
+                    && request.time > resource.data.get('lastWrite', timestamp.date(1970, 1, 1))
+                                      + duration.value(10, 's');
+
+      allow delete: if isOwner(uid);
     }
 
     // Everything else is denied.
     match /{document=**} {
       allow read, write: if false;
+    }
+
+    function isOwner(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    function isValidWrite() {
+      return request.resource.size() < 200 * 1024
+          && request.resource.data.lastWrite == request.time;
     }
   }
 }
