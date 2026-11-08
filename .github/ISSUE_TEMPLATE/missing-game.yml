@@ -1,0 +1,59 @@
+name: Missing game or DLC
+description: A digital-only PS3 title is not listed on the site
+title: '[Missing] '
+labels: ['missing-game', 'needs-triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping the catalog grow. Please search the site first, and add a link that shows the title exists on the PS3 PlayStation Store.
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: The game or DLC name as shown in the store.
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type
+      options:
+        - Game
+        - DLC
+    validations:
+      required: true
+  - type: input
+    id: parent
+    attributes:
+      label: Parent game (DLC only)
+      description: Name of the game this DLC belongs to.
+  - type: checkboxes
+    id: regions
+    attributes:
+      label: Regions where it is sold on the PlayStation Store
+      options:
+        - label: NA
+        - label: EU
+        - label: JP
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      description: A PlayStation Store, PSNProfiles or IGDB page that shows the title exists and is digital only.
+      placeholder: https://
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Price, edition, anything else that helps.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched the site and this title is not listed.
+          required: true
+        - label: As far as I know, the game has no disc release (games only, DLC is always digital).
