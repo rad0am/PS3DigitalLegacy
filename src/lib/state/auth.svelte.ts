@@ -1,3 +1,4 @@
+import type { Auth } from 'firebase/auth';
 import { getFirebaseAuth } from '#lib/firebase/client.js';
 import { STORAGE_KEYS, readStorage, writeStorage } from './storage';
 import { sync } from './sync.svelte';
@@ -34,6 +35,7 @@ class AuthStore {
 	busy = $state(false);
 	error = $state<AuthError | null>(null);
 	#started = false;
+	#ready: { auth: Auth; firebaseAuth: typeof import('firebase/auth') } | undefined;
 
 	/** Restores a previous session. Firebase Auth is only loaded if the user signed in before. */
 	async init(): Promise<void> {
@@ -65,22 +67,57 @@ class AuthStore {
 		}
 	}
 
+	/**
+	 * Loads Firebase Auth ahead of the click. Browsers only allow a pop-up opened directly from a tap,
+	 * so signInWithPopup must run before any `await`: loading the SDK first would get it blocked.
+	 */
+	async preload(): Promise<void> {
+		if (this.#ready) return;
+		try {
+			const [auth, firebaseAuth] = await Promise.all([getFirebaseAuth(), import('firebase/auth')]);
+			this.#ready = { auth, firebaseAuth };
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
 	async signIn(id: ProviderId): Promise<boolean> {
 		const provider = PROVIDERS.find((p) => p.id === id);
 		if (!provider?.enabled || this.busy) return false;
-		this.busy = true;
 		this.error = null;
+		if (!this.#ready) {
+			await this.preload();
+			if (!this.#ready) {
+				this.error = 'network';
+				return false;
+			}
+		}
+		this.busy = true;
+		const { auth, firebaseAuth } = this.#ready;
+		const authProvider =
+			id === 'facebook'
+				? new firebaseAuth.FacebookAuthProvider()
+				: new firebaseAuth.GoogleAuthProvider();
 		try {
-			const [auth, firebaseAuth] = await Promise.all([getFirebaseAuth(), import('firebase/auth')]);
-			const authProvider =
-				id === 'facebook'
-					? new firebaseAuth.FacebookAuthProvider()
-					: new firebaseAuth.GoogleAuthProvider();
+			// No await before this call, so the browser still treats it as a direct result of the tap.
 			await firebaseAuth.signInWithPopup(auth, authProvider);
 			writeStorage(STORAGE_KEYS.signedIn, '1');
 			await this.#start();
 			return true;
 		} catch (error) {
+			const code = (error as { code?: string } | null)?.code;
+			if (code === 'auth/popup-blocked') {
+				// Fall back to a full-page redirect. The session is restored on return (see init()).
+				try {
+					writeStorage(STORAGE_KEYS.signedIn, '1');
+					await firebaseAuth.signInWithRedirect(auth, authProvider);
+					return true;
+				} catch (redirectError) {
+					writeStorage(STORAGE_KEYS.signedIn, null);
+					this.error = this.#classify(redirectError);
+					return false;
+				}
+			}
 			this.error = this.#classify(error);
 			return false;
 		} finally {

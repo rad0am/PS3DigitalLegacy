@@ -10,6 +10,11 @@
 		if (auth.user) ui.signInOpen = false;
 	});
 
+	// Warm up Firebase Auth while the dialog is open, so the tap can open the pop-up immediately.
+	$effect(() => {
+		if (ui.signInOpen) void auth.preload();
+	});
+
 	$effect(() => {
 		if (!ui.signInOpen) auth.error = null;
 	});
