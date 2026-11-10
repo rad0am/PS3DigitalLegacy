@@ -2,6 +2,7 @@
 	import { resolve } from '$app/paths';
 	import Cover from '#lib/components/Cover.svelte';
 	import Icon from '#lib/components/Icon.svelte';
+	import Lightbox from '#lib/components/Lightbox.svelte';
 	import StatusBadge from '#lib/components/StatusBadge.svelte';
 	import { issueUrl } from '#lib/config.js';
 	import { formatAmount, formatPrice, lookupInList, resolvePrice } from '#lib/currency/price.js';
@@ -21,6 +22,8 @@
 	const SHOTS_SHOWN = 4;
 	let allPrices = $state(false);
 	let allShots = $state(false);
+	let lightboxOpen = $state(false);
+	let lightboxIndex = $state(0);
 	let failedShots = $state<Record<string, boolean>>({});
 
 	// Notes in the data are free text; a few known shapes get neutral wording, the rest is shown as is.
@@ -205,12 +208,17 @@
 					<h2 class="h3" style="margin-bottom:12px">{m.detail_screenshots()}</h2>
 					<div class="shots">
 						{#each shots as src (src)}
-							<a
+							<button
 								class="shot"
-								href={src}
-								target="_blank"
-								rel="external noopener noreferrer"
-								aria-label={m.detail_screenshot_open()}
+								type="button"
+								aria-label={m.detail_screenshot_open({
+									n: game.screenshots.indexOf(src) + 1,
+									total: game.screenshots.length
+								})}
+								onclick={() => {
+									lightboxIndex = game.screenshots.indexOf(src);
+									lightboxOpen = true;
+								}}
 							>
 								{#if failedShots[src]}
 									<Icon name="image" size="l" />
@@ -224,7 +232,7 @@
 										onerror={() => (failedShots[src] = true)}
 									/>
 								{/if}
-							</a>
+							</button>
 						{/each}
 					</div>
 					{#if game.screenshots.length > SHOTS_SHOWN}
@@ -380,3 +388,5 @@
 		</div>
 	</div>
 </main>
+
+<Lightbox bind:open={lightboxOpen} bind:index={lightboxIndex} images={game.screenshots} />

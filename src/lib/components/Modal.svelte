@@ -12,7 +12,7 @@
 	}: {
 		open: boolean;
 		label: string;
-		variant?: 'center' | 'sheet' | 'drawer';
+		variant?: 'center' | 'sheet' | 'drawer' | 'full';
 		/** width of the centered dialog in px */
 		width?: number;
 		/** distance from the top of the centered dialog in px */
