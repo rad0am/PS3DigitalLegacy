@@ -1,6 +1,8 @@
 // Single place for site-wide configuration values.
 
 export const siteConfig = {
+	/** Public origin of the site (GitHub Pages), used for absolute Open Graph URLs. */
+	siteOrigin: 'https://rad0am.github.io',
 	/** Repository that hosts the issue forms (see "Community reports" in CLAUDE.md). */
 	repoUrl: 'https://github.com/rad0am/PS3DigitalLegacy',
 	/** Buy Me a Coffee page, shown as a plain link (no third-party script is loaded). */

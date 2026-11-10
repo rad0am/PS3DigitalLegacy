@@ -7,6 +7,8 @@ import { defineConfig } from 'vitest/config';
 const base = (process.env.BASE_PATH ?? '') as '' | `/${string}`;
 
 export default defineConfig({
+	// Exposed so absolute URLs (Open Graph image) can include the Pages sub-path.
+	define: { __BASE_PATH__: JSON.stringify(base) },
 	plugins: [
 		sveltekit({
 			compilerOptions: {

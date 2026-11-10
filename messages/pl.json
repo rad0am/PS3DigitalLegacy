@@ -2,6 +2,8 @@
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"app_title": "PS3 Digital Legacy",
 	"app_tagline": "Gry i DLC, które na PlayStation 3 kupisz tylko cyfrowo w sklepie PlayStation Store.",
+	"og_image_alt": "PS3 Digital Legacy: gry i DLC dostępne tylko cyfrowo w sklepie PlayStation 3. Zamknięcie sklepu w lipcu 2027.",
+	"meta_home_description": "Przeglądaj gry i DLC na PS3 dostępne tylko cyfrowo. Zbuduj listę zakupów i kup je, zanim sklep PlayStation Store zostanie zamknięty.",
 	"app_disclaimer": "Projekt fanowski, niezwiązany z firmą Sony.",
 
 	"skip_to_content": "Przejdź do treści",

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import SeoMeta from '#lib/components/SeoMeta.svelte';
 	import { resolve } from '$app/paths';
 	import Cover from '#lib/components/Cover.svelte';
 	import Icon from '#lib/components/Icon.svelte';
@@ -69,10 +70,11 @@
 	}
 </script>
 
-<svelte:head>
-	<title>{game.title} · {m.app_title()}</title>
-	<meta name="description" content={game.description?.slice(0, 160) ?? m.app_tagline()} />
-</svelte:head>
+<SeoMeta
+	title={game.title}
+	description={game.description?.slice(0, 160) ?? m.app_tagline()}
+	type="article"
+/>
 
 <main class="wrap" id="main">
 	<div class="crumb">

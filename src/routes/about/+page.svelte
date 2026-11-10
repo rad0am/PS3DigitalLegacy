@@ -1,4 +1,5 @@
 <script lang="ts">
+	import SeoMeta from '#lib/components/SeoMeta.svelte';
 	import { resolve } from '$app/paths';
 	import BmcButton from '#lib/components/BmcButton.svelte';
 	import Icon from '#lib/components/Icon.svelte';
@@ -10,9 +11,7 @@
 	let { data }: PageProps = $props();
 </script>
 
-<svelte:head>
-	<title>{m.nav_about()} · {m.app_title()}</title>
-</svelte:head>
+<SeoMeta title={m.nav_about()} />
 
 <main class="wrap" id="main">
 	<div class="wrap-about">

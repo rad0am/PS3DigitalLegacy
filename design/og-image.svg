@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Source of static/og-image.png (1200x630). Render with @resvg/resvg-js. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#14161c"/>
+      <stop offset="0.6" stop-color="#2a0f10"/>
+      <stop offset="1" stop-color="#7d1511"/>
+    </linearGradient>
+    <linearGradient id="wave" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4fc3f0" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#4fc3f0" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#4fc3f0" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g fill="none" stroke="url(#wave)" stroke-width="3" stroke-linecap="round">
+    <path d="M0 520 C150 440 300 600 450 520 S750 440 900 520 S1100 580 1200 500" opacity="0.9"/>
+    <path d="M0 555 C150 475 300 635 450 555 S750 475 900 555 S1100 615 1200 535" opacity="0.5"/>
+    <path d="M0 590 C150 510 300 670 450 590 S750 510 900 590 S1100 650 1200 570" opacity="0.25"/>
+  </g>
+
+  <!-- logo -->
+  <rect x="80" y="76" width="132" height="76" rx="16" fill="#b3201a"/>
+  <text x="146" y="132" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="52" fill="#fff">PS3</text>
+  <text x="232" y="132" font-family="Segoe UI, Arial, sans-serif" font-weight="700" font-size="48" fill="#fff">Digital Legacy</text>
+
+  <!-- headline -->
+  <text font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="76" fill="#fff">
+    <tspan x="80" y="288">Games you can only</tspan>
+    <tspan x="80" y="372">buy <tspan fill="#4fc3f0">digitally.</tspan></tspan>
+  </text>
+  <text font-family="Segoe UI, Arial, sans-serif" font-weight="400" font-size="34" fill="#d9dce3">
+    <tspan x="80" y="440">Browse PS3 games &amp; DLC, build your list, and</tspan>
+    <tspan x="80" y="484">grab them before the store closes.</tspan>
+  </text>
+
+  <!-- closing pill -->
+  <rect x="80" y="528" width="404" height="56" rx="28" fill="#fff" fill-opacity="0.12" stroke="#fff" stroke-opacity="0.35" stroke-width="2"/>
+  <circle cx="112" cy="556" r="8" fill="#ff5a4f"/>
+  <text x="134" y="566" font-family="Segoe UI, Arial, sans-serif" font-weight="700" font-size="26" fill="#fff">PS3 store closing July 2027</text>
+</svg>

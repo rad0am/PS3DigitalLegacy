@@ -1,4 +1,5 @@
 <script lang="ts">
+	import SeoMeta from '#lib/components/SeoMeta.svelte';
 	import { resolve } from '$app/paths';
 	import GameRow from '#lib/components/GameRow.svelte';
 	import Icon from '#lib/components/Icon.svelte';
@@ -67,9 +68,7 @@
 	}
 </script>
 
-<svelte:head>
-	<title>{m.nav_my_list()} · {m.app_title()}</title>
-</svelte:head>
+<SeoMeta title={m.nav_my_list()} />
 
 {#snippet bar(owned: number, total: number, suffix: string, note: string)}
 	<div>
