@@ -67,6 +67,10 @@ As of `2026-11-02`: 892 games, 679 of them with `digitalOnly: true`, about 3,100
 - The sidebar toggle's helper text says: "Hides games that have a disc release. Their DLC stays listed."
 - Do not claim the base game cannot be bought digitally; the data only says a disc exists. Wording stays neutral.
 
+## Layout
+
+On desktop (1280px and wider) the content takes at most 80% of the width (10% gutters on the header, nav, content and footer; their backgrounds stay full-bleed). Below that, and on touch layouts (up to 1023px), content uses the full width.
+
 ## Features (MVP)
 
 1. Game list with a result count.
@@ -74,9 +78,9 @@ As of `2026-11-02`: 892 games, 679 of them with `digitalOnly: true`, about 3,100
 3. Filters: type (game/DLC), region, genre, price, `storeStatus`, "digital only".
 4. Sorting: name, price, release date.
 5. Game details: cover, metadata, DLC, prices, links (IGDB, PSNProfiles).
-6. User list: `wishlist` / `bought` state per `id`, with a progress indicator ("you own X of Y").
+6. User list: `wishlist` / `bought` state per `id`, with two progress indicators: digital-only games ("you own X of 679") and DLC ("you own X of 3,099", all DLC counts, including DLC of disc games).
 7. Countdown to the store closure.
-8. "Buy me a coffee" as a plain link (no third-party widget scripts).
+8. "Buy me a coffee" as a plain link styled like the official button (yellow `#FFDD00`, black outline, ☕), to `https://www.buymeacoffee.com/rad0`. No third-party widget script is loaded; the URL is `siteConfig.coffeeUrl`.
 9. Language switcher (English and Polish), see "Internationalization".
 10. "PSNProfiles" button on the game details view (and on list items that have a platinum), see "PSNProfiles link".
 11. Currency selector with a browser-based default and a USD fallback, see "Currency selection".
@@ -98,7 +102,7 @@ Players cannot edit the catalog. They report through **GitHub Issues**, and the 
 ## User state: local-first
 
 - A Svelte store persists to `localStorage`. The app works fully without signing in.
-- Shape: `{ [gameId]: { status: 'wishlist' | 'bought', updatedAt: number } }`.
+- Shape: `{ [gameId]: { status: 'wishlist' | 'bought' | 'none', updatedAt: number } }`. `none` is a tombstone for an entry the user removed: without it, the merge would bring a deleted entry back from the other side. Tombstones are not exported and are pruned after 90 days.
 - On sign-in, **merge**: union of local and remote entries; on conflict the newer `updatedAt` wins per `gameId`. Never blindly overwrite either side.
 - Firestore: one document `users/{uid}` holding a map of games. Rules: read and write only when `request.auth.uid == uid`.
 - The Firebase config (`apiKey` etc.) is public by design. Security comes from the rules.
@@ -116,7 +120,7 @@ Players cannot edit the catalog. They report through **GitHub Issues**, and the 
 
 ## Sign-in providers
 
-Signing in is optional and offers four providers, shown as four equal "Continue with ..." buttons in the sign-in dialog (no provider is preferred):
+Signing in is optional. **Currently only Google is offered** (the one that works on Firebase without extra setup); the list below is the plan, and the provider list in `src/lib/state/auth.svelte.ts` is data-driven so the others can be added later. Planned, shown as equal "Continue with ..." buttons (no provider is preferred):
 
 1. **Google**
 2. **Discord**
@@ -126,7 +130,7 @@ Signing in is optional and offers four providers, shown as four equal "Continue 
 - The header control and menu say just "Sign in" (not "Sign in with Google"). The dialog explains that the list is stored on the device and syncs after signing in.
 - Use neutral monogram marks in buttons; do not ship the providers' logos or brand artwork unless their brand guidelines are followed.
 - Store only the list, language and currency. Request the minimum scopes (identity only), never friends, posts or guilds.
-- **Provider support caveat:** Firebase Authentication has built-in support for Google and Facebook only. Discord and Reddit are OAuth 2.0 providers without OIDC discovery, so they cannot be added as Firebase custom OIDC providers; they need a small token-exchange backend (for example a Cloud Function that mints a Firebase custom token), because the OAuth client secret must not live in site code. That conflicts with "client only, no custom backend" and may need a plan beyond Spark. Until the owner decides, build Google and Facebook first and keep the provider list data-driven so Discord and Reddit can be switched on later.
+- **Provider support caveat:** Firebase Authentication has built-in support for Google and Facebook only. Discord and Reddit are OAuth 2.0 providers without OIDC discovery, so they cannot be added as Firebase custom OIDC providers; they need a small token-exchange backend (for example a Cloud Function that mints a Firebase custom token), because the OAuth client secret must not live in site code. That conflicts with "client only, no custom backend" and may need a plan beyond Spark. Google ships first; Facebook can be added next (needs a Facebook app configured in the Firebase console), Discord and Reddit only after the owner decides on the backend.
 - **Account linking:** the same person may sign in with different providers. Decide whether to link accounts by verified email (Firebase default is one account per email) so the list does not split across several `users/{uid}` documents.
 
 ## Currency selection
@@ -182,9 +186,9 @@ The UI ships in **English (`en`)** and **Polish (`pl`)**. English is the source 
 
 ## Store closure countdown
 
-The official date is uncertain (sources conflict). Keep it in a single config field, e.g. `closingDate: string | null`:
+Sony's official notice (https://www.playstation.com/en-us/support/important-notice/, checked 2026-11) says the PS3 and PS Vita stores close "starting July 2027", with no exact day. Two config fields in `src/lib/config.ts`: `closingMonth` (`'2027-07'`, shown as "Store closing: July 2027. The exact date is not announced yet.") and `closingDate: string | null` (exact day). When `closingDate` is set, the countdown starts and replaces the month text. `closingDate` states:
 
-- `null`: show "closing date not announced".
+- `null`: show the announced month if `closingMonth` is set, otherwise "closing date not announced".
 - future date: show a countdown in days and hours.
 - past date: show a "store closed, this is an archive" state.
 
