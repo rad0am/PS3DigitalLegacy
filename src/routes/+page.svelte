@@ -1,13 +1,11 @@
 <script lang="ts">
+	import Catalog from '#lib/components/Catalog.svelte';
 	import { m } from '#lib/paraglide/messages.js';
 </script>
 
 <svelte:head>
 	<title>{m.app_title()}</title>
+	<meta name="description" content={m.app_tagline()} />
 </svelte:head>
 
-<main>
-	<h1>{m.app_title()}</h1>
-	<p>{m.app_tagline()}</p>
-	<p><small>{m.app_disclaimer()}</small></p>
-</main>
+<Catalog title={m.nav_catalog()} preset={['game', 'dlc']} />

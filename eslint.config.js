@@ -37,6 +37,17 @@ export default defineConfig(
 	{
 		// Override or add rule settings here, such as:
 		// 'svelte/button-has-type': 'error'
-		rules: {}
+		rules: {
+			// Internal hrefs come from the `resolve()`-based helpers in `src/lib/links.ts` and `nav.ts`
+			// (the rule cannot see through a helper); external links use `rel="external"`.
+			'svelte/no-navigation-without-resolve': [
+				'error',
+				{
+					ignoreGoto: true,
+					ignoreLinks: true,
+					ignoreReplaceState: true
+				}
+			]
+		}
 	}
 );
