@@ -28,7 +28,7 @@ Lives in `data/ps3-digital.json`, outside `static/` on purpose (it must never be
 
 Structure: `{ schemaVersion, generatedAt, games: Game[] }`.
 
-As of `2026-11-02`: 892 games, 679 of them with `digitalOnly: true`, about 3,100 DLC in total (324 games have DLC).
+As of `2026-11-12`: 893 games, 681 of them with `digitalOnly: true`, about 3,100 DLC in total (3,104; 325 games have DLC).
 
 `Game` fields:
 
@@ -78,7 +78,7 @@ On desktop (1280px and wider) the content takes at most 80% of the width (10% gu
 3. Filters: type (game/DLC), region, genre, price, `storeStatus`, "digital only".
 4. Sorting: name, price, release date.
 5. Game details: cover, metadata, DLC, prices, links (IGDB, PSNProfiles).
-6. User list: `wishlist` / `bought` state per `id`, with two progress indicators: digital-only games ("you own X of 679") and DLC ("you own X of 3,099", all DLC counts, including DLC of disc games).
+6. User list: `wishlist` / `bought` state per `id`, with two progress indicators: digital-only games ("you own X of 681") and DLC ("you own X of 3,104", all DLC counts, including DLC of disc games).
 7. Countdown to the store closure.
 8. "Buy me a coffee" as a plain link styled like the official button (yellow `#FFDD00`, black outline, ☕), to `https://www.buymeacoffee.com/rad0`. No third-party widget script is loaded; the URL is `siteConfig.coffeeUrl`.
 9. Language switcher (English and Polish), see "Internationalization".
@@ -162,7 +162,7 @@ Eurozone countries map to `EUR`. The table is a plain TypeScript map and must be
 
 When a fallback currency is shown, label it explicitly (e.g. "9.99 USD"), never silently mixing currencies in a list. Do not convert between currencies; show only prices that exist in the data.
 
-Data facts that justify the chain (as of `2026-11-02`): 605 of 892 games have prices and 287 have none; USD is missing for 73 of the games that do have prices; only 4 priced games have neither USD nor EUR.
+Data facts that justify the chain (as of `2026-11-12`): 606 of 893 games have prices and 287 have none; USD is missing for 73 of the games that do have prices; only 4 priced games have neither USD nor EUR.
 
 Format amounts with `Intl.NumberFormat` using the active UI locale and the displayed currency. Currency choice is independent of the UI language: a Polish-language user may still pick USD. Treat prices as informational ("last known price"), because the store may close or change prices.
 
@@ -170,8 +170,8 @@ Format amounts with `Intl.NumberFormat` using the active UI locale and the displ
 
 Each game can show a button linking to its PSNProfiles trophy page, so users can check whether the platinum trophy is still obtainable (for example when online servers are gone or trophies are marked unobtainable there).
 
-- Source field: `psnprofilesUrl`. In the current data 768 of 892 games have it (all on `psnprofiles.com`); 124 have none. Every game with `trophies.hasPlatinum: true` (255 games) has a URL.
-- Render the button only when `psnprofilesUrl` is set. Do not show a disabled or broken button for the 124 games without one.
+- Source field: `psnprofilesUrl`. In the current data 770 of 893 games have it (all on `psnprofiles.com`); 123 have none. Every game with `trophies.hasPlatinum: true` (256 games) has a URL.
+- Render the button only when `psnprofilesUrl` is set. Do not show a disabled or broken button for the 123 games without one.
 - Give extra prominence to the button when `trophies.hasPlatinum` is `true`, since that is the case the user cares about. Games with `trophies.supported: false` show no trophy info.
 - **The app does not determine whether a platinum is obtainable.** It only links to PSNProfiles, which is the source of truth. Do not display claims like "platinum obtainable" or "unobtainable" derived from our data. Wording must be neutral, e.g. "Check platinum status on PSNProfiles".
 - Open the link in a new tab with `target="_blank"` and `rel="noopener noreferrer"`. Validate at build time that the URL host is `psnprofiles.com` before rendering.

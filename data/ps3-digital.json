@@ -10894,6 +10894,48 @@
             ]
         },
         {
+            "id": "8a423586-1b02-4403-9386-82fdab3ef7b6",
+            "platform": "PS3",
+            "title": "Assassin\u0027s Creed: Freedom Cry",
+            "regions": [
+                "EU",
+                "NA"
+            ],
+            "digitalOnly": true,
+            "prices": [],
+            "trophies": {
+                "supported": true,
+                "hasPlatinum": false
+            },
+            "psnprofilesUrl": "https://psnprofiles.com/trophies/2445-assassins-creed-freedom-cry",
+            "dlc": [],
+            "storeStatus": "available",
+            "notes": [],
+            "igdbId": 3775,
+            "igdbUrl": "https://www.igdb.com/games/assassins-creed-freedom-cry",
+            "coverPhoto": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2gjy.jpg",
+            "genres": [
+                "Adventure"
+            ],
+            "description": "Born a slave, Adéwalé found freedom as a pirate aboard the Jackdaw as Captain Edward Kenway\u0027s Quartermaster. Fifteen years later, Adéwalé has become a trained assassin and finds himself shipwrecked in Saint-Domingue with no weapon and no crew helping him out.",
+            "developers": [
+                "Ubisoft Québec",
+                "Ubisoft Montreal"
+            ],
+            "publishers": [
+                "Ubisoft Entertainment"
+            ],
+            "releaseDate": "2013-12-17",
+            "playerPerspectives": [
+                "Third person"
+            ],
+            "alternativeNames": [
+                "AC:FC",
+                "Assassin\u0027s Creed IV: Black Flag - Freedom Cry"
+            ],
+            "screenshots": []
+        },
+        {
             "id": "dfa11f55-3967-5d52-8163-d709fdd64dd5",
             "platform": "PS3",
             "title": "Assassin\u0027s Creed: Liberation HD",
@@ -10902,7 +10944,7 @@
                 "NA",
                 "JP"
             ],
-            "digitalOnly": false,
+            "digitalOnly": true,
             "prices": [
                 {
                     "currency": "USD",
@@ -11002,10 +11044,10 @@
                 }
             ],
             "trophies": {
-                "supported": false,
-                "hasPlatinum": false
+                "supported": true,
+                "hasPlatinum": true
             },
-            "psnprofilesUrl": null,
+            "psnprofilesUrl": "https://psnprofiles.com/trophies/2320-assassins-creed-liberation",
             "dlc": [
                 {
                     "id": "eba0feaa-5227-5e25-91ae-8a9d9b0a1989",
@@ -11216,7 +11258,7 @@
             ],
             "storeStatus": "available",
             "notes": [
-                "Also released on PS3 disc in: Assassin\u0027s Creed: The Americas Collection"
+                "This game has no disc of its own. The disc bundle Assassin\u0027s Creed: The Americas Collection includes a code to download it."
             ],
             "igdbId": 20864,
             "igdbUrl": "https://www.igdb.com/games/assassins-creed-liberation-hd",
@@ -15856,8 +15898,10 @@
             },
             "psnprofilesUrl": "https://psnprofiles.com/trophies/833",
             "dlc": [],
-            "storeStatus": "unknown",
-            "notes": [],
+            "storeStatus": "delisted",
+            "notes": [
+                "Delisted at the end of 2016 because the film license expired."
+            ],
             "igdbId": 19010,
             "igdbUrl": "https://www.igdb.com/games/battle-los-angeles",
             "coverPhoto": "https://images.igdb.com/igdb/image/upload/t_cover_big/co4std.jpg",
@@ -36810,7 +36854,7 @@
             },
             "psnprofilesUrl": "https://psnprofiles.com/trophies/1961",
             "dlc": [],
-            "storeStatus": "unknown",
+            "storeStatus": "delisted",
             "notes": [],
             "igdbId": 1976,
             "igdbUrl": "https://www.igdb.com/games/call-of-juarez-gunslinger",
@@ -125442,15 +125486,611 @@
                 "JP"
             ],
             "digitalOnly": true,
-            "prices": [],
+            "prices": [
+                {
+                    "currency": "PLN",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "USD",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "AED",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "AUD",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "CAD",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "CHF",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "CZK",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "DKK",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "EUR",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "GBP",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "HUF",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "ILS",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "INR",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "MXN",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "NOK",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "NZD",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "RON",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "RUB",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "SAR",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "SEK",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "TRY",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "UAH",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "ZAR",
+                    "amount": 0.0
+                },
+                {
+                    "currency": "BRL",
+                    "amount": 0.0
+                }
+            ],
             "trophies": {
                 "supported": true,
                 "hasPlatinum": true
             },
             "psnprofilesUrl": "https://psnprofiles.com/trophies/3318",
-            "dlc": [],
-            "storeStatus": "unknown",
-            "notes": [],
+            "dlc": [
+                {
+                    "id": "7d03ea3b-9a28-467b-831c-6ece6e6841ae",
+                    "name": "Life is Strange Episode 2: Out of Time",
+                    "trophies": null,
+                    "prices": [
+                        {
+                            "currency": "PLN",
+                            "amount": 21.0
+                        },
+                        {
+                            "currency": "USD",
+                            "amount": 4.99
+                        },
+                        {
+                            "currency": "AED",
+                            "amount": 22.0
+                        },
+                        {
+                            "currency": "AUD",
+                            "amount": 7.55
+                        },
+                        {
+                            "currency": "CAD",
+                            "amount": 6.99
+                        },
+                        {
+                            "currency": "CHF",
+                            "amount": 5.9
+                        },
+                        {
+                            "currency": "CZK",
+                            "amount": 136.0
+                        },
+                        {
+                            "currency": "DKK",
+                            "amount": 37.0
+                        },
+                        {
+                            "currency": "EUR",
+                            "amount": 4.99
+                        },
+                        {
+                            "currency": "GBP",
+                            "amount": 3.99
+                        },
+                        {
+                            "currency": "HUF",
+                            "amount": 1529.0
+                        },
+                        {
+                            "currency": "ILS",
+                            "amount": 21.0
+                        },
+                        {
+                            "currency": "INR",
+                            "amount": 415.0
+                        },
+                        {
+                            "currency": "MXN",
+                            "amount": 86.01
+                        },
+                        {
+                            "currency": "NOK",
+                            "amount": 48.0
+                        },
+                        {
+                            "currency": "NZD",
+                            "amount": 7.95
+                        },
+                        {
+                            "currency": "RON",
+                            "amount": 22.0
+                        },
+                        {
+                            "currency": "RUB",
+                            "amount": 359.0
+                        },
+                        {
+                            "currency": "SAR",
+                            "amount": 22.47
+                        },
+                        {
+                            "currency": "SEK",
+                            "amount": 49.0
+                        },
+                        {
+                            "currency": "TRY",
+                            "amount": 22.0
+                        },
+                        {
+                            "currency": "UAH",
+                            "amount": 159.0
+                        },
+                        {
+                            "currency": "ZAR",
+                            "amount": 89.0
+                        },
+                        {
+                            "currency": "BRL",
+                            "amount": 26.9
+                        }
+                    ]
+                },
+                {
+                    "id": "191b33f7-4e99-4ae7-a226-bf8800e6dc18",
+                    "name": "Life is Strange Episode 3: Chaos Theory",
+                    "trophies": null,
+                    "prices": [
+                        {
+                            "currency": "PLN",
+                            "amount": 21.0
+                        },
+                        {
+                            "currency": "USD",
+                            "amount": 4.99
+                        },
+                        {
+                            "currency": "AED",
+                            "amount": 22.0
+                        },
+                        {
+                            "currency": "AUD",
+                            "amount": 7.55
+                        },
+                        {
+                            "currency": "CAD",
+                            "amount": 6.99
+                        },
+                        {
+                            "currency": "CHF",
+                            "amount": 5.9
+                        },
+                        {
+                            "currency": "CZK",
+                            "amount": 136.0
+                        },
+                        {
+                            "currency": "DKK",
+                            "amount": 37.0
+                        },
+                        {
+                            "currency": "EUR",
+                            "amount": 4.99
+                        },
+                        {
+                            "currency": "GBP",
+                            "amount": 3.99
+                        },
+                        {
+                            "currency": "HUF",
+                            "amount": 1529.0
+                        },
+                        {
+                            "currency": "ILS",
+                            "amount": 21.0
+                        },
+                        {
+                            "currency": "INR",
+                            "amount": 415.0
+                        },
+                        {
+                            "currency": "MXN",
+                            "amount": 86.01
+                        },
+                        {
+                            "currency": "NOK",
+                            "amount": 48.0
+                        },
+                        {
+                            "currency": "NZD",
+                            "amount": 7.95
+                        },
+                        {
+                            "currency": "RON",
+                            "amount": 22.0
+                        },
+                        {
+                            "currency": "RUB",
+                            "amount": 359.0
+                        },
+                        {
+                            "currency": "SAR",
+                            "amount": 22.47
+                        },
+                        {
+                            "currency": "SEK",
+                            "amount": 49.0
+                        },
+                        {
+                            "currency": "TRY",
+                            "amount": 22.0
+                        },
+                        {
+                            "currency": "UAH",
+                            "amount": 159.0
+                        },
+                        {
+                            "currency": "ZAR",
+                            "amount": 89.0
+                        },
+                        {
+                            "currency": "BRL",
+                            "amount": 26.9
+                        }
+                    ]
+                },
+                {
+                    "id": "c00eda2f-88b8-4e58-8e89-8b4788a4611f",
+                    "name": "Life is Strange Episode 4: Dark Room",
+                    "trophies": null,
+                    "prices": [
+                        {
+                            "currency": "PLN",
+                            "amount": 21.0
+                        },
+                        {
+                            "currency": "USD",
+                            "amount": 4.99
+                        },
+                        {
+                            "currency": "AED",
+                            "amount": 22.0
+                        },
+                        {
+                            "currency": "AUD",
+                            "amount": 7.55
+                        },
+                        {
+                            "currency": "CAD",
+                            "amount": 6.99
+                        },
+                        {
+                            "currency": "CHF",
+                            "amount": 5.9
+                        },
+                        {
+                            "currency": "CZK",
+                            "amount": 136.0
+                        },
+                        {
+                            "currency": "DKK",
+                            "amount": 37.0
+                        },
+                        {
+                            "currency": "EUR",
+                            "amount": 4.99
+                        },
+                        {
+                            "currency": "GBP",
+                            "amount": 3.99
+                        },
+                        {
+                            "currency": "HUF",
+                            "amount": 1529.0
+                        },
+                        {
+                            "currency": "ILS",
+                            "amount": 21.0
+                        },
+                        {
+                            "currency": "INR",
+                            "amount": 415.0
+                        },
+                        {
+                            "currency": "MXN",
+                            "amount": 86.01
+                        },
+                        {
+                            "currency": "NOK",
+                            "amount": 48.0
+                        },
+                        {
+                            "currency": "NZD",
+                            "amount": 7.95
+                        },
+                        {
+                            "currency": "RON",
+                            "amount": 22.0
+                        },
+                        {
+                            "currency": "RUB",
+                            "amount": 359.0
+                        },
+                        {
+                            "currency": "SAR",
+                            "amount": 22.47
+                        },
+                        {
+                            "currency": "SEK",
+                            "amount": 49.0
+                        },
+                        {
+                            "currency": "TRY",
+                            "amount": 22.0
+                        },
+                        {
+                            "currency": "UAH",
+                            "amount": 159.0
+                        },
+                        {
+                            "currency": "ZAR",
+                            "amount": 89.0
+                        },
+                        {
+                            "currency": "BRL",
+                            "amount": 26.9
+                        }
+                    ]
+                },
+                {
+                    "id": "b582d3e0-60cc-481c-a7b0-b08777135d0c",
+                    "name": "Life is Strange Episode 5: Polarized",
+                    "trophies": null,
+                    "prices": [
+                        {
+                            "currency": "PLN",
+                            "amount": 21.0
+                        },
+                        {
+                            "currency": "USD",
+                            "amount": 4.99
+                        },
+                        {
+                            "currency": "AED",
+                            "amount": 22.0
+                        },
+                        {
+                            "currency": "AUD",
+                            "amount": 7.55
+                        },
+                        {
+                            "currency": "CAD",
+                            "amount": 6.99
+                        },
+                        {
+                            "currency": "CHF",
+                            "amount": 5.9
+                        },
+                        {
+                            "currency": "CZK",
+                            "amount": 136.0
+                        },
+                        {
+                            "currency": "DKK",
+                            "amount": 37.0
+                        },
+                        {
+                            "currency": "EUR",
+                            "amount": 4.99
+                        },
+                        {
+                            "currency": "GBP",
+                            "amount": 3.99
+                        },
+                        {
+                            "currency": "HUF",
+                            "amount": 1529.0
+                        },
+                        {
+                            "currency": "ILS",
+                            "amount": 21.0
+                        },
+                        {
+                            "currency": "INR",
+                            "amount": 415.0
+                        },
+                        {
+                            "currency": "MXN",
+                            "amount": 86.01
+                        },
+                        {
+                            "currency": "NOK",
+                            "amount": 48.0
+                        },
+                        {
+                            "currency": "NZD",
+                            "amount": 7.95
+                        },
+                        {
+                            "currency": "RON",
+                            "amount": 22.0
+                        },
+                        {
+                            "currency": "RUB",
+                            "amount": 359.0
+                        },
+                        {
+                            "currency": "SAR",
+                            "amount": 22.47
+                        },
+                        {
+                            "currency": "SEK",
+                            "amount": 49.0
+                        },
+                        {
+                            "currency": "TRY",
+                            "amount": 22.0
+                        },
+                        {
+                            "currency": "UAH",
+                            "amount": 159.0
+                        },
+                        {
+                            "currency": "ZAR",
+                            "amount": 89.0
+                        },
+                        {
+                            "currency": "BRL",
+                            "amount": 26.9
+                        }
+                    ]
+                },
+                {
+                    "id": "8ea63a1d-201d-4a6c-888a-3fd8c4e5cf97",
+                    "name": "Life is Strange Season Pass",
+                    "trophies": null,
+                    "prices": [
+                        {
+                            "currency": "PLN",
+                            "amount": 71.0
+                        },
+                        {
+                            "currency": "AED",
+                            "amount": 77.09
+                        },
+                        {
+                            "currency": "AUD",
+                            "amount": 25.95
+                        },
+                        {
+                            "currency": "CHF",
+                            "amount": 19.9
+                        },
+                        {
+                            "currency": "CZK",
+                            "amount": 469.0
+                        },
+                        {
+                            "currency": "DKK",
+                            "amount": 127.0
+                        },
+                        {
+                            "currency": "EUR",
+                            "amount": 16.99
+                        },
+                        {
+                            "currency": "GBP",
+                            "amount": 13.99
+                        },
+                        {
+                            "currency": "HUF",
+                            "amount": 5190.0
+                        },
+                        {
+                            "currency": "ILS",
+                            "amount": 72.0
+                        },
+                        {
+                            "currency": "INR",
+                            "amount": 1415.0
+                        },
+                        {
+                            "currency": "NOK",
+                            "amount": 164.0
+                        },
+                        {
+                            "currency": "NZD",
+                            "amount": 27.45
+                        },
+                        {
+                            "currency": "RUB",
+                            "amount": 1199.0
+                        },
+                        {
+                            "currency": "SAR",
+                            "amount": 78.72
+                        },
+                        {
+                            "currency": "SEK",
+                            "amount": 174.0
+                        },
+                        {
+                            "currency": "TRY",
+                            "amount": 76.0
+                        },
+                        {
+                            "currency": "UAH",
+                            "amount": 549.0
+                        },
+                        {
+                            "currency": "ZAR",
+                            "amount": 269.0
+                        }
+                    ]
+                }
+            ],
+            "storeStatus": "available",
+            "notes": [
+                "The store sells it in 5 episodes. Episode 1 is free; episodes 2 to 5 and the Season Pass (all episodes) are sold separately.",
+                "PLN prices are store prices. Prices in other currencies follow the same price tier as other items in the catalog; they were not read from each store."
+            ],
             "igdbId": 7599,
             "igdbUrl": "https://www.igdb.com/games/life-is-strange",
             "coverPhoto": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1r8e.jpg",
