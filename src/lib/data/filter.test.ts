@@ -15,6 +15,7 @@ const raw: RawData = {
 			digitalOnly: true,
 			storeStatus: 'available',
 			genres: ['Puzzle'],
+			trophies: { supported: true, hasPlatinum: true },
 			releaseDate: '2008-10-14',
 			prices: [{ currency: 'USD', amount: 6.99 }],
 			dlc: [{ id: 'd1', name: 'Map pack', prices: [{ currency: 'USD', amount: 1.99 }] }]
@@ -38,6 +39,7 @@ const raw: RawData = {
 			storeStatus: 'unknown',
 			genres: ['Indie', 'Puzzle'],
 			alternativeNames: ['Pocket Monsters'],
+			trophies: { supported: true, hasPlatinum: false },
 			releaseDate: null,
 			prices: [{ currency: 'USD', amount: 20 }],
 			dlc: []
@@ -60,6 +62,15 @@ describe('filterItems', () => {
 	it('shows disc games when digital only is off', () => {
 		const result = filterItems({ ...defaultFilters(), digitalOnly: false, types: ['game'] }, ctx);
 		expect(titles(result)).toEqual(['Puzzle Gem', 'Racing Disc', 'Pokémon Indie']);
+	});
+
+	it('filters by platinum and by trophies', () => {
+		const base = { ...defaultFilters(['game']), digitalOnly: false };
+		expect(titles(filterItems({ ...base, platinum: true }, ctx))).toEqual(['Puzzle Gem']);
+		expect(titles(filterItems({ ...base, trophies: true }, ctx))).toEqual([
+			'Puzzle Gem',
+			'Pokémon Indie'
+		]);
 	});
 
 	it('lets DLC inherit region, genre and status from its parent', () => {

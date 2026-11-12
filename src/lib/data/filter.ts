@@ -25,6 +25,10 @@ export interface Filters {
 	statuses: StoreStatus[];
 	/** hides games that have a disc release; DLC is never hidden */
 	digitalOnly: boolean;
+	/** only items with a platinum trophy (DLC never has one) */
+	platinum: boolean;
+	/** only items with trophies (DLC counts when it has trophies) */
+	trophies: boolean;
 	/** price range in the selected currency, null = unbounded */
 	priceMin: number | null;
 	priceMax: number | null;
@@ -47,6 +51,8 @@ export function defaultFilters(types: ItemType[] = ['game', 'dlc']): Filters {
 		genres: [],
 		statuses: [],
 		digitalOnly: true,
+		platinum: false,
+		trophies: false,
 		priceMin: null,
 		priceMax: null,
 		sort: 'name-asc'
@@ -66,6 +72,8 @@ export function matches(
 ): boolean {
 	if (skip !== 'type' && f.types.length > 0 && !f.types.includes(item.kind)) return false;
 	if (f.digitalOnly && item.kind === 'game' && !item.digitalOnly) return false;
+	if (f.platinum && !item.hasPlatinum) return false;
+	if (f.trophies && !item.trophiesSupported) return false;
 	if (skip !== 'region' && f.regions.length > 0) {
 		if (!f.regions.some((region) => (item.regions & REGION_BIT[region]) !== 0)) return false;
 	}

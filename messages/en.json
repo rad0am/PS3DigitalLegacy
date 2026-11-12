@@ -140,6 +140,8 @@
 	"filter_price_to": "to",
 	"filter_price_note": "Only prices in the selected currency are filtered.",
 	"filter_status": "Store status",
+	"filter_platinum": "Has platinum",
+	"filter_trophies": "Has trophies",
 	"filter_digital_only": "Digital only",
 	"filter_digital_only_help": "Hides games that have a disc release. Their DLC stays listed.",
 

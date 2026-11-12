@@ -174,6 +174,31 @@
 
 <div class="fg">
 	<div class="opt" style="justify-content:space-between">
+		<span id="platinum-label-{uid}" style="font-weight:600">{m.filter_platinum()}</span>
+		<button
+			class="tg"
+			type="button"
+			role="switch"
+			aria-checked={filters.platinum}
+			aria-labelledby="platinum-label-{uid}"
+			onclick={() => (filters.platinum = !filters.platinum)}
+		></button>
+	</div>
+	<div class="opt" style="justify-content:space-between">
+		<span id="trophies-label-{uid}" style="font-weight:600">{m.filter_trophies()}</span>
+		<button
+			class="tg"
+			type="button"
+			role="switch"
+			aria-checked={filters.trophies}
+			aria-labelledby="trophies-label-{uid}"
+			onclick={() => (filters.trophies = !filters.trophies)}
+		></button>
+	</div>
+</div>
+
+<div class="fg">
+	<div class="opt" style="justify-content:space-between">
 		<span id="digital-only-label-{uid}" style="font-weight:600">{m.filter_digital_only()}</span>
 		<button
 			class="tg"

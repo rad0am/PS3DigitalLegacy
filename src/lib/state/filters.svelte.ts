@@ -25,6 +25,8 @@ export class FilterState {
 	genres = $state<string[]>([]);
 	statuses = $state<StoreStatus[]>([]);
 	digitalOnly = $state(true);
+	platinum = $state(false);
+	trophies = $state(false);
 	priceMin = $state<number | null>(null);
 	priceMax = $state<number | null>(null);
 	sort = $state<SortKey>('name-asc');
@@ -45,6 +47,8 @@ export class FilterState {
 			genres: this.genres,
 			statuses: this.statuses,
 			digitalOnly: this.digitalOnly,
+			platinum: this.platinum,
+			trophies: this.trophies,
 			priceMin: this.priceMin,
 			priceMax: this.priceMax,
 			sort: this.sort
@@ -60,6 +64,8 @@ export class FilterState {
 		this.genres = [];
 		this.statuses = [];
 		this.digitalOnly = false;
+		this.platinum = false;
+		this.trophies = false;
 		this.priceMin = null;
 		this.priceMax = null;
 	}
@@ -95,6 +101,8 @@ export class FilterState {
 		this.statuses = pick<StoreStatus>(params.getAll('status'), STORE_STATUSES);
 		this.genres = params.getAll('genre');
 		if (params.get('digital') === '0') this.digitalOnly = false;
+		this.platinum = params.get('platinum') === '1';
+		this.trophies = params.get('trophies') === '1';
 		this.priceMin = number(params.get('pmin'));
 		this.priceMax = number(params.get('pmax'));
 		const sort = params.get('sort');
@@ -113,6 +121,8 @@ export class FilterState {
 		for (const genre of this.genres) params.append('genre', genre);
 		for (const status of this.statuses) params.append('status', status);
 		if (!this.digitalOnly) params.set('digital', '0');
+		if (this.platinum) params.set('platinum', '1');
+		if (this.trophies) params.set('trophies', '1');
 		if (this.priceMin !== null) params.set('pmin', String(this.priceMin));
 		if (this.priceMax !== null) params.set('pmax', String(this.priceMax));
 		if (this.sort !== 'name-asc') params.set('sort', this.sort);

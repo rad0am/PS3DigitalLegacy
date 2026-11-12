@@ -140,6 +140,20 @@
 				remove: () => f.clearPrice()
 			});
 		}
+		if (f.platinum) {
+			list.push({
+				key: 'platinum',
+				label: m.filter_platinum(),
+				remove: () => (f.platinum = false)
+			});
+		}
+		if (f.trophies) {
+			list.push({
+				key: 'trophies',
+				label: m.filter_trophies(),
+				remove: () => (f.trophies = false)
+			});
+		}
 		if (f.digitalOnly) {
 			list.push({
 				key: 'digital',

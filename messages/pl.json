@@ -135,6 +135,8 @@
 	"filter_price_to": "do",
 	"filter_price_note": "Filtrujemy tylko ceny w wybranej walucie.",
 	"filter_status": "Status w sklepie",
+	"filter_platinum": "Ma platynę",
+	"filter_trophies": "Ma trofea",
 	"filter_digital_only": "Tylko cyfrowe",
 	"filter_digital_only_help": "Ukrywa gry, które mają wydanie na płycie. Ich DLC pozostaje na liście.",
 
