@@ -71,7 +71,7 @@
 		const params = new URLSearchParams();
 		if (query.trim()) params.set('q', query.trim());
 		params.set('type', tab);
-		return `${resolve('/')}?${params.toString()}`;
+		return `${resolve('/catalog')}?${params.toString()}`;
 	}
 
 	function onKeydown(event: KeyboardEvent) {

@@ -12,7 +12,7 @@
 	<div>
 		<h4>{m.footer_explore()}</h4>
 		<p>
-			<a href={resolve('/')}>{m.nav_catalog()}</a><br />
+			<a href={resolve('/catalog')}>{m.nav_catalog()}</a><br />
 			<a href={resolve('/my-list')}>{m.nav_my_list()}</a><br />
 			<a href={resolve('/about')}>{m.nav_about()}</a>
 		</p>

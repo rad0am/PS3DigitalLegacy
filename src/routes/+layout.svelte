@@ -2,6 +2,7 @@
 	import '@fontsource-variable/inter';
 	import '@fontsource/cookie/latin-400.css';
 	import '#lib/styles/global.css';
+	import { page } from '$app/state';
 	import { onMount } from 'svelte';
 	import favicon from '#lib/assets/favicon.svg';
 	import CountdownStrip from '#lib/components/CountdownStrip.svelte';
@@ -60,7 +61,7 @@
 <Sprite />
 <a class="skip" href="#main">{m.skip_to_content()}</a>
 
-<div class="app">
+<div class="app" class:is-home={page.route.id === '/'}>
 	<Header />
 	<NavBar />
 	<CountdownStrip />

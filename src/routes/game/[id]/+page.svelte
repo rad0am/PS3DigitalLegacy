@@ -78,7 +78,7 @@
 
 <main class="wrap" id="main">
 	<div class="crumb">
-		<a href={resolve('/')}>{m.nav_catalog()}</a> /
+		<a href={resolve('/catalog')}>{m.nav_catalog()}</a> /
 		<a href={resolve('/games')}>{m.nav_games()}</a> / {game.title}
 	</div>
 

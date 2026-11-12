@@ -88,6 +88,14 @@ On desktop (1280px and wider) the content takes at most 80% of the width (10% gu
 
 Later: sign-in and Firebase sync, export/import of the list as JSON.
 
+## Home page and popularity
+
+`/` is the start page (closure banner, stats, your progress, popular games, platinum picks, genres, store status). The catalog moved to `/catalog`; `/games` and `/dlc` stay.
+
+- The banner card follows the same states as the countdown strip (`closingDate` null, future, past). It shows no progress bar, because there is no announcement date to measure from.
+- **Picks of the day** ("Today's picks" and "Trophy hunters"): random games that change once a day, with no backend. The UTC date seeds a shuffle of the candidates (digital-only, available, with a cover; Trophy hunters only those with a platinum), so everyone sees the same games and they change at 00:00 UTC (`src/lib/data/daily.ts`, unit-tested). They are not a popularity ranking and must not be labeled as one. Real popularity would need totals across users, which client-only Firestore rules cannot give; the owner chose random picks instead.
+- Counts and genres on Home are computed at build time in `src/routes/+page.server.ts`.
+
 ## Community reports
 
 Players cannot edit the catalog. They report through **GitHub Issues**, and the owner changes `ps3-digital.json` by hand or with the generator script.

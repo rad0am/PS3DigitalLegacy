@@ -206,7 +206,7 @@
 				<p class="muted" style="margin:8px auto 20px;max-width:480px">
 					{tab === 'wishlist' ? m.list_empty_want_text() : m.list_empty_bought_text()}
 				</p>
-				<a class="btn btn-red btn-lg" href={resolve('/')}>{m.list_browse()}</a>
+				<a class="btn btn-red btn-lg" href={resolve('/catalog')}>{m.list_browse()}</a>
 			</section>
 		{:else}
 			<div class="stack-s" role="tabpanel">
