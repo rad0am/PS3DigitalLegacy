@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Home mobile</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="page m" style="width:390px;min-height:5000px">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+<symbol id="heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9-9.2C1.9 8 4 5 7 5c1.9 0 3.5 1 5 2.8C13.5 6 15.1 5 17 5c3 0 5.1 3 4 6.3-1.5 4.6-9 9.2-9 9.2z"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+<symbol id="ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></symbol>
+<symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></symbol>
+<symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></symbol>
+<symbol id="coffee" viewBox="0 0 24 24"><path d="M4 8h12v6a5 5 0 01-5 5H9a5 5 0 01-5-5V8zM16 10h2a2.5 2.5 0 010 5h-2M7 3v2M11 3v2"/></symbol>
+<symbol id="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+<symbol id="x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="grid" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></symbol>
+<symbol id="list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></symbol>
+<symbol id="image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 16l-5-5-8 8"/></symbol>
+<symbol id="alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2L12 3zM12 10v5M12 18h.01"/></symbol>
+<symbol id="info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="sort" viewBox="0 0 24 24"><path d="M7 4v16M4 17l3 3 3-3M17 20V4M14 7l3-3 3 3"/></symbol>
+<symbol id="trophy" viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 01-8 0V4zM8 6H4v1a4 4 0 004 4M16 6h4v1a4 4 0 01-4 4M12 13v4M8 20h8M10 17h4"/></symbol>
+<symbol id="menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol><symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol><symbol id="heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/></symbol></defs></svg>
+<header class="top" style="height:56px;padding:0 8px;gap:2px">
+<button class="btn btn-icon" type="button" aria-label="Menu" style="border:0"><svg class="ic"><use href="#menu"/></svg></button>
+<a class="logo" href="#" style="font-size:17px;margin-right:auto;margin-left:2px"><b>PS3</b><i>Digital Legacy</i></a>
+<button class="btn btn-icon" type="button" aria-label="Search games" style="border:0"><svg class="ic"><use href="#search"/></svg></button>
+<button class="btn btn-icon" type="button" aria-label="Sign in" style="border:0"><svg class="ic"><use href="#user"/></svg></button>
+</header>
+<main>
+<section class="hero" aria-labelledby="hh"><div class="hero-in">
+<div><span class="eyebrow"><svg class="ic ic-s"><use href="#clock"/></svg>PS3 PlayStation Store is closing</span>
+<h1 id="hh">Some PS3 games exist <em>only digitally</em>. Grab them while you can.</h1>
+<p class="lead">Sony will close the PS3 store starting July 2027. This catalog lists 679 games and 3,099 DLC that can only be bought there, so you know what to get before it goes.</p>
+<div class="cta"><a class="btn btn-wh btn-xl" href="#"><svg class="ic"><use href="#grid"/></svg>Browse the catalog</a><a class="btn btn-gh btn-xl" href="#"><svg class="ic"><use href="#heart"/></svg>Open my list</a></div></div>
+<aside class="ctr" aria-label="Store closure"><div class="k">Store closing</div><div class="big">July 2027</div><div class="sub">Sony has not announced the exact day yet.</div>
+<div class="tl" role="img" aria-label="Time passed since the announcement"><i></i><b></b></div><div class="tll"><span>Announcement</span><span>Today</span><span>July 2027</span></div>
+<div class="tlp"><svg class="ic ic-s"><use href="#info"/></svg><span>When Sony sets an exact date, a live countdown in days and hours replaces this card.</span></div></aside>
+</div><svg class="hwave" viewBox="0 0 600 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20c25-26 50-26 75 0s50 26 75 0 50-26 75 0 50 26 75 0 50-26 75 0 50 26 75 0 50-26 75 0 50 26 75 0"/></svg></section>
+<div class="wrap" style="padding-top:0">
+<div class="stats"><div class="stat"><b>679</b><span>digital-only games</span></div><div class="stat"><b>3,099</b><span>DLC, all digital only</span></div><div class="stat"><b>486</b><span>still listed in the store</span></div><div class="stat"><b>86</b><span>with a platinum trophy</span></div></div>
+<section class="sec" aria-labelledby="yl"><div class="card pcard"><div class="row-f" style="gap:12px;flex-wrap:wrap"><h2 class="h2" id="yl">Your progress</h2><span class="bd bd-sky">Saved on this device</span><a class="btn btn-out btn-sm" style="margin-left:auto" href="#">Open my list</a></div>
+<div class="two" style="gap:32px;margin-top:4px"><div><div class="prog-l"><span><b>Digital-only games</b></span><span>you own <b>12</b> of 679 · 9 wanted</span></div><div class="prog"><i style="width:2%"></i></div></div>
+<div><div class="prog-l"><span><b>DLC</b></span><span>you own <b>41</b> of 3,099</span></div><div class="prog"><i style="width:1.5%"></i></div></div></div>
+<p class="muted sm" style="margin-top:14px">Not signed in? Your list stays on this device. Sign in to sync it across devices.</p></div></section>
+<section class="sec" aria-labelledby="pp"><div class="sec-h"><h2 class="h2" id="pp">Today's picks</h2><a href="#">Browse everything<svg class="ic ic-s"><use href="#arrow"/></svg></a></div>
+<p class="sec-s">Digital-only games picked at random. The selection changes every day.</p>
+<div class="card"><div class="picks"><a class="rk" href="#"><div class="cover"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1wse.jpg" alt="" loading="lazy"></div><div class="rk-b"><div class="ttl">Amplitude</div><div class="meta">Music / Arcade · 2016</div></div><div class="rk-r"><span class="sm">$19.99</span></div></a><a class="rk" href="#"><div class="cover"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co2on1.jpg" alt="" loading="lazy"></div><div class="rk-b"><div class="ttl">Crysis</div><div class="meta">Shooter · 2011</div></div><div class="rk-r"><span class="sm">$19.99</span></div></a><a class="rk" href="#"><div class="cover"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co2pkh.jpg" alt="" loading="lazy"></div><div class="rk-b"><div class="ttl">Bladestorm: Nightmare</div><div class="meta">Strategy · 2015</div></div><div class="rk-r"><span class="sm">$49.99</span></div></a><a class="rk" href="#"><div class="cover"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co3d94.jpg" alt="" loading="lazy"></div><div class="rk-b"><div class="ttl">Call of Duty Classic</div><div class="meta">Shooter · 2009</div></div><div class="rk-r"><span class="sm">$19.99</span></div></a><a class="rk" href="#"><div class="cover"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/coc32n.jpg" alt="" loading="lazy"></div><div class="rk-b"><div class="ttl">Counter-Strike: Global Offensive</div><div class="meta">Shooter · 2012</div></div><div class="rk-r"><span class="sm">$14.99</span></div></a><a class="rk" href="#"><div class="cover"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4qfn.jpg" alt="" loading="lazy"></div><div class="rk-b"><div class="ttl">Assassin's Creed IV Black Flag</div><div class="meta">Adventure · 2013</div></div><div class="rk-r"><span class="sm">DLC from $0.99</span></div></a></div></div></section>
+<section class="sec" aria-labelledby="pl"><div class="sec-h"><h2 class="h2" id="pl">Trophy hunters</h2><a href="#">Browse all games<svg class="ic ic-s"><use href="#arrow"/></svg></a></div>
+<p class="sec-s">Games that have a platinum trophy, picked at random and changed every day. Each page links to PSNProfiles, where you can check its current status.</p><div class="gcards4"><article class="gcard"><div class="cover"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co2on1.jpg" alt="" loading="lazy"></div><h3 class="ttl">Crysis</h3><div class="meta">Shooter · 2011</div><div class="tags"><span class="bd bd-plat"><svg class="ic ic-s"><use href="#trophy"/></svg>Platinum</span></div><div class="gbot"><span class="price"><b>$19.99</b></span><a class="btn btn-out btn-sm" href="#">Details</a></div></article><article class="gcard"><div class="cover"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co2pkh.jpg" alt="" loading="lazy"></div><h3 class="ttl">Bladestorm: Nightmare</h3><div class="meta">Strategy · 2015</div><div class="tags"><span class="bd bd-plat"><svg class="ic ic-s"><use href="#trophy"/></svg>Platinum</span></div><div class="gbot"><span class="price"><b>$49.99</b></span><a class="btn btn-out btn-sm" href="#">Details</a></div></article><article class="gcard"><div class="cover"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co2eh2.jpg" alt="" loading="lazy"></div><h3 class="ttl">Alien Breed 2: Assault</h3><div class="meta">Shooter · 2010</div><div class="tags"><span class="bd bd-plat"><svg class="ic ic-s"><use href="#trophy"/></svg>Platinum</span></div><div class="gbot"><span class="price"><b>$9.99</b></span><a class="btn btn-out btn-sm" href="#">Details</a></div></article><article class="gcard"><div class="cover"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1wse.jpg" alt="" loading="lazy"></div><h3 class="ttl">Amplitude</h3><div class="meta">Music · 2016</div><div class="tags"><span class="bd bd-plat"><svg class="ic ic-s"><use href="#trophy"/></svg>Platinum</span></div><div class="gbot"><span class="price"><b>$19.99</b></span><a class="btn btn-out btn-sm" href="#">Details</a></div></article></div></section>
+<section class="sec" aria-labelledby="gn"><h2 class="h2" id="gn" style="margin-bottom:12px">Browse by genre</h2><div class="pills"><a class="pill" href="#">Adventure<span class="muted xs">203</span></a><a class="pill" href="#">Puzzle<span class="muted xs">193</span></a><a class="pill" href="#">Indie<span class="muted xs">189</span></a><a class="pill" href="#">Arcade<span class="muted xs">174</span></a><a class="pill" href="#">Platform<span class="muted xs">152</span></a><a class="pill" href="#">Shooter<span class="muted xs">146</span></a><a class="pill" href="#">Strategy<span class="muted xs">119</span></a><a class="pill" href="#">Sport<span class="muted xs">58</span></a><a class="pill" href="#">Simulator<span class="muted xs">57</span></a><a class="pill" href="#">Racing<span class="muted xs">55</span></a></div></section>
+<section class="sec" aria-labelledby="st"><h2 class="h2" id="st" style="margin-bottom:6px">Check before you buy</h2><p class="sec-s">The catalog is checked against the store, but listings can change at any time.</p>
+<div class="stt"><div class="card"><span class="bd bd-ok">Available</span><div><b>486</b><span class="muted sm">games still listed</span></div></div>
+<div class="card"><span class="bd bd-del">Delisted</span><div><b>13</b><span class="muted sm">removed from the store</span></div></div>
+<div class="card"><span class="bd bd-unk">Unknown</span><div><b>180</b><span class="muted sm">status not confirmed</span></div></div></div></section>
+<section class="sec" aria-labelledby="hw"><h2 class="h2" id="hw" style="margin-bottom:16px">How it works</h2><div class="how">
+<div class="card"><div class="n">1</div><h3 class="h4">Find</h3><p class="muted" style="margin-top:4px">Search and filter by genre, region, price and store status.</p></div>
+<div class="card"><div class="n">2</div><h3 class="h4">Save</h3><p class="muted" style="margin-top:4px">Add games to your want list and mark them bought. No account needed.</p></div>
+<div class="card"><div class="n">3</div><h3 class="h4">Sync</h3><p class="muted" style="margin-top:4px">Sign in to keep your list on every device. It merges, never overwrites.</p></div></div></section>
+<section class="sec band"><div class="card"><h2 class="h3">Help improve the catalog</h2><p class="muted" style="margin:6px 0 16px">Found a missing game, one that is gone from the store, or a bug? Open an issue on GitHub (a free account is needed).</p><div class="row-f wrapf"><a class="btn btn-out" href="#">Report a missing game</a><a class="btn btn-quiet" href="#">Report a bug</a></div></div>
+<div class="card"><h2 class="h3">Support the project</h2><p class="muted" style="margin:6px 0 16px">Free, no ads. A fan project, not affiliated with Sony. If it helped, buy me a coffee.</p><a class="coffee" href="#"><svg class="ic"><use href="#coffee"/></svg>Buy me a coffee</a></div></section>
+</div></main>
+<footer class="foot">
+<div><a class="logo" href="#" style="text-decoration:none"><b>PS3</b><i>Digital Legacy</i></a><p>A fan project. Not affiliated with, endorsed by or sponsored by Sony Interactive Entertainment. PlayStation and PS3 are trademarks of their owners. This site sells nothing; it only shows what can still be bought and where.</p></div>
+<div><h4>Explore</h4><p><a href="#">Catalog</a><br><a href="#">My list</a><br><a href="#">About</a></p></div>
+<div><h4>Data</h4><p>Game metadata from <a href="#">IGDB</a>. Trophy pages on <a href="#">PSNProfiles</a>. Prices are last known and informational.</p></div>
+<div><h4>Project</h4><p><a href="#">GitHub repository</a><br><a href="#">Report a missing game</a><br><a href="#">Report a bug</a><br><a href="#">Buy me a coffee</a></p></div>
+</footer>
+</div>
+</x-dc>
+</body>
+</html>

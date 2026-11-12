@@ -13,3 +13,4 @@ Backup of the "PS3 Digital Legacy design" canvas (18 artboards: 8 screens in des
 - My list shows two progress bars: digital-only games and DLC (MyList-Desktop and MyList-Mobile).
 - Sign-in shows Google only for now (SignIn-* still show the four planned providers).
 - Buy me a coffee is a yellow button (#FFDD00, black outline) in the app; the artboards still show the outlined red one.
+- Home (desktop and mobile) is built (`/`). "Today's picks" and "Trophy hunters" show random games that change daily; the artboard titles and counts are sample data. Every desktop artboard and the menu drawer now has a Home tab. `.preview/` has standalone HTML copies that open in any browser.
