@@ -109,6 +109,7 @@ On desktop (1280px and wider) the content takes at most 80% of the width (10% gu
 10. "PSNProfiles" button on the game details view (and on list items that have a platinum), see "PSNProfiles link".
 11. Currency selector with a browser-based default and a USD fallback, see "Currency selection".
 12. Links to report a missing game, a game to remove or correct, or a bug, see "Community reports".
+13. "Total of this list" badge on My list: the summed last known price of the games and DLC in the active tab (and platform filter). Uses the currency fallback chain without converting, so it can read `$74.96 + 7.99 EUR`. Items without a price and physical-release games (no digital price of their own) are not counted; the tooltip says how many. Bought is today's store prices, not what the user paid (`sumPrices` in `src/lib/currency/price.ts`).
 
 Later: sign-in and Firebase sync, export/import of the list as JSON.
 

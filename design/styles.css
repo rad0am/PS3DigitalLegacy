@@ -342,3 +342,6 @@ a.pill{text-decoration:none}
 .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px 32px}
 .m .ptiles,.m .pgrid{grid-template-columns:1fr}
 .plat-sw{display:flex;gap:8px;flex-wrap:wrap}
+.tabs .bd-total{margin-left:auto;align-self:center;background:var(--red-t);color:var(--red-h);padding:3px 12px;border-radius:99px;font-size:13px;line-height:20px;font-weight:500}
+.tabs .bd-total b{font-weight:800;font-size:15px}
+.tabs .bd-total.paid{background:var(--ok-t);color:var(--ok)}

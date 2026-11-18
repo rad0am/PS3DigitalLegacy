@@ -27,3 +27,12 @@ Backup of the "PS3 Digital Legacy design" canvas (18 artboards: 8 screens in des
 - **Game details:** platform badge in the header row, an "Also on" link to the other platform's page (same `igdbId`), a free DLC example ("Free").
 - **Wording:** "Disc release" became "Physical release" (a Vita game is on a game card, not a disc).
 - **Unchanged on purpose:** the "PS3 Digital Legacy" logo and name (open decision, see CLAUDE.md), the sign-in, menu, settings and popover artboards.
+
+## Total of this list (built)
+
+On My list (MyList-Desktop) a pill badge `.bd-total` sits at the right end of the Want to buy / Bought tab row: "Total of this list **$74.96** + 7.99 EUR", the sum of prices of the games and DLC in the active tab. Want to buy is red-tinted, Bought uses `.bd-total.paid` (green).
+
+- Prices use the selected currency with the existing fallback chain (selected, USD, EUR). Currencies are never converted, so a total can read `$74.96 + 7.99 EUR`.
+- Items without any price are not counted; the badge tooltip (and aria text) says how many.
+- Bought is the sum of today's store prices, not what the user paid; the tooltip says "Last known store prices".
+- Hidden when the active tab is empty (so MyList-Mobile, an empty state, has no badge). On mobile it wraps under the tabs.

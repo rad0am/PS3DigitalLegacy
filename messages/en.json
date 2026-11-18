@@ -295,6 +295,18 @@
 	"list_synced_text": "It also stays available offline on this device.",
 	"list_tab_want": "Want to buy",
 	"list_tab_bought": "Bought",
+	"list_total": "Total of this list",
+	"list_total_hint": "Last known store prices.",
+	"list_total_unpriced": [
+		{
+			"declarations": ["input count", "local countPlural = count: plural"],
+			"selectors": ["countPlural"],
+			"match": {
+				"countPlural=one": "{count} item without a price is not counted.",
+				"countPlural=*": "{count} items without a price are not counted."
+			}
+		}
+	],
 	"list_empty_want_title": "Your list is empty",
 	"list_empty_want_text": "Tap the heart on a game in the catalog to add it to the titles you want to buy before the store closes.",
 	"list_empty_bought_title": "Nothing marked as bought yet",

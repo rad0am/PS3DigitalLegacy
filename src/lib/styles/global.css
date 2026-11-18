@@ -1158,6 +1158,26 @@ input:focus-visible + .cb {
 .tabs button:hover {
 	color: var(--text);
 }
+/* total price of the active tab, a pill at the right end of the tab row */
+.tabs .bd-total {
+	margin-left: auto;
+	align-self: center;
+	background: var(--red-t);
+	color: var(--red-h);
+	padding: 3px 12px;
+	border-radius: 99px;
+	font-size: 13px;
+	line-height: 20px;
+	font-weight: 500;
+}
+.tabs .bd-total b {
+	font-weight: 800;
+	font-size: 15px;
+}
+.tabs .bd-total.paid {
+	background: var(--ok-t);
+	color: var(--ok);
+}
 .tabs button[aria-selected='true']:hover {
 	color: var(--red);
 }
@@ -1686,6 +1706,14 @@ button.sync {
 	}
 	.tabs button {
 		min-height: 44px;
+	}
+	.tabs {
+		flex-wrap: wrap;
+	}
+	.tabs .bd-total {
+		margin: 0 0 8px;
+		flex-basis: 100%;
+		text-align: center;
 	}
 	.card {
 		padding: 16px;

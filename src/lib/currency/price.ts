@@ -74,3 +74,46 @@ export function currencyName(code: string, locale: string): string {
 		return code;
 	}
 }
+
+export interface PriceSum {
+	/** amount per currency; the selected currency comes first, then USD and EUR as they appear */
+	totals: ResolvedPrice[];
+	/** items that contributed to a total */
+	counted: number;
+	/** items without any price in the fallback chain (not counted) */
+	unpriced: number;
+}
+
+/**
+ * Sums displayed prices without converting currencies. Each item contributes its resolved price
+ * (selected -> USD -> EUR), so the result can hold several currencies, e.g. "$74.96 + 7.99 EUR".
+ * Items for which `resolve` returns null are only counted in `unpriced`.
+ */
+export function sumPrices<T>(
+	items: readonly T[],
+	resolve: (item: T) => ResolvedPrice | null,
+	selected: string
+): PriceSum {
+	const byCurrency = new Map<string, number>();
+	let counted = 0;
+	let unpriced = 0;
+	for (const item of items) {
+		const price = resolve(item);
+		if (!price) {
+			unpriced += 1;
+			continue;
+		}
+		counted += 1;
+		byCurrency.set(price.currency, (byCurrency.get(price.currency) ?? 0) + price.amount);
+	}
+	const order = [selected, 'USD', 'EUR'];
+	const totals = [...byCurrency]
+		.sort((a, b) => order.indexOf(a[0]) - order.indexOf(b[0]))
+		.map(([currency, amount]) => ({
+			// Cents add up with float noise (0.1 + 0.2); round to 2 places.
+			amount: Math.round(amount * 100) / 100,
+			currency,
+			fallback: currency !== selected
+		}));
+	return { totals, counted, unpriced };
+}

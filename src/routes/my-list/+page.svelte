@@ -3,12 +3,14 @@
 	import { resolve } from '$app/paths';
 	import GameRow from '#lib/components/GameRow.svelte';
 	import Icon from '#lib/components/Icon.svelte';
+	import { formatPrice, sumPrices } from '#lib/currency/price.js';
 	import { PLATFORMS, PLATFORM_NAME, type Platform } from '#lib/data/types.js';
 	import { formatNumber, numberLocale } from '#lib/i18n.js';
 	import { m } from '#lib/paraglide/messages.js';
 	import { auth } from '#lib/state/auth.svelte.js';
 	import { catalogStore } from '#lib/state/catalog.svelte.js';
 	import { list } from '#lib/state/list.svelte.js';
+	import { settings } from '#lib/state/settings.svelte.js';
 	import { ui } from '#lib/state/ui.svelte.js';
 
 	const PAGE_SIZE = 50;
@@ -36,6 +38,26 @@
 	const platformCount = (value: Platform) =>
 		[...wanted, ...bought].filter((item) => item.platform === value).length;
 	const visible = $derived(current.slice(0, shown));
+
+	// Total price of the active tab (and platform filter). A physical-release game has no digital price
+	// of its own, so it is not counted; currencies are never converted.
+	const sum = $derived(
+		catalogStore.pricesReady
+			? sumPrices(
+					current,
+					(item) => (item.kind === 'game' && !item.digitalOnly ? null : catalogStore.display(item)),
+					settings.currency
+				)
+			: null
+	);
+	const totalText = $derived(
+		sum?.totals.length ? sum.totals.map((price) => formatPrice(price, numberLocale())) : []
+	);
+	const totalHint = $derived(
+		[m.list_total_hint(), sum?.unpriced ? m.list_total_unpriced({ count: sum.unpriced }) : '']
+			.filter(Boolean)
+			.join(' ')
+	);
 
 	// Progress counts digital-only games only: DLC and disc games are not part of the goal.
 	const total = $derived(catalog?.totals.digitalOnlyGames ?? 0);
@@ -253,6 +275,14 @@
 				<Icon name="check" size="s" />{m.list_tab_bought()}
 				<span class="bd bd-unk bd-pill">{bought.length}</span>
 			</button>
+			{#if sum && totalText.length}
+				<span class="bd bd-total" class:paid={tab === 'bought'} role="status" title={totalHint}>
+					{m.list_total()}
+					<b>{totalText[0]}</b>{#each totalText.slice(1) as extra (extra)}
+						+ {extra}{/each}
+					<span class="sr-only">. {totalHint}</span>
+				</span>
+			{/if}
 		</div>
 
 		{#if !catalog}

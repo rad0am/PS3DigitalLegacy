@@ -296,6 +296,20 @@
 	"list_synced_text": "Pozostaje też dostępna offline na tym urządzeniu.",
 	"list_tab_want": "Chcę kupić",
 	"list_tab_bought": "Kupione",
+	"list_total": "Suma tej listy",
+	"list_total_hint": "Ostatnie znane ceny w sklepie.",
+	"list_total_unpriced": [
+		{
+			"declarations": ["input count", "local countPlural = count: plural"],
+			"selectors": ["countPlural"],
+			"match": {
+				"countPlural=one": "{count} pozycja bez ceny nie jest liczona.",
+				"countPlural=few": "{count} pozycje bez ceny nie są liczone.",
+				"countPlural=many": "{count} pozycji bez ceny nie jest liczonych.",
+				"countPlural=*": "{count} pozycji bez ceny nie jest liczonych."
+			}
+		}
+	],
 	"list_empty_want_title": "Twoja lista jest pusta",
 	"list_empty_want_text": "Dotknij serca przy grze w katalogu, aby dodać ją do listy tytułów, które chcesz kupić, zanim sklep zniknie.",
 	"list_empty_bought_title": "Nic jeszcze nie oznaczono jako kupione",
