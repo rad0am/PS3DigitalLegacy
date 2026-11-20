@@ -1,14 +1,16 @@
 // Locale-aware formatting helpers on top of the active Paraglide locale.
+import { languageOf } from '#lib/languages.js';
 import { getLocale } from '#lib/paraglide/runtime.js';
 
 /** BCP 47 tag for number and currency formatting. */
 export function numberLocale(): string {
-	return getLocale() === 'pl' ? 'pl-PL' : 'en-US';
+	return languageOf(getLocale()).intl;
 }
 
 /** BCP 47 tag for dates (day before month in English, to match the design). */
 export function dateLocale(): string {
-	return getLocale() === 'pl' ? 'pl-PL' : 'en-GB';
+	const locale = getLocale();
+	return locale === 'en' ? 'en-GB' : languageOf(locale).intl;
 }
 
 export function formatNumber(value: number): string {

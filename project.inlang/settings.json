@@ -10,6 +10,32 @@
 	"baseLocale": "en",
 	"locales": [
 		"en",
-		"pl"
+		"pl",
+		"de",
+		"fr",
+		"es",
+		"it",
+		"pt",
+		"nl",
+		"fi",
+		"el",
+		"cs",
+		"da",
+		"nb",
+		"sv",
+		"hu",
+		"ro",
+		"ru",
+		"uk",
+		"tr",
+		"ar",
+		"he",
+		"hi",
+		"id",
+		"ms",
+		"th",
+		"ja",
+		"ko",
+		"zh-Hant"
 	]
 }

@@ -57,6 +57,12 @@
 
 	"coffee": "Buy me a coffee",
 	"language_label": "Language",
+	"language_current": "Language: {name}",
+	"language_search": "Search languages or currencies",
+	"language_count": "{count} languages",
+	"language_detected": "Detected from your browser",
+	"language_none": "No language matches.",
+	"language_note": "Applies to the interface only. Game titles and descriptions stay in English. Currency is chosen separately.",
 
 	"currency_label": "Currency",
 	"currency_current": "Currency: {code}",

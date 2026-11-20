@@ -48,6 +48,12 @@
 
 	"coffee": "Postaw mi kawę",
 	"language_label": "Język",
+	"language_current": "Język: {name}",
+	"language_search": "Szukaj języków lub walut",
+	"language_count": "Liczba języków: {count}",
+	"language_detected": "Wykryto z przeglądarki",
+	"language_none": "Brak pasującego języka.",
+	"language_note": "Dotyczy tylko interfejsu. Tytuły i opisy gier zostają po angielsku. Walutę wybierasz osobno.",
 
 	"currency_label": "Waluta",
 	"currency_current": "Waluta: {code}",

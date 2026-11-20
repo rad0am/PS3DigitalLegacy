@@ -4,22 +4,18 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<script>
-			// Pages are prerendered in English. When the visitor's language is Polish, hide the page
-			// until the client has switched the text, so English does not flash first.
-			// Mirrors the Paraglide strategy: saved choice, then browser language, then English.
+			// Pages are prerendered in English. When the visitor will not get English, hide the page
+			// until the client has switched the text, so English does not flash first. The layout
+			// removes the flag on mount (the exact locale match is done by Paraglide, not here).
+			// Strategy: saved choice, then browser language, then English.
 			(function () {
 				try {
-					var saved = localStorage.getItem('PARAGLIDE_LOCALE');
-					var locale = saved;
+					var locale = localStorage.getItem('PARAGLIDE_LOCALE');
 					if (!locale) {
 						var languages = navigator.languages || [navigator.language];
-						for (var i = 0; i < languages.length; i++) {
-							var base = String(languages[i]).slice(0, 2).toLowerCase();
-							if (base === 'pl' || base === 'en') {
-								locale = base;
-								break;
-							}
-						}
+						locale = String(languages[0] || 'en')
+							.slice(0, 2)
+							.toLowerCase();
 					}
 					if (locale && locale !== 'en') {
 						document.documentElement.setAttribute('data-pending-locale', locale);

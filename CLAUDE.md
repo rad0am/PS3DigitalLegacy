@@ -206,7 +206,7 @@ Each game can show a button linking to its PSNProfiles trophy page, so users can
 
 ## Internationalization (i18n)
 
-The UI ships in **English (`en`)** and **Polish (`pl`)**. English is the source and fallback language. Design the setup so adding a locale later means adding one message file.
+The UI ships in **28 languages**, chosen to cover every currency in the data (all 33): `en` (source and fallback), `pl`, `ar`, `cs`, `da`, `de`, `el`, `es`, `fi`, `fr`, `he`, `hi`, `hu`, `id`, `it`, `ja`, `ko`, `ms`, `nb`, `nl`, `pt` (Brazilian wording), `ro`, `ru`, `sv`, `th`, `tr`, `uk`, `zh-Hant`. Adding a locale means: a message file, an entry in `project.inlang/settings.json`, an entry in `src/lib/languages.ts` (native name, Intl tag, currencies, `rtl`) and the `i18n:compile` script keeps working unchanged. Non-English and non-Polish catalogs were machine-translated and have had no native review; corrections are welcome. Arabic and Hebrew are right-to-left (`dir` is set on `<html>`). The picker is a searchable list (`LangSwitch.svelte`, design in `design/.preview/Language.html`).
 
 - Use a type-safe i18n library that works with Svelte and static output. Recommended: **Paraglide JS** (tree-shakeable, typed message keys); `svelte-i18n` is an acceptable alternative. Pick one and do not mix.
 - **No hard-coded UI strings** in components. Every user-visible string goes through the message catalog (`messages/en.json`, `messages/pl.json`), including `aria-label`s, placeholders, empty states and error messages.
@@ -215,7 +215,7 @@ The UI ships in **English (`en`)** and **Polish (`pl`)**. English is the source 
 - Format numbers, dates, prices and plurals with `Intl` APIs and the active locale. Polish has more than two plural forms, so use ICU/plural rules instead of `count === 1` checks.
 - Currency is independent of the UI language; see "Currency selection".
 - **Game data is not translated.** Titles, descriptions and genre names from the data files come from IGDB in English and are displayed as they are. Only the application's own UI text is localized. Genre names used as filter labels may be mapped to translated labels if needed.
-- Keep `en.json` and `pl.json` key sets identical. Add a CI check that fails when a key exists in one file and not in the other.
+- Keep the key sets of all message files identical to `en.json`, with the same `{placeholders}`. `src/lib/i18n.test.ts` checks both for every locale in `project.inlang/settings.json`, so CI fails on a missing or extra key. Plural messages use the CLDR categories of each language.
 
 ## Store closure countdown
 

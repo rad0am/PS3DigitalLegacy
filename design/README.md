@@ -36,3 +36,13 @@ On My list (MyList-Desktop) a pill badge `.bd-total` sits at the right end of th
 - Items without any price are not counted; the badge tooltip (and aria text) says how many.
 - Bought is the sum of today's store prices, not what the user paid; the tooltip says "Last known store prices".
 - Hidden when the active tab is empty (so MyList-Mobile, an empty state, has no badge). On mobile it wraps under the tabs.
+
+## Language picker (built)
+
+`.preview/Language.html` (standalone, open in any browser) shows the new picker. The EN | PL switch is replaced by a searchable list, the same pattern as the currency picker: a popover on desktop, a bottom sheet on mobile (menu drawer, Settings row).
+
+- 28 languages, one or more per currency in the data (all 33 currencies are covered). The map is in the preview and in `src/lib/languages.ts`.
+- Order: detected browser language first (badge "Detected from your browser"), then English, then A to Z by English name. Native name is the main label, English name sits under it, the currencies of that language show as small chips. Search matches native name, English name, locale tag and currency code.
+- Detection is unchanged: saved choice, then browser language, then English.
+- Arabic and Hebrew set `dir="rtl"` on `<html>`; prices and codes stay left-to-right.
+- The artboards (`Popovers-Desktop`, `Menu-Mobile`) still show the old two-language list; the preview is the source of truth for this component.

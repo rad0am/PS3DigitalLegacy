@@ -1540,6 +1540,19 @@ button.sync {
 	width: 40px;
 	font-variant-numeric: tabular-nums;
 }
+.cur {
+	display: flex;
+	gap: 4px;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+}
+.cur span {
+	font: 600 11px/16px var(--font);
+	padding: 0 6px;
+	border-radius: 5px;
+	background: var(--gray-t);
+	color: var(--gray-d);
+}
 .pop-list {
 	max-height: 360px;
 	overflow-y: auto;
