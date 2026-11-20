@@ -4,7 +4,7 @@
 	import '#lib/styles/global.css';
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
-	import favicon from '#lib/assets/favicon.svg';
+	import { asset } from '$app/paths';
 	import CountdownStrip from '#lib/components/CountdownStrip.svelte';
 	import Footer from '#lib/components/Footer.svelte';
 	import Header from '#lib/components/Header.svelte';
@@ -13,8 +13,9 @@
 	import SearchModal from '#lib/components/SearchModal.svelte';
 	import SignInDialog from '#lib/components/SignInDialog.svelte';
 	import Sprite from '#lib/components/Sprite.svelte';
+	import { detectLanguage, languageOf } from '#lib/languages.js';
 	import { m } from '#lib/paraglide/messages.js';
-	import { getLocale } from '#lib/paraglide/runtime.js';
+	import { getLocale, setLocale } from '#lib/paraglide/runtime.js';
 	import { auth } from '#lib/state/auth.svelte.js';
 	import { catalogStore } from '#lib/state/catalog.svelte.js';
 	import { list } from '#lib/state/list.svelte.js';
@@ -24,9 +25,25 @@
 
 	let { children }: LayoutProps = $props();
 
+	// Paraglide matches browser languages by exact tag or base language only, so it misses
+	// `zh-TW` (zh-Hant) and `no`/`nn` (nb). With no saved choice, fix those up once (this reloads).
+	function correctBrowserLocale(): boolean {
+		try {
+			if (localStorage.getItem('PARAGLIDE_LOCALE')) return false;
+		} catch {
+			return false;
+		}
+		const detected = detectLanguage(navigator.languages ?? [navigator.language]);
+		if (!detected || detected === getLocale()) return false;
+		void setLocale(detected);
+		return true;
+	}
+
 	// Local-first: everything below runs in the browser only, after hydration.
 	onMount(() => {
+		if (correctBrowserLocale()) return;
 		document.documentElement.lang = getLocale();
+		document.documentElement.dir = languageOf(getLocale()).rtl ? 'rtl' : 'ltr';
 		document.documentElement.removeAttribute('data-pending-locale');
 		settings.load();
 		list.load();
@@ -52,7 +69,9 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<link rel="icon" href={asset('favicon.svg')} type="image/svg+xml" />
+	<link rel="icon" href={asset('favicon.ico')} sizes="48x48" />
+	<link rel="apple-touch-icon" href={asset('apple-touch-icon.png')} />
 	<meta name="theme-color" content="#b3201a" />
 </svelte:head>
 

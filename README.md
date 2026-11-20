@@ -32,7 +32,7 @@ To test the Pages base path locally: `BASE_PATH=/PS3DigitalLegacy npm run build 
 ## Project layout
 
 ```text
-data/       Source catalog (ps3-digital.json), generated, not shipped as-is
+data/       Source catalogs (ps3-digital.json, psvita-digital.json), generated, not shipped as-is
 design/     Backup of the design canvas (reference only)
 messages/   i18n catalogs (en.json is the source, pl.json)
 scripts/    Build-time and data tooling

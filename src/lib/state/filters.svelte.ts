@@ -5,7 +5,17 @@ import {
 	type ItemType,
 	type SortKey
 } from '#lib/data/filter.js';
-import { REGIONS, STORE_STATUSES, type Region, type StoreStatus } from '#lib/data/types.js';
+import {
+	PLATFORMS,
+	REGIONS,
+	STORE_STATUSES,
+	type Platform,
+	type Region,
+	type StoreStatus
+} from '#lib/data/types.js';
+
+/** URL value for each platform (`?platform=ps3&platform=psvita`). */
+export const PLATFORM_PARAM: Record<Platform, string> = { PS3: 'ps3', 'PS VITA': 'psvita' };
 
 function pick<T extends string>(values: string[], allowed: readonly T[]): T[] {
 	return allowed.filter((value) => values.includes(value));
@@ -20,6 +30,7 @@ function number(value: string | null): number | null {
 /** Catalog filter state. It round-trips through the URL query, so a filtered view can be shared. */
 export class FilterState {
 	q = $state('');
+	platforms = $state<Platform[]>([]);
 	types = $state<ItemType[]>([]);
 	regions = $state<Region[]>([]);
 	genres = $state<string[]>([]);
@@ -42,6 +53,7 @@ export class FilterState {
 	snapshot(): Filters {
 		return {
 			q: this.q,
+			platforms: this.platforms,
 			types: this.types,
 			regions: this.regions,
 			genres: this.genres,
@@ -60,6 +72,7 @@ export class FilterState {
 		const base = defaultFilters(this.preset);
 		this.q = base.q;
 		this.types = [...base.types];
+		this.platforms = [];
 		this.regions = [];
 		this.genres = [];
 		this.statuses = [];
@@ -82,7 +95,10 @@ export class FilterState {
 		this.priceMax = null;
 	}
 
-	toggle<T extends string>(key: 'types' | 'regions' | 'genres' | 'statuses', value: T): void {
+	toggle<T extends string>(
+		key: 'platforms' | 'types' | 'regions' | 'genres' | 'statuses',
+		value: T
+	): void {
 		const current = this[key] as string[];
 		const next = current.includes(value) ? current.filter((v) => v !== value) : [...current, value];
 		(this[key] as string[]) = next;
@@ -94,6 +110,10 @@ export class FilterState {
 		if (q) this.q = q.slice(0, 100);
 		const types = pick<ItemType>(params.getAll('type'), ['game', 'dlc']);
 		if (types.length > 0) this.types = types;
+		const wanted = params.getAll('platform').map((p) => p.toLowerCase());
+		const platforms = PLATFORMS.filter((p) => wanted.includes(PLATFORM_PARAM[p]));
+		// Both selected means no filter, so the URL stays canonical.
+		this.platforms = platforms.length === PLATFORMS.length ? [] : platforms;
 		this.regions = pick<Region>(
 			params.getAll('region').map((r) => r.toUpperCase()),
 			REGIONS
@@ -117,6 +137,7 @@ export class FilterState {
 		const sameTypes =
 			this.types.length === this.preset.length && this.preset.every((t) => this.types.includes(t));
 		if (!sameTypes) for (const type of this.types) params.append('type', type);
+		for (const platform of this.platforms) params.append('platform', PLATFORM_PARAM[platform]);
 		for (const region of this.regions) params.append('region', region);
 		for (const genre of this.genres) params.append('genre', genre);
 		for (const status of this.statuses) params.append('status', status);

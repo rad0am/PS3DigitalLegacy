@@ -329,3 +329,19 @@ a.pill{text-decoration:none}
 .picks{display:grid;grid-template-columns:1fr 1fr;column-gap:32px}
 .picks .rk:nth-child(-n+2){border-top:0}
 .m .picks{grid-template-columns:1fr}.m .picks .rk:nth-child(2){border-top:1px solid var(--line)}
+
+/* PS Vita platform (multi-platform catalog) */
+:root{--vita:#1b4b9b}
+.bd-vita{background:var(--vita);color:#fff}
+.ptiles{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ptile{display:flex;align-items:center;gap:16px;padding:16px 20px;background:#fff;border:1px solid var(--line);border-radius:var(--r-card);text-decoration:none;color:var(--text)}
+.ptile:hover{border-color:var(--line-s);background:#f7f8fa}
+.ptile b{display:block;font:800 22px/28px var(--font)}
+.ptile span.sm{color:var(--muted)}
+.ptile .go{margin-left:auto;color:var(--muted)}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px 32px}
+.m .ptiles,.m .pgrid{grid-template-columns:1fr}
+.plat-sw{display:flex;gap:8px;flex-wrap:wrap}
+.tabs .bd-total{margin-left:auto;align-self:center;background:var(--red-t);color:var(--red-h);padding:3px 12px;border-radius:99px;font-size:13px;line-height:20px;font-weight:500}
+.tabs .bd-total b{font-weight:800;font-size:15px}
+.tabs .bd-total.paid{background:var(--ok-t);color:var(--ok)}

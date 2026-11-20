@@ -1,7 +1,14 @@
 <script lang="ts">
 	import type { Catalog } from '#lib/data/catalog.js';
 	import type { Facets } from '#lib/data/filter.js';
-	import { REGIONS, STORE_STATUSES, type Region, type StoreStatus } from '#lib/data/types.js';
+	import {
+		PLATFORMS,
+		PLATFORM_NAME,
+		REGIONS,
+		STORE_STATUSES,
+		type Region,
+		type StoreStatus
+	} from '#lib/data/types.js';
 	import { formatNumber } from '#lib/i18n.js';
 	import { m } from '#lib/paraglide/messages.js';
 	import { settings } from '#lib/state/settings.svelte.js';
@@ -53,6 +60,37 @@
 
 	const count = (value: number | undefined) => (value === undefined ? '' : formatNumber(value));
 </script>
+
+<div class="fg">
+	<h3>{m.filter_platform()}</h3>
+	{#if variant === 'sheet'}
+		<div class="row-f wrapf">
+			{#each PLATFORMS as platform (platform)}
+				<button
+					class="pill"
+					type="button"
+					aria-pressed={filters.platforms.includes(platform)}
+					onclick={() => filters.toggle('platforms', platform)}
+				>
+					{PLATFORM_NAME[platform]}<span class="xs">{count(facets?.platforms[platform])}</span>
+				</button>
+			{/each}
+		</div>
+	{:else}
+		{#each PLATFORMS as platform (platform)}
+			<label class="opt">
+				<input
+					type="checkbox"
+					checked={filters.platforms.includes(platform)}
+					onchange={() => filters.toggle('platforms', platform)}
+				/>
+				<span class="cb"><Icon name="check" /></span>{PLATFORM_NAME[platform]}<span class="n"
+					>{count(facets?.platforms[platform])}</span
+				>
+			</label>
+		{/each}
+	{/if}
+</div>
 
 <div class="fg">
 	<h3>{m.filter_type()}</h3>

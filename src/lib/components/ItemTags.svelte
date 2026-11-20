@@ -8,7 +8,7 @@
 </script>
 
 <div class="tags">
-	<span class="bd bd-plat">{item.platform}</span>
+	<span class="bd bd-plat" class:bd-vita={item.platform === 'PS VITA'}>{item.platform}</span>
 	{#if item.kind === 'dlc'}
 		<span class="bd bd-sky">{m.badge_dlc()}</span>
 	{/if}

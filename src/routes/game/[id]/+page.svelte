@@ -8,6 +8,7 @@
 	import { issueUrl } from '#lib/config.js';
 	import { formatAmount, formatPrice, lookupInList, resolvePrice } from '#lib/currency/price.js';
 	import { formatDate, formatList, numberLocale, releaseYear } from '#lib/i18n.js';
+	import { gameHref } from '#lib/links.js';
 	import { m } from '#lib/paraglide/messages.js';
 	import { list } from '#lib/state/list.svelte.js';
 	import { settings } from '#lib/state/settings.svelte.js';
@@ -159,7 +160,27 @@
 					{#if game.playerPerspectives.length}<dt>{m.detail_perspectives()}</dt>
 						<dd>{game.playerPerspectives.join(', ')}</dd>{/if}
 					<dt>{m.detail_platform()}</dt>
-					<dd><span class="bd bd-plat">{game.platform}</span></dd>
+					<dd>
+						<span class="bd bd-plat" class:bd-vita={game.platform === 'PS VITA'}
+							>{game.platform}</span
+						>
+					</dd>
+					{#if game.alsoOn}
+						<dt>{m.detail_also_on()}</dt>
+						<dd>
+							<a
+								class="link row-f"
+								style="display:inline-flex;gap:8px"
+								href={gameHref(game.alsoOn.id)}
+							>
+								<span class="bd bd-plat" class:bd-vita={game.alsoOn.platform === 'PS VITA'}
+									>{game.alsoOn.platform}</span
+								>{m.detail_also_on_link({
+									platform: game.alsoOn.platform === 'PS VITA' ? 'PS Vita' : game.alsoOn.platform
+								})}
+							</a>
+						</dd>
+					{/if}
 					{#if game.regions.length}<dt>{m.detail_regions()}</dt>
 						<dd class="tags">
 							{#each game.regions as region (region)}<span class="tag">{region}</span>{/each}

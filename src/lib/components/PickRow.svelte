@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Item } from '#lib/data/catalog.js';
+	import { PLATFORM_NAME, type Platform } from '#lib/data/types.js';
 	import { releaseYear } from '#lib/i18n.js';
 	import { gameHref } from '#lib/links.js';
 	import { catalogStore } from '#lib/state/catalog.svelte.js';
@@ -10,6 +11,7 @@
 
 	const meta = $derived(
 		[
+			PLATFORM_NAME[item.platform as Platform] ?? item.platform,
 			releaseYear(item.releaseDate),
 			...item.genres.slice(0, 2).map((index) => catalogStore.catalog?.genres[index])
 		]

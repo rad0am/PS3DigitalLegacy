@@ -7,11 +7,14 @@
 	import PickRow from '#lib/components/PickRow.svelte';
 	import SeoMeta from '#lib/components/SeoMeta.svelte';
 	import { issueUrl } from '#lib/config.js';
-	import { daySeed, pickDaily } from '#lib/data/daily.js';
+	import type { Item } from '#lib/data/catalog.js';
+	import { daySeed, pickDailyBalanced } from '#lib/data/daily.js';
+	import { PLATFORMS, PLATFORM_NAME, type Platform } from '#lib/data/types.js';
 	import { formatNumber } from '#lib/i18n.js';
 	import { m } from '#lib/paraglide/messages.js';
 	import { auth } from '#lib/state/auth.svelte.js';
 	import { catalogStore } from '#lib/state/catalog.svelte.js';
+	import { PLATFORM_PARAM } from '#lib/state/filters.svelte.js';
 	import { list } from '#lib/state/list.svelte.js';
 	import type { PageProps } from './$types';
 
@@ -31,14 +34,34 @@
 					.filter((item) => item !== undefined)
 			: []
 	);
-	const owned = $derived(bought.filter((item) => item.kind === 'game' && item.digitalOnly).length);
-	const dlcOwned = $derived(bought.filter((item) => item.kind === 'dlc').length);
-
 	const stats = $derived(data.stats);
-	const progress = $derived([
-		{ label: m.home_progress_games(), count: owned, total: stats.games, showWanted: true },
-		{ label: m.home_progress_dlc(), count: dlcOwned, total: stats.dlc, showWanted: false }
-	]);
+	// One bar per platform, games first, then DLC (CLAUDE.md, "Platforms").
+	const progress = $derived(
+		(['games', 'dlc'] as const).flatMap((kind) =>
+			data.platforms.map((entry) => {
+				const name = PLATFORM_NAME[entry.platform];
+				const count = bought.filter(
+					(item) =>
+						item.platform === entry.platform &&
+						(kind === 'games' ? item.kind === 'game' && item.digitalOnly : item.kind === 'dlc')
+				).length;
+				return {
+					label:
+						kind === 'games'
+							? m.home_progress_games_platform({ platform: name })
+							: m.home_progress_dlc_platform({ platform: name }),
+					count,
+					total: kind === 'games' ? entry.games : entry.dlc,
+					showWanted: kind === 'games' && entry.platform === 'PS3'
+				};
+			})
+		)
+	);
+
+	function platformHref(platform: Platform): string {
+		const params = new URLSearchParams({ platform: PLATFORM_PARAM[platform] });
+		return `${resolve('/catalog')}?${params.toString()}`;
+	}
 
 	// ---- picks of the day: random, the same for everyone, new ones every day (UTC) ----
 	// Only games that can be bought now and have a cover. Sections use different salts and the
@@ -51,22 +74,29 @@
 					.filter((item) => item.digitalOnly && item.status === 'available' && item.cover)
 			: []
 	);
-	const platinum = $derived(
-		pickDaily(
-			candidates.filter((item) => item.hasPlatinum),
+	// Both platforms get an equal share of each section, so PS Vita games always show up.
+	const pick = (pool: Item[], count: number, salt: number) =>
+		pickDailyBalanced(
+			pool,
 			(item) => item.id,
-			PLATINUM_COUNT,
+			(item) => item.platform,
+			PLATFORMS,
+			count,
 			seed,
+			salt
+		);
+	const platinum = $derived(
+		pick(
+			candidates.filter((item) => item.hasPlatinum),
+			PLATINUM_COUNT,
 			1
 		)
 	);
 	const picks = $derived.by(() => {
 		const taken = new Set(platinum.map((item) => item.id));
-		return pickDaily(
+		return pick(
 			candidates.filter((item) => !taken.has(item.id)),
-			(item) => item.id,
 			PICKS_COUNT,
-			seed,
 			2
 		);
 	});
@@ -120,6 +150,29 @@
 			</div>
 		</div>
 
+		<section class="sec" aria-labelledby="home-platforms">
+			<h2 class="h2" id="home-platforms" style="margin-bottom:12px">{m.home_platforms_title()}</h2>
+			<div class="ptiles">
+				{#each data.platforms as entry (entry.platform)}
+					<a class="ptile" href={platformHref(entry.platform)}>
+						<span class="bd bd-plat" class:bd-vita={entry.platform === 'PS VITA'}
+							>{entry.platform}</span
+						>
+						<div>
+							<b>{m.home_platform_games({ count: formatNumber(entry.games) })}</b>
+							<span class="muted sm"
+								>{m.home_platform_meta({
+									dlc: formatNumber(entry.dlc),
+									available: formatNumber(entry.available)
+								})}</span
+							>
+						</div>
+						<span class="go"><Icon name="arrow" /></span>
+					</a>
+				{/each}
+			</div>
+		</section>
+
 		<section class="sec" aria-labelledby="home-progress">
 			<div class="card pcard">
 				<div class="row-f wrapf" style="gap:12px">
@@ -131,7 +184,7 @@
 						>{m.home_cta_list()}</a
 					>
 				</div>
-				<div class="two" style="gap:32px;margin-top:4px">
+				<div class="pgrid" style="margin-top:4px">
 					{#each progress as row (row.label)}
 						<div>
 							<div class="prog-l">

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatPrice, lookupInList, resolvePrice } from './price';
+import { formatPrice, lookupInList, resolvePrice, sumPrices } from './price';
 
 describe('resolvePrice', () => {
 	const table = (prices: Record<string, number>) => (c: string) => prices[c] ?? null;
@@ -67,5 +67,41 @@ describe('formatPrice', () => {
 		expect(formatPrice({ amount: 1200, currency: 'JPY', fallback: true }, 'en-US')).toBe(
 			'1,200 JPY'
 		);
+	});
+});
+
+describe('sumPrices', () => {
+	const prices: Record<string, { amount: number; currency: string } | null> = {
+		a: { amount: 0.1, currency: 'USD' },
+		b: { amount: 0.2, currency: 'USD' },
+		c: { amount: 7.99, currency: 'EUR' },
+		d: null,
+		e: { amount: 0, currency: 'USD' }
+	};
+	const resolve = (id: string) => {
+		const price = prices[id];
+		return price ? { ...price, fallback: price.currency !== 'USD' } : null;
+	};
+
+	it('adds per currency without converting and rounds float noise', () => {
+		expect(sumPrices(['a', 'b', 'c'], resolve, 'USD')).toEqual({
+			totals: [
+				{ amount: 0.3, currency: 'USD', fallback: false },
+				{ amount: 7.99, currency: 'EUR', fallback: true }
+			],
+			counted: 3,
+			unpriced: 0
+		});
+	});
+
+	it('counts items without a price separately and treats free items as counted', () => {
+		const result = sumPrices(['d', 'e'], resolve, 'USD');
+		expect(result.unpriced).toBe(1);
+		expect(result.counted).toBe(1);
+		expect(result.totals).toEqual([{ amount: 0, currency: 'USD', fallback: false }]);
+	});
+
+	it('returns no totals for an empty list', () => {
+		expect(sumPrices([], resolve, 'USD')).toEqual({ totals: [], counted: 0, unpriced: 0 });
 	});
 });

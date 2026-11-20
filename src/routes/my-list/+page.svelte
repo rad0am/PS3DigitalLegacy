@@ -3,11 +3,14 @@
 	import { resolve } from '$app/paths';
 	import GameRow from '#lib/components/GameRow.svelte';
 	import Icon from '#lib/components/Icon.svelte';
+	import { formatPrice, sumPrices } from '#lib/currency/price.js';
+	import { PLATFORMS, PLATFORM_NAME, type Platform } from '#lib/data/types.js';
 	import { formatNumber, numberLocale } from '#lib/i18n.js';
 	import { m } from '#lib/paraglide/messages.js';
 	import { auth } from '#lib/state/auth.svelte.js';
 	import { catalogStore } from '#lib/state/catalog.svelte.js';
 	import { list } from '#lib/state/list.svelte.js';
+	import { settings } from '#lib/state/settings.svelte.js';
 	import { ui } from '#lib/state/ui.svelte.js';
 
 	const PAGE_SIZE = 50;
@@ -28,14 +31,56 @@
 
 	const wanted = $derived(itemsWith('wishlist'));
 	const bought = $derived(itemsWith('bought'));
-	const current = $derived(tab === 'wishlist' ? wanted : bought);
+	let platform = $state<'all' | Platform>('all');
+	const byPlatform = (items: typeof wanted) =>
+		platform === 'all' ? items : items.filter((item) => item.platform === platform);
+	const current = $derived(byPlatform(tab === 'wishlist' ? wanted : bought));
+	const platformCount = (value: Platform) =>
+		[...wanted, ...bought].filter((item) => item.platform === value).length;
 	const visible = $derived(current.slice(0, shown));
+
+	// Total price of the active tab (and platform filter). A physical-release game has no digital price
+	// of its own, so it is not counted; currencies are never converted.
+	const sum = $derived(
+		catalogStore.pricesReady
+			? sumPrices(
+					current,
+					(item) => (item.kind === 'game' && !item.digitalOnly ? null : catalogStore.display(item)),
+					settings.currency
+				)
+			: null
+	);
+	const totalText = $derived(
+		sum?.totals.length ? sum.totals.map((price) => formatPrice(price, numberLocale())) : []
+	);
+	const totalHint = $derived(
+		[m.list_total_hint(), sum?.unpriced ? m.list_total_unpriced({ count: sum.unpriced }) : '']
+			.filter(Boolean)
+			.join(' ')
+	);
 
 	// Progress counts digital-only games only: DLC and disc games are not part of the goal.
 	const total = $derived(catalog?.totals.digitalOnlyGames ?? 0);
 	const owned = $derived(bought.filter((item) => item.kind === 'game' && item.digitalOnly).length);
 	const dlcTotal = $derived(catalog?.totals.dlc ?? 0);
 	const dlcOwned = $derived(bought.filter((item) => item.kind === 'dlc').length);
+
+	// The same two goals, split per platform.
+	const perPlatform = $derived(
+		PLATFORMS.map((value) => {
+			const items = catalog?.items ?? [];
+			const ofPlatform = items.filter((item) => item.platform === value);
+			return {
+				platform: value,
+				games: ofPlatform.filter((item) => item.kind === 'game' && item.digitalOnly).length,
+				dlc: ofPlatform.filter((item) => item.kind === 'dlc').length,
+				gamesOwned: bought.filter(
+					(item) => item.platform === value && item.kind === 'game' && item.digitalOnly
+				).length,
+				dlcOwned: bought.filter((item) => item.platform === value && item.kind === 'dlc').length
+			};
+		})
+	);
 
 	function percentOf(owned: number, total: number): string {
 		return new Intl.NumberFormat(numberLocale(), { maximumFractionDigits: 1 }).format(
@@ -45,6 +90,7 @@
 
 	$effect(() => {
 		void tab;
+		void platform;
 		shown = PAGE_SIZE;
 	});
 
@@ -70,7 +116,29 @@
 
 <SeoMeta title={m.nav_my_list()} />
 
-{#snippet bar(owned: number, total: number, suffix: string, note: string)}
+{#snippet mini(label: string, owned: number, total: number)}
+	<div>
+		<div class="prog-l">
+			<span><b>{label}</b></span>
+			<span>{formatNumber(owned)} / {formatNumber(total)}</span>
+		</div>
+		<div
+			class="prog"
+			role="progressbar"
+			aria-valuenow={owned}
+			aria-valuemin="0"
+			aria-valuemax={total}
+			aria-label="{label}: {m.list_own({ owned: formatNumber(owned), total: formatNumber(total) })}"
+		>
+			<i
+				style:width="{total > 0 ? (owned / total) * 100 : 0}%"
+				style:min-width={owned > 0 ? '12px' : undefined}
+			></i>
+		</div>
+	</div>
+{/snippet}
+
+{#snippet bar(owned: number, total: number, suffix: string, note: string, kind: 'games' | 'dlc')}
 	<div>
 		<div class="row-f wrapf" style="margin-bottom:8px">
 			<h2 class="h3">{m.list_own({ owned: formatNumber(owned), total: formatNumber(total) })}</h2>
@@ -88,6 +156,15 @@
 				style:width="{total > 0 ? (owned / total) * 100 : 0}%"
 				style:min-width={owned > 0 ? '12px' : undefined}
 			></i>
+		</div>
+		<div class="pgrid" style="margin-top:10px">
+			{#each perPlatform as row (row.platform)}
+				{@render mini(
+					PLATFORM_NAME[row.platform],
+					kind === 'games' ? row.gamesOwned : row.dlcOwned,
+					kind === 'games' ? row.games : row.dlc
+				)}
+			{/each}
 		</div>
 		<p class="muted sm" style="margin-top:8px">{note}</p>
 	</div>
@@ -108,7 +185,8 @@
 					m.list_own_suffix(),
 					owned === 0
 						? m.list_progress_empty()
-						: m.list_progress({ percent: percentOf(owned, total), wanted: list.wishlistCount })
+						: m.list_progress({ percent: percentOf(owned, total), wanted: list.wishlistCount }),
+					'games'
 				)}
 				{@render bar(
 					dlcOwned,
@@ -116,7 +194,8 @@
 					m.list_own_suffix_dlc(),
 					dlcOwned === 0
 						? m.list_progress_empty_dlc()
-						: m.list_progress_dlc({ percent: percentOf(dlcOwned, dlcTotal) })
+						: m.list_progress_dlc({ percent: percentOf(dlcOwned, dlcTotal) }),
+					'dlc'
 				)}
 			</div>
 			<div class="row-f" style="gap:8px">
@@ -158,6 +237,25 @@
 			</div>
 		{/if}
 
+		<div class="plat-sw" role="group" aria-label={m.filter_platform()}>
+			<button
+				class="pill"
+				type="button"
+				aria-pressed={platform === 'all'}
+				onclick={() => (platform = 'all')}>{m.list_platform_all()}</button
+			>
+			{#each PLATFORMS as value (value)}
+				<button
+					class="pill"
+					type="button"
+					aria-pressed={platform === value}
+					onclick={() => (platform = value)}
+				>
+					{PLATFORM_NAME[value]}<span class="xs">{platformCount(value)}</span>
+				</button>
+			{/each}
+		</div>
+
 		<div class="tabs" role="tablist">
 			<button
 				type="button"
@@ -177,6 +275,14 @@
 				<Icon name="check" size="s" />{m.list_tab_bought()}
 				<span class="bd bd-unk bd-pill">{bought.length}</span>
 			</button>
+			{#if sum && totalText.length}
+				<span class="bd bd-total" class:paid={tab === 'bought'} role="status" title={totalHint}>
+					{m.list_total()}
+					<b>{totalText[0]}</b>{#each totalText.slice(1) as extra (extra)}
+						+ {extra}{/each}
+					<span class="sr-only">. {totalHint}</span>
+				</span>
+			{/if}
 		</div>
 
 		{#if !catalog}

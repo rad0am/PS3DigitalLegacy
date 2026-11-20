@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { RawData } from '#lib/data/types.js';
-import { buildCatalog, coverFileName, safePsnUrl, toGameDetail } from './catalog';
+import { buildCatalog, coverFileName, mergeRawData, safePsnUrl, toGameDetail } from './catalog';
 
 const raw: RawData = {
 	schemaVersion: '1.0',
@@ -110,5 +110,45 @@ describe('toGameDetail', () => {
 		expect(detail.storeStatus).toBe('unknown');
 		expect(detail.screenshots).toEqual(['https://images.igdb.com/a.jpg']);
 		expect(detail.dlc).toEqual([]);
+	});
+});
+
+describe('mergeRawData', () => {
+	const part = (platform: string, ids: string[], generatedAt: string): RawData => ({
+		schemaVersion: '1.0',
+		generatedAt,
+		games: ids.map((id) => ({ id, platform, title: id }))
+	});
+
+	it('concatenates the platform files and keeps the newest generation date', () => {
+		const merged = mergeRawData([
+			part('PS3', ['a'], '2026-11-02'),
+			part('PS VITA', ['b'], '2026-11-16')
+		]);
+		expect(merged.games.map((g) => [g.id, g.platform])).toEqual([
+			['a', 'PS3'],
+			['b', 'PS VITA']
+		]);
+		expect(merged.generatedAt).toBe('2026-11-16');
+	});
+
+	it('rejects an id that occurs in two files', () => {
+		expect(() => mergeRawData([part('PS3', ['a'], 'x'), part('PS VITA', ['a'], 'y')])).toThrow(
+			/Duplicate game id/
+		);
+	});
+
+	it('marks Vita games on the wire and keeps DLC on the parent platform', () => {
+		const { catalog } = buildCatalog(
+			mergeRawData([
+				part('PS3', ['a'], 'x'),
+				{
+					schemaVersion: '1.0',
+					generatedAt: 'y',
+					games: [{ id: 'v', platform: 'PS VITA', title: 'V', dlc: [{ id: 'dv', name: 'D' }] }]
+				}
+			])
+		);
+		expect(catalog.games.map((g) => g.f)).toEqual([undefined, 'PS VITA']);
 	});
 });

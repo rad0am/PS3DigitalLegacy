@@ -30,12 +30,12 @@
     <tspan x="80" y="372">buy <tspan fill="#4fc3f0">digitally.</tspan></tspan>
   </text>
   <text font-family="Segoe UI, Arial, sans-serif" font-weight="400" font-size="34" fill="#d9dce3">
-    <tspan x="80" y="440">Browse PS3 games &amp; DLC, build your list, and</tspan>
-    <tspan x="80" y="484">grab them before the store closes.</tspan>
+    <tspan x="80" y="440">Browse PS3 &amp; PS Vita games and DLC, build your list,</tspan>
+    <tspan x="80" y="484">and grab them before the stores close.</tspan>
   </text>
 
   <!-- closing pill -->
-  <rect x="80" y="528" width="404" height="56" rx="28" fill="#fff" fill-opacity="0.12" stroke="#fff" stroke-opacity="0.35" stroke-width="2"/>
+  <rect x="80" y="528" width="610" height="56" rx="28" fill="#fff" fill-opacity="0.12" stroke="#fff" stroke-opacity="0.35" stroke-width="2"/>
   <circle cx="112" cy="556" r="8" fill="#ff5a4f"/>
-  <text x="134" y="566" font-family="Segoe UI, Arial, sans-serif" font-weight="700" font-size="26" fill="#fff">PS3 store closing July 2027</text>
+  <text x="134" y="566" font-family="Segoe UI, Arial, sans-serif" font-weight="700" font-size="26" fill="#fff">PS3 &amp; PS Vita stores closing July 2027</text>
 </svg>

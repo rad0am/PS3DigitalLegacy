@@ -12,6 +12,7 @@
 		type ItemType,
 		type SortKey
 	} from '#lib/data/filter.js';
+	import { PLATFORM_NAME } from '#lib/data/types.js';
 	import { formatNumber, numberLocale } from '#lib/i18n.js';
 	import { m } from '#lib/paraglide/messages.js';
 	import { catalogStore } from '#lib/state/catalog.svelte.js';
@@ -104,6 +105,13 @@
 				key: `type-${type}`,
 				label: type === 'game' ? m.type_games() : m.type_dlc(),
 				remove: () => (f.types = [])
+			});
+		}
+		for (const platform of f.platforms) {
+			list.push({
+				key: `platform-${platform}`,
+				label: m.chip_platform({ platform: PLATFORM_NAME[platform] }),
+				remove: () => f.toggle('platforms', platform)
 			});
 		}
 		for (const region of f.regions) {

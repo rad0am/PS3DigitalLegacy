@@ -38,3 +38,48 @@ export function pickDaily<T>(
 	}
 	return pool.slice(0, count);
 }
+
+/**
+ * Like `pickDaily`, but spreads the picks over groups (platforms) so every group shows up. Each
+ * group gets an equal share; the remainder goes to the first groups, and a group with too few
+ * candidates hands its unused slots to the others. Groups are drawn in the order given.
+ */
+export function pickDailyBalanced<T>(
+	candidates: readonly T[],
+	key: (value: T) => string,
+	group: (value: T) => string,
+	groups: readonly string[],
+	count: number,
+	seed: number,
+	salt: number
+): T[] {
+	const pools = groups.map((name) => candidates.filter((value) => group(value) === name));
+	const share = groups.map(
+		(_, i) => Math.floor(count / groups.length) + (i < count % groups.length ? 1 : 0)
+	);
+	const picked = pools.map((pool, i) => pickDaily(pool, key, share[i]!, seed, salt * 7 + i));
+
+	// Fill unused slots from the groups that still have candidates.
+	let missing = count - picked.reduce((sum, list) => sum + list.length, 0);
+	for (let i = 0; missing > 0 && i < groups.length; i++) {
+		const extra = pickDaily(pools[i]!, key, picked[i]!.length + missing, seed, salt * 7 + i).slice(
+			picked[i]!.length
+		);
+		picked[i]!.push(...extra);
+		missing -= extra.length;
+	}
+
+	// Interleave, so the platforms alternate in the list.
+	const result: T[] = [];
+	for (let n = 0; result.length < count; n++) {
+		let any = false;
+		for (const list of picked) {
+			if (n < list.length) {
+				result.push(list[n]!);
+				any = true;
+			}
+		}
+		if (!any) break;
+	}
+	return result;
+}

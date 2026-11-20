@@ -1,6 +1,14 @@
 // Catalog filtering, sorting and facet counts. Pure functions, no framework imports.
 import { matchScore, normalize, tokenize } from './search';
-import { REGIONS, REGION_BIT, STORE_STATUSES, type Region, type StoreStatus } from './types';
+import {
+	PLATFORMS,
+	REGIONS,
+	REGION_BIT,
+	STORE_STATUSES,
+	type Platform,
+	type Region,
+	type StoreStatus
+} from './types';
 import type { Catalog, Item } from './catalog';
 
 export type ItemType = 'game' | 'dlc';
@@ -18,6 +26,8 @@ export type SortKey = (typeof SORT_KEYS)[number];
 export interface Filters {
 	/** free-text search over title and alternative names */
 	q: string;
+	/** empty = both platforms */
+	platforms: Platform[];
 	types: ItemType[];
 	regions: Region[];
 	/** genre names */
@@ -41,11 +51,12 @@ export interface FilterContext {
 	price: (item: Item) => number | null;
 }
 
-export type FacetGroup = 'type' | 'region' | 'genre' | 'status';
+export type FacetGroup = 'platform' | 'type' | 'region' | 'genre' | 'status';
 
 export function defaultFilters(types: ItemType[] = ['game', 'dlc']): Filters {
 	return {
 		q: '',
+		platforms: [],
 		types,
 		regions: [],
 		genres: [],
@@ -70,6 +81,13 @@ export function matches(
 	skip?: FacetGroup,
 	query?: { tokens: string[]; phrase: string }
 ): boolean {
+	if (
+		skip !== 'platform' &&
+		f.platforms.length > 0 &&
+		!f.platforms.includes(item.platform as Platform)
+	) {
+		return false;
+	}
 	if (skip !== 'type' && f.types.length > 0 && !f.types.includes(item.kind)) return false;
 	if (f.digitalOnly && item.kind === 'game' && !item.digitalOnly) return false;
 	if (f.platinum && !item.hasPlatinum) return false;
@@ -146,6 +164,7 @@ export function sortItems(
 }
 
 export interface Facets {
+	platforms: Record<Platform, number>;
 	types: Record<ItemType, number>;
 	regions: Record<Region, number>;
 	/** by genre index */
@@ -158,6 +177,11 @@ export function facetCounts(f: Filters, ctx: FilterContext): Facets {
 	const query = { tokens: tokenize(f.q), phrase: normalize(f.q) };
 	const pass = (skip: FacetGroup) =>
 		ctx.catalog.items.filter((item) => matches(item, f, ctx, skip, query));
+
+	const platforms = Object.fromEntries(PLATFORMS.map((p) => [p, 0])) as Facets['platforms'];
+	for (const item of pass('platform')) {
+		if (item.platform in platforms) platforms[item.platform as Platform]++;
+	}
 
 	const types: Facets['types'] = { game: 0, dlc: 0 };
 	for (const item of pass('type')) types[item.kind]++;
@@ -173,5 +197,5 @@ export function facetCounts(f: Filters, ctx: FilterContext): Facets {
 	const statuses = Object.fromEntries(STORE_STATUSES.map((s) => [s, 0])) as Facets['statuses'];
 	for (const item of pass('status')) statuses[item.status]++;
 
-	return { types, regions, genres, statuses };
+	return { platforms, types, regions, genres, statuses };
 }

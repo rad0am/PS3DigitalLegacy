@@ -1,3 +1,4 @@
 * text=auto eol=lf
 data/ps3-digital.json linguist-generated=true
+data/psvita-digital.json linguist-generated=true
 design/** linguist-documentation

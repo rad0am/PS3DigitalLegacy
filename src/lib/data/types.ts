@@ -1,4 +1,4 @@
-// Shared types for the catalog data. The raw shape mirrors `data/ps3-digital.json`;
+// Shared types for the catalog data. The raw shape mirrors `data/ps3-digital.json` and `data/psvita-digital.json`;
 // the "wire" shapes are the compact formats generated at build time and loaded by the browser.
 
 export const REGIONS = ['NA', 'EU', 'JP'] as const;
@@ -6,6 +6,13 @@ export type Region = (typeof REGIONS)[number];
 
 /** Bit flags used to store a region set in one number. */
 export const REGION_BIT: Record<Region, number> = { NA: 1, EU: 2, JP: 4 };
+
+/** Platform labels exactly as they appear in the data files (`platform`). */
+export const PLATFORMS = ['PS3', 'PS VITA'] as const;
+export type Platform = (typeof PLATFORMS)[number];
+
+/** Platform names as shown in filters and text (not translated, they are product names). */
+export const PLATFORM_NAME: Record<Platform, string> = { PS3: 'PS3', 'PS VITA': 'PS Vita' };
 
 export const STORE_STATUSES = ['available', 'delisted', 'unknown'] as const;
 export type StoreStatus = (typeof STORE_STATUSES)[number];
@@ -15,7 +22,7 @@ export interface Price {
 	amount: number;
 }
 
-// ---- Raw data (data/ps3-digital.json) ----
+// ---- Raw data (data/*.json, one file per platform) ----
 
 export interface RawDlc {
 	id: string;
@@ -132,5 +139,7 @@ export interface GameDetail {
 	releaseDate: string | null;
 	playerPerspectives: string[];
 	notes: string[];
+	/** the same game on the other platform, matched by IGDB id */
+	alsoOn: { id: string; platform: string } | null;
 	dlc: { id: string; name: string; trophies: number | null; prices: Price[] }[];
 }
