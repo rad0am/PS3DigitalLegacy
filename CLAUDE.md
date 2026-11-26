@@ -30,12 +30,12 @@ Structure of each file: `{ schemaVersion, generatedAt, games: Game[] }`. Every g
 
 | As of 2026-11                               | PS3 (2026-11-02) | PS Vita (2026-11-16) |
 | ------------------------------------------- | ---------------- | -------------------- |
-| games                                       | 893              | 894                  |
-| `digitalOnly: true`                         | 681              | 660                  |
+| games                                       | 894              | 894                  |
+| `digitalOnly: true`                         | 682              | 660                  |
 | DLC (games with DLC)                        | 3,104 (325)      | 8,198 (308)          |
 | games with prices (currencies)              | 606 (33)         | 531 (31)             |
 | `psnprofilesUrl` / platinum                 | 770 / 256        | 734 / 434            |
-| store status available / delisted / unknown | 601 / 19 / 273   | 767 / 2 / 125        |
+| store status available / delisted / unknown | 601 / 28 / 265   | 767 / 2 / 125        |
 
 Both files together: 1,787 games, 1,341 digital only, 11,302 DLC, 33 currencies. Game `id`s are unique across both files (checked: no overlap), so the user list stays one flat map keyed by `id` with no platform prefix. 109 titles (115 by `igdbId`) exist on both platforms as separate entries with different ids.
 
