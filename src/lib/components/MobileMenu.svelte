@@ -68,9 +68,9 @@
 			<BmcButton block />
 			{#if auth.user}
 				<div class="row-f wrapf"><SyncPill /></div>
-				<button class="btn btn-blk" type="button" onclick={() => void auth.signOut()}
-					>{m.sign_out()}</button
-				>
+				<button class="btn btn-blk" type="button" onclick={() => void auth.signOut()}>
+					{m.sign_out()}
+				</button>
 			{:else}
 				<button class="btn btn-red btn-blk" type="button" onclick={() => ui.openSignIn()}>
 					<Icon name="user" />{m.sign_in()}

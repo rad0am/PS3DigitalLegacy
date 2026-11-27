@@ -163,9 +163,9 @@
 						<dd>{game.playerPerspectives.join(', ')}</dd>{/if}
 					<dt>{m.detail_platform()}</dt>
 					<dd>
-						<span class="bd bd-plat" class:bd-vita={game.platform === 'PS VITA'}
-							>{game.platform}</span
-						>
+						<span class="bd bd-plat" class:bd-vita={game.platform === 'PS VITA'}>
+							{game.platform}
+						</span>
 					</dd>
 					{#if game.alsoOn}
 						<dt>{m.detail_also_on()}</dt>
@@ -175,9 +175,9 @@
 								style="display:inline-flex;gap:8px"
 								href={gameHref(game.alsoOn.id)}
 							>
-								<span class="bd bd-plat" class:bd-vita={game.alsoOn.platform === 'PS VITA'}
-									>{game.alsoOn.platform}</span
-								>{m.detail_also_on_link({
+								<span class="bd bd-plat" class:bd-vita={game.alsoOn.platform === 'PS VITA'}>
+									{game.alsoOn.platform}
+								</span>{m.detail_also_on_link({
 									platform: game.alsoOn.platform === 'PS VITA' ? 'PS Vita' : game.alsoOn.platform
 								})}
 							</a>
@@ -293,11 +293,11 @@
 					<div class="pt">
 						{#each visiblePrices as price (price.currency)}
 							<div class:sel={price.currency === settings.currency}>
-								<span
-									>{price.currency}{price.currency === settings.currency
+								<span>
+									{price.currency}{price.currency === settings.currency
 										? ` ${m.detail_selected()}`
-										: ''}</span
-								>
+										: ''}
+								</span>
 								<span>{formatAmount(price.amount, price.currency, locale)}</span>
 							</div>
 						{/each}
@@ -341,8 +341,10 @@
 												href={game.psnprofilesUrl}
 												target="_blank"
 												rel="external noopener noreferrer"
-												style="font-weight:500">{m.dlc_check_psn()}</a
+												style="font-weight:500"
 											>
+												{m.dlc_check_psn()}
+											</a>
 										{/if}
 									{:else}
 										{m.dlc_no_trophies()}
@@ -350,19 +352,19 @@
 								</div>
 							</div>
 							{#if dlcStatus === 'bought'}
-								<span class="bd bd-bt mini-bt"
-									><Icon name="check" size="s" />{m.badge_bought()}</span
-								>
+								<span class="bd bd-bt mini-bt">
+									<Icon name="check" size="s" />{m.badge_bought()}
+								</span>
 							{/if}
 							<div class="price" class:na={!price} style="width:110px">
 								{#if price}
 									{formatPrice(price, locale)}
-									{#if price.fallback}<small
-											>{m.price_fallback({
+									{#if price.fallback}<small>
+											{m.price_fallback({
 												selected: settings.currency,
 												shown: price.currency
-											})}</small
-										>{/if}
+											})}
+										</small>{/if}
 								{:else}
 									{m.price_unavailable()}
 								{/if}
@@ -376,8 +378,10 @@
 									aria-label={dlcStatus === 'wishlist'
 										? m.action_want_remove({ title: dlc.name })
 										: m.action_want_add({ title: dlc.name })}
-									onclick={() => list.toggleWishlist(dlc.id)}><Icon name="heart" /></button
+									onclick={() => list.toggleWishlist(dlc.id)}
 								>
+									<Icon name="heart" />
+								</button>
 								<button
 									class="ib check"
 									type="button"
@@ -385,8 +389,10 @@
 									aria-label={dlcStatus === 'bought'
 										? m.action_bought_unmark({ title: dlc.name })
 										: m.action_bought_mark({ title: dlc.name })}
-									onclick={() => list.toggleBought(dlc.id)}><Icon name="check" /></button
+									onclick={() => list.toggleBought(dlc.id)}
 								>
+									<Icon name="check" />
+								</button>
 							</div>
 						</div>
 					{/each}

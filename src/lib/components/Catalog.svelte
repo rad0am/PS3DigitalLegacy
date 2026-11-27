@@ -188,9 +188,9 @@
 	<div class="row-f" style="align-items:baseline;gap:12px;margin-bottom:16px;flex-wrap:wrap">
 		<h1 class="h1">{title}</h1>
 		{#if catalog}
-			<span class="muted" style="font-size:16px" aria-live="polite"
-				>{m.results_count({ count: results.length })}</span
-			>
+			<span class="muted" style="font-size:16px" aria-live="polite">
+				{m.results_count({ count: results.length })}
+			</span>
 		{/if}
 		<span class="muted right sm only-desktop">{m.prices_note()}</span>
 	</div>
@@ -205,9 +205,9 @@
 			<div class="row-f only-mobile" style="gap:8px;margin-bottom:12px">
 				<button class="btn grow" type="button" onclick={() => (ui.filtersOpen = true)}>
 					<Icon name="filter" />{m.filters_title()}
-					{#if chips.length > 0}<span class="bd bd-bt" style="background:var(--red);padding:0 7px"
-							>{chips.length}</span
-						>{/if}
+					{#if chips.length > 0}<span class="bd bd-bt" style="background:var(--red);padding:0 7px">
+							{chips.length}
+						</span>{/if}
 				</button>
 				<div class="grow" style="min-width:0">
 					<Popover bind:open={sortOpenMobile} label={m.sort_label()} align="left" block>
@@ -239,14 +239,18 @@
 						type="button"
 						aria-label={m.view_list()}
 						aria-pressed={settings.view === 'list'}
-						onclick={() => settings.setView('list')}><Icon name="list" /></button
+						onclick={() => settings.setView('list')}
 					>
+						<Icon name="list" />
+					</button>
 					<button
 						type="button"
 						aria-label={m.view_grid()}
 						aria-pressed={settings.view === 'grid'}
-						onclick={() => settings.setView('grid')}><Icon name="grid" /></button
+						onclick={() => settings.setView('grid')}
 					>
+						<Icon name="grid" />
+					</button>
 				</div>
 			</div>
 
@@ -296,9 +300,9 @@
 					<Popover bind:open={sortOpen} label={m.sort_label()}>
 						{#snippet trigger(props)}
 							<button class="fld" type="button" aria-label={m.sort_label()} {...props}>
-								<Icon name="sort" size="s" /><span class="muted" style="font-weight:500"
-									>{m.sort_prefix()}</span
-								>
+								<Icon name="sort" size="s" /><span class="muted" style="font-weight:500">
+									{m.sort_prefix()}
+								</span>
 								{sortLabels[filters.sort]()}<Icon name="chev" size="s" />
 							</button>
 						{/snippet}
@@ -324,14 +328,18 @@
 							type="button"
 							aria-label={m.view_list()}
 							aria-pressed={settings.view === 'list'}
-							onclick={() => settings.setView('list')}><Icon name="list" /></button
+							onclick={() => settings.setView('list')}
 						>
+							<Icon name="list" />
+						</button>
 						<button
 							type="button"
 							aria-label={m.view_grid()}
 							aria-pressed={settings.view === 'grid'}
-							onclick={() => settings.setView('grid')}><Icon name="grid" /></button
+							onclick={() => settings.setView('grid')}
 						>
+							<Icon name="grid" />
+						</button>
 					</div>
 				</div>
 			</div>
@@ -340,9 +348,13 @@
 				<div class="card card-empty" role="alert">
 					<h2 class="h3">{m.error_catalog()}</h2>
 					<p class="muted" style="margin:8px 0 20px">{m.error_catalog_help()}</p>
-					<button class="btn btn-red btn-lg" type="button" onclick={() => void catalogStore.retry()}
-						>{m.retry()}</button
+					<button
+						class="btn btn-red btn-lg"
+						type="button"
+						onclick={() => void catalogStore.retry()}
 					>
+						{m.retry()}
+					</button>
 				</div>
 			{:else if !catalog}
 				<div class="stack-s" aria-busy="true" aria-label={m.loading()}>
@@ -368,9 +380,9 @@
 					<p class="muted" style="margin:8px 0 20px">{m.empty_results_help()}</p>
 					<div class="row-f wrapf" style="justify-content:center">
 						{#if chips.length > 0}
-							<button class="btn" type="button" onclick={() => filters.clear()}
-								>{m.clear_all()}</button
-							>
+							<button class="btn" type="button" onclick={() => filters.clear()}>
+								{m.clear_all()}
+							</button>
 						{/if}
 						<a
 							class="btn btn-out"
@@ -440,9 +452,9 @@
 			class="row-f"
 			style="padding:12px 16px;border-top:1px solid var(--line);background:#fff;gap:12px;flex:none"
 		>
-			<button class="btn btn-lg" type="button" onclick={() => filters.clear()}
-				>{m.clear_all()}</button
-			>
+			<button class="btn btn-lg" type="button" onclick={() => filters.clear()}>
+				{m.clear_all()}
+			</button>
 			<button
 				class="btn btn-red btn-lg grow"
 				type="button"

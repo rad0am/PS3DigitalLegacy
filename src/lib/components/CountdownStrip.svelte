@@ -63,9 +63,9 @@
 	<div class="strip st-on">
 		<Icon name="clock" />
 		<span>{m.countdown_closes_in()}</span>
-		<span class="t"
-			>{m.countdown_days({ days: parts.days })}
-			{parts.hm}<span class="secs">:{parts.seconds}</span></span
-		>
+		<span class="t">
+			{m.countdown_days({ days: parts.days })}
+			{parts.hm}<span class="secs">:{parts.seconds}</span>
+		</span>
 	</div>
 {/if}

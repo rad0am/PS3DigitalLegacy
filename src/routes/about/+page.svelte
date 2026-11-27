@@ -54,20 +54,26 @@
 						class="btn btn-sm"
 						href={siteConfig.igdbUrl}
 						target="_blank"
-						rel="external noopener noreferrer">IGDB<Icon name="ext" size="s" /></a
+						rel="external noopener noreferrer"
 					>
+						IGDB<Icon name="ext" size="s" />
+					</a>
 					<a
 						class="btn btn-sm"
 						href={siteConfig.psnProfilesUrl}
 						target="_blank"
-						rel="external noopener noreferrer">PSNProfiles<Icon name="ext" size="s" /></a
+						rel="external noopener noreferrer"
 					>
+						PSNProfiles<Icon name="ext" size="s" />
+					</a>
 					<a
 						class="btn btn-sm"
 						href={siteConfig.repoUrl}
 						target="_blank"
-						rel="external noopener noreferrer">{m.footer_github()}<Icon name="ext" size="s" /></a
+						rel="external noopener noreferrer"
 					>
+						{m.footer_github()}<Icon name="ext" size="s" />
+					</a>
 				</div>
 			</section>
 			<section class="card">
@@ -80,20 +86,21 @@
 			<h2 class="h2" style="margin-bottom:12px">{m.about_digital_title()}</h2>
 			<div class="grid-3">
 				<div class="col-f" style="gap:6px">
-					<span class="bd bd-dig" style="font-size:14px"
-						><Icon name="check" size="s" />{m.badge_digital_only()}</span
-					>
+					<span class="bd bd-dig" style="font-size:14px">
+						<Icon name="check" size="s" />{m.badge_digital_only()}
+					</span>
 					<p>{m.about_digital_only()}</p>
 				</div>
 				<div class="col-f" style="gap:6px">
-					<span class="bd bd-unk" style="font-size:14px;align-self:flex-start"
-						>{m.badge_disc_release()}</span
-					>
+					<span class="bd bd-unk" style="font-size:14px;align-self:flex-start">
+						{m.badge_disc_release()}
+					</span>
 					<p>{m.about_digital_disc()}</p>
 				</div>
 				<div class="col-f" style="gap:6px">
-					<span class="bd bd-sky" style="font-size:14px;align-self:flex-start">{m.badge_dlc()}</span
-					>
+					<span class="bd bd-sky" style="font-size:14px;align-self:flex-start">
+						{m.badge_dlc()}
+					</span>
 					<p>{m.about_digital_dlc()}</p>
 				</div>
 			</div>
@@ -125,20 +132,25 @@
 					href={issueUrl('missing-game')}
 					target="_blank"
 					rel="external noopener noreferrer"
-					>{m.report_missing_game()}<Icon name="ext" size="s" /></a
 				>
+					{m.report_missing_game()}<Icon name="ext" size="s" />
+				</a>
 				<a
 					class="btn"
 					href={issueUrl('remove-game')}
 					target="_blank"
-					rel="external noopener noreferrer">{m.report_remove_game()}<Icon name="ext" size="s" /></a
+					rel="external noopener noreferrer"
 				>
+					{m.report_remove_game()}<Icon name="ext" size="s" />
+				</a>
 				<a
 					class="btn btn-out"
 					href={issueUrl('bug')}
 					target="_blank"
-					rel="external noopener noreferrer">{m.report_bug()}<Icon name="ext" size="s" /></a
+					rel="external noopener noreferrer"
 				>
+					{m.report_bug()}<Icon name="ext" size="s" />
+				</a>
 			</div>
 		</section>
 

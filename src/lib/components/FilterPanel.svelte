@@ -84,9 +84,9 @@
 					checked={filters.platforms.includes(platform)}
 					onchange={() => filters.toggle('platforms', platform)}
 				/>
-				<span class="cb"><Icon name="check" /></span>{PLATFORM_NAME[platform]}<span class="n"
-					>{count(facets?.platforms[platform])}</span
-				>
+				<span class="cb"><Icon name="check" /></span>{PLATFORM_NAME[platform]}<span class="n">
+					{count(facets?.platforms[platform])}
+				</span>
 			</label>
 		{/each}
 	{/if}
@@ -100,9 +100,9 @@
 			checked={filters.types.includes('game')}
 			onchange={() => filters.toggle('types', 'game')}
 		/>
-		<span class="cb"><Icon name="check" /></span>{m.type_games()}<span class="n"
-			>{count(facets?.types.game)}</span
-		>
+		<span class="cb"><Icon name="check" /></span>{m.type_games()}<span class="n">
+			{count(facets?.types.game)}
+		</span>
 	</label>
 	<label class="opt">
 		<input
@@ -110,9 +110,9 @@
 			checked={filters.types.includes('dlc')}
 			onchange={() => filters.toggle('types', 'dlc')}
 		/>
-		<span class="cb"><Icon name="check" /></span>{m.type_dlc()}<span class="n"
-			>{count(facets?.types.dlc)}</span
-		>
+		<span class="cb"><Icon name="check" /></span>{m.type_dlc()}<span class="n">
+			{count(facets?.types.dlc)}
+		</span>
 	</label>
 </div>
 
@@ -139,9 +139,9 @@
 					checked={filters.regions.includes(region)}
 					onchange={() => filters.toggle('regions', region)}
 				/>
-				<span class="cb"><Icon name="check" /></span>{regionLabels[region]()}<span class="n"
-					>{count(facets?.regions[region])}</span
-				>
+				<span class="cb"><Icon name="check" /></span>{regionLabels[region]()}<span class="n">
+					{count(facets?.regions[region])}
+				</span>
 			</label>
 		{/each}
 	{/if}
@@ -156,9 +156,9 @@
 				checked={filters.genres.includes(option.name)}
 				onchange={() => filters.toggle('genres', option.name)}
 			/>
-			<span class="cb"><Icon name="check" /></span>{option.name}<span class="n"
-				>{count(option.count)}</span
-			>
+			<span class="cb"><Icon name="check" /></span>{option.name}<span class="n">
+				{count(option.count)}
+			</span>
 		</label>
 	{/each}
 	{#if moreGenres > 0 && !hiddenSelected}
@@ -176,9 +176,9 @@
 <div class="fg">
 	<h3>
 		{m.filter_price()}
-		<span class="muted" style="font-weight:500"
-			>{m.filter_price_in({ currency: settings.currency })}</span
-		>
+		<span class="muted" style="font-weight:500">
+			{m.filter_price_in({ currency: settings.currency })}
+		</span>
 	</h3>
 	{#if priceBound > 0}
 		<PriceRange
@@ -203,9 +203,9 @@
 				checked={filters.statuses.includes(status)}
 				onchange={() => filters.toggle('statuses', status)}
 			/>
-			<span class="cb"><Icon name="check" /></span>{statusLabels[status]()}<span class="n"
-				>{count(facets?.statuses[status])}</span
-			>
+			<span class="cb"><Icon name="check" /></span>{statusLabels[status]()}<span class="n">
+				{count(facets?.statuses[status])}
+			</span>
 		</label>
 	{/each}
 </div>

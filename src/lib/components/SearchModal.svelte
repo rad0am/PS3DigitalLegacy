@@ -118,14 +118,14 @@
 				aria-pressed={tab === 'game'}
 				onclick={() => (tab = 'game')}
 			>
-				{m.search_tab_games()}<span class="xs" style:opacity={tab === 'game' ? 0.9 : undefined}
-					>{hasQuery ? formatNumber(matches.game.length) : ''}</span
-				>
+				{m.search_tab_games()}<span class="xs" style:opacity={tab === 'game' ? 0.9 : undefined}>
+					{hasQuery ? formatNumber(matches.game.length) : ''}
+				</span>
 			</button>
 			<button class="pill" type="button" aria-pressed={tab === 'dlc'} onclick={() => (tab = 'dlc')}>
-				{m.search_tab_dlc()}<span class="xs" style:opacity={tab === 'dlc' ? 0.9 : undefined}
-					>{hasQuery ? formatNumber(matches.dlc.length) : ''}</span
-				>
+				{m.search_tab_dlc()}<span class="xs" style:opacity={tab === 'dlc' ? 0.9 : undefined}>
+					{hasQuery ? formatNumber(matches.dlc.length) : ''}
+				</span>
 			</button>
 		</div>
 
@@ -222,9 +222,9 @@
 						</div>
 					</div>
 					{#if item.hasPlatinum}
-						<span class="bd bd-gold res-status"
-							><Icon name="trophy" size="s" />{m.badge_platinum()}</span
-						>
+						<span class="bd bd-gold res-status">
+							<Icon name="trophy" size="s" />{m.badge_platinum()}
+						</span>
 					{/if}
 					<span class="res-status"><StatusBadge status={item.status} variant="short" /></span>
 					{#if price}
