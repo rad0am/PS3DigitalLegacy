@@ -4,6 +4,7 @@
 	import GameRow from '#lib/components/GameRow.svelte';
 	import Icon from '#lib/components/Icon.svelte';
 	import { formatPrice, sumPrices } from '#lib/currency/price.js';
+	import { matchScore, normalize, tokenize } from '#lib/data/search.js';
 	import { PLATFORMS, PLATFORM_NAME, type Platform } from '#lib/data/types.js';
 	import { formatNumber, numberLocale } from '#lib/i18n.js';
 	import { m } from '#lib/paraglide/messages.js';
@@ -34,7 +35,26 @@
 	let platform = $state<'all' | Platform>('all');
 	const byPlatform = (items: typeof wanted) =>
 		platform === 'all' ? items : items.filter((item) => item.platform === platform);
-	const current = $derived(byPlatform(tab === 'wishlist' ? wanted : bought));
+	const base = $derived(byPlatform(tab === 'wishlist' ? wanted : bought));
+
+	// Search and type act on the active tab (and platform filter); the list keeps its "recently added" order.
+	let query = $state('');
+	let type = $state<'all' | 'game' | 'dlc'>('all');
+	const typeCount = (value: 'game' | 'dlc') => base.filter((item) => item.kind === value).length;
+	const current = $derived.by(() => {
+		const tokens = tokenize(query);
+		const phrase = normalize(query);
+		const items = base.filter(
+			(item) =>
+				(type === 'all' || item.kind === type) &&
+				(tokens.length === 0 || matchScore(item.search, item.titleNorm, tokens, phrase) > 0)
+		);
+		return items;
+	});
+	function clearFilters() {
+		query = '';
+		type = 'all';
+	}
 	const platformCount = (value: Platform) =>
 		[...wanted, ...bought].filter((item) => item.platform === value).length;
 	const visible = $derived(current.slice(0, shown));
@@ -91,6 +111,8 @@
 	$effect(() => {
 		void tab;
 		void platform;
+		void query;
+		void type;
 		shown = PAGE_SIZE;
 	});
 
@@ -285,6 +307,41 @@
 			{/if}
 		</div>
 
+		{#if catalog && (wanted.length > 0 || bought.length > 0)}
+			<div class="row-f wrapf" style="gap:8px">
+				<input
+					class="inp inp-s grow"
+					style="min-width:200px"
+					type="search"
+					bind:value={query}
+					placeholder={m.list_search_placeholder()}
+					aria-label={m.list_search_label()}
+				/>
+			</div>
+			<div class="plat-sw" role="group" aria-label={m.filter_type()}>
+				<button
+					class="pill"
+					type="button"
+					aria-pressed={type === 'all'}
+					onclick={() => (type = 'all')}>{m.list_type_all()}</button
+				>
+				<button
+					class="pill"
+					type="button"
+					aria-pressed={type === 'game'}
+					onclick={() => (type = 'game')}
+					>{m.type_games()}<span class="xs">{typeCount('game')}</span></button
+				>
+				<button
+					class="pill"
+					type="button"
+					aria-pressed={type === 'dlc'}
+					onclick={() => (type = 'dlc')}
+					>{m.type_dlc()}<span class="xs">{typeCount('dlc')}</span></button
+				>
+			</div>
+		{/if}
+
 		{#if !catalog}
 			<div class="stack-s" aria-busy="true" aria-label={m.loading()}>
 				{#each [0, 1, 2] as n (n)}
@@ -299,7 +356,7 @@
 					</div>
 				{/each}
 			</div>
-		{:else if current.length === 0}
+		{:else if base.length === 0}
 			<section class="card card-empty" role="tabpanel">
 				<div
 					style="width:64px;height:64px;border-radius:50%;background:var(--red-t);color:var(--red);display:grid;place-items:center;margin:0 auto 16px"
@@ -313,6 +370,12 @@
 					{tab === 'wishlist' ? m.list_empty_want_text() : m.list_empty_bought_text()}
 				</p>
 				<a class="btn btn-red btn-lg" href={resolve('/catalog')}>{m.list_browse()}</a>
+			</section>
+		{:else if current.length === 0}
+			<section class="card card-empty" role="tabpanel">
+				<h2 class="h3">{m.list_no_match_title()}</h2>
+				<p class="muted" style="margin:8px auto 20px;max-width:480px">{m.list_no_match_text()}</p>
+				<button class="btn" type="button" onclick={clearFilters}>{m.list_filters_clear()}</button>
 			</section>
 		{:else}
 			<div class="stack-s" role="tabpanel">

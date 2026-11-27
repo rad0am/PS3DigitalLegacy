@@ -1,6 +1,7 @@
 <script lang="ts">
 	import SeoMeta from '#lib/components/SeoMeta.svelte';
 	import { resolve } from '$app/paths';
+	import BasketButton from '#lib/components/BasketButton.svelte';
 	import Cover from '#lib/components/Cover.svelte';
 	import Icon from '#lib/components/Icon.svelte';
 	import Lightbox from '#lib/components/Lightbox.svelte';
@@ -123,6 +124,7 @@
 				</a>
 				<p class="xs muted">{m.psn_note()}</p>
 			{/if}
+			<BasketButton storeSkus={game.storeSkus} />
 		</div>
 
 		<div class="game-main">
@@ -366,6 +368,7 @@
 								{/if}
 							</div>
 							<div class="acts">
+								<BasketButton storeSkus={dlc.storeSkus} compact />
 								<button
 									class="ib heart"
 									type="button"
