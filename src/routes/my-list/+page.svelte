@@ -221,12 +221,12 @@
 				)}
 			</div>
 			<div class="row-f" style="gap:8px">
-				<button class="btn" type="button" onclick={exportList}
-					><Icon name="download" />{m.list_export()}</button
-				>
-				<button class="btn" type="button" onclick={() => fileInput?.click()}
-					><Icon name="upload" />{m.list_import()}</button
-				>
+				<button class="btn" type="button" onclick={exportList}>
+					<Icon name="download" />{m.list_export()}
+				</button>
+				<button class="btn" type="button" onclick={() => fileInput?.click()}>
+					<Icon name="upload" />{m.list_import()}
+				</button>
 				<input
 					bind:this={fileInput}
 					type="file"
@@ -264,8 +264,10 @@
 				class="pill"
 				type="button"
 				aria-pressed={platform === 'all'}
-				onclick={() => (platform = 'all')}>{m.list_platform_all()}</button
+				onclick={() => (platform = 'all')}
 			>
+				{m.list_platform_all()}
+			</button>
 			{#each PLATFORMS as value (value)}
 				<button
 					class="pill"
@@ -323,22 +325,26 @@
 					class="pill"
 					type="button"
 					aria-pressed={type === 'all'}
-					onclick={() => (type = 'all')}>{m.list_type_all()}</button
+					onclick={() => (type = 'all')}
 				>
+					{m.list_type_all()}
+				</button>
 				<button
 					class="pill"
 					type="button"
 					aria-pressed={type === 'game'}
 					onclick={() => (type = 'game')}
-					>{m.type_games()}<span class="xs">{typeCount('game')}</span></button
 				>
+					{m.type_games()}<span class="xs">{typeCount('game')}</span>
+				</button>
 				<button
 					class="pill"
 					type="button"
 					aria-pressed={type === 'dlc'}
 					onclick={() => (type = 'dlc')}
-					>{m.type_dlc()}<span class="xs">{typeCount('dlc')}</span></button
 				>
+					{m.type_dlc()}<span class="xs">{typeCount('dlc')}</span>
+				</button>
 			</div>
 		{/if}
 

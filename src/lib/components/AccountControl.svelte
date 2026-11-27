@@ -39,8 +39,10 @@
 						onclick={() => {
 							sync.dismissConflicts();
 							open = false;
-						}}>{m.sync_review()}</a
+						}}
 					>
+						{m.sync_review()}
+					</a>
 				</p>
 			{/if}
 			<button
@@ -49,8 +51,10 @@
 				onclick={() => {
 					open = false;
 					void auth.signOut();
-				}}>{m.sign_out()}</button
+				}}
 			>
+				{m.sign_out()}
+			</button>
 		</div>
 	</Popover>
 {:else}

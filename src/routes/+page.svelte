@@ -121,12 +121,12 @@
 					{m.home_lead({ games: formatNumber(stats.games), dlc: formatNumber(stats.dlc) })}
 				</p>
 				<div class="cta">
-					<a class="btn btn-wh btn-xl" href={resolve('/catalog')}
-						><Icon name="grid" />{m.home_cta_browse()}</a
-					>
-					<a class="btn btn-gh btn-xl" href={resolve('/my-list')}
-						><Icon name="heart" />{m.home_cta_list()}</a
-					>
+					<a class="btn btn-wh btn-xl" href={resolve('/catalog')}>
+						<Icon name="grid" />{m.home_cta_browse()}
+					</a>
+					<a class="btn btn-gh btn-xl" href={resolve('/my-list')}>
+						<Icon name="heart" />{m.home_cta_list()}
+					</a>
 				</div>
 			</div>
 			<ClosureCard />
@@ -155,17 +155,17 @@
 			<div class="ptiles">
 				{#each data.platforms as entry (entry.platform)}
 					<a class="ptile" href={platformHref(entry.platform)}>
-						<span class="bd bd-plat" class:bd-vita={entry.platform === 'PS VITA'}
-							>{entry.platform}</span
-						>
+						<span class="bd bd-plat" class:bd-vita={entry.platform === 'PS VITA'}>
+							{entry.platform}
+						</span>
 						<div>
 							<b>{m.home_platform_games({ count: formatNumber(entry.games) })}</b>
-							<span class="muted sm"
-								>{m.home_platform_meta({
+							<span class="muted sm">
+								{m.home_platform_meta({
 									dlc: formatNumber(entry.dlc),
 									available: formatNumber(entry.available)
-								})}</span
-							>
+								})}
+							</span>
 						</div>
 						<span class="go"><Icon name="arrow" /></span>
 					</a>
@@ -177,12 +177,16 @@
 			<div class="card pcard">
 				<div class="row-f wrapf" style="gap:12px">
 					<h2 class="h2" id="home-progress">{m.home_progress_title()}</h2>
-					<span class="bd bd-sky"
-						>{auth.user ? m.home_progress_account() : m.home_progress_device()}</span
+					<span class="bd bd-sky">
+						{auth.user ? m.home_progress_account() : m.home_progress_device()}
+					</span>
+					<a
+						class="btn btn-out btn-sm btn-open"
+						style="margin-left:auto"
+						href={resolve('/my-list')}
 					>
-					<a class="btn btn-out btn-sm btn-open" style="margin-left:auto" href={resolve('/my-list')}
-						>{m.home_cta_list()}</a
-					>
+						{m.home_cta_list()}
+					</a>
 				</div>
 				<div class="pgrid" style="margin-top:4px">
 					{#each progress as row (row.label)}
@@ -272,9 +276,9 @@
 			<h2 class="h2" id="home-genres" style="margin-bottom:12px">{m.home_genre_title()}</h2>
 			<div class="pills">
 				{#each data.genres as genre (genre.name)}
-					<a class="pill" href={genreHref(genre.name)}
-						>{genre.name}<span class="muted xs">{formatNumber(genre.count)}</span></a
-					>
+					<a class="pill" href={genreHref(genre.name)}>
+						{genre.name}<span class="muted xs">{formatNumber(genre.count)}</span>
+					</a>
 				{/each}
 			</div>
 		</section>
@@ -286,25 +290,25 @@
 				<div class="card">
 					<span class="bd bd-ok">{m.status_available()}</span>
 					<div>
-						<b>{formatNumber(stats.available)}</b><span class="muted sm"
-							>{m.home_status_available_text()}</span
-						>
+						<b>{formatNumber(stats.available)}</b><span class="muted sm">
+							{m.home_status_available_text()}
+						</span>
 					</div>
 				</div>
 				<div class="card">
 					<span class="bd bd-del">{m.status_delisted()}</span>
 					<div>
-						<b>{formatNumber(stats.delisted)}</b><span class="muted sm"
-							>{m.home_status_delisted_text()}</span
-						>
+						<b>{formatNumber(stats.delisted)}</b><span class="muted sm">
+							{m.home_status_delisted_text()}
+						</span>
 					</div>
 				</div>
 				<div class="card">
 					<span class="bd bd-unk">{m.status_unknown_short()}</span>
 					<div>
-						<b>{formatNumber(stats.unknown)}</b><span class="muted sm"
-							>{m.home_status_unknown_text()}</span
-						>
+						<b>{formatNumber(stats.unknown)}</b><span class="muted sm">
+							{m.home_status_unknown_text()}
+						</span>
 					</div>
 				</div>
 			</div>
@@ -340,14 +344,18 @@
 						class="btn btn-out"
 						href={issueUrl('missing-game')}
 						target="_blank"
-						rel="external noopener noreferrer">{m.report_missing_game()}</a
+						rel="external noopener noreferrer"
 					>
+						{m.report_missing_game()}
+					</a>
 					<a
 						class="btn btn-quiet"
 						href={issueUrl('bug')}
 						target="_blank"
-						rel="external noopener noreferrer">{m.report_bug()}</a
+						rel="external noopener noreferrer"
 					>
+						{m.report_bug()}
+					</a>
 				</div>
 			</div>
 			<div class="card">
