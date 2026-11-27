@@ -75,6 +75,13 @@
 			><path d="M7 18a4 4 0 01-.5-8A6 6 0 0118 9.5 4.3 4.3 0 0117.5 18H7z" /></symbol
 		>
 		<symbol id="download" viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M5 20h14" /></symbol>
+		<symbol id="cart" viewBox="0 0 24 24"
+			><path d="M3 4h2.5l2.2 10.5a1 1 0 001 .8h8.6a1 1 0 001-.8L20 8H6.5" /><circle
+				cx="9.5"
+				cy="19"
+				r="1.3"
+			/><circle cx="17" cy="19" r="1.3" /></symbol
+		>
 		<symbol id="upload" viewBox="0 0 24 24"><path d="M12 16V5M7 9l5-5 5 5M5 20h14" /></symbol>
 		<symbol id="lock" viewBox="0 0 24 24"
 			><rect x="5" y="11" width="14" height="9" rx="2" /><path d="M8 11V8a4 4 0 018 0v3" /></symbol

@@ -30,31 +30,32 @@ Structure of each file: `{ schemaVersion, generatedAt, games: Game[] }`. Every g
 
 | As of 2026-11                               | PS3 (2026-11-02) | PS Vita (2026-11-16) |
 | ------------------------------------------- | ---------------- | -------------------- |
-| games                                       | 893              | 894                  |
-| `digitalOnly: true`                         | 681              | 660                  |
+| games                                       | 894              | 894                  |
+| `digitalOnly: true`                         | 682              | 660                  |
 | DLC (games with DLC)                        | 3,104 (325)      | 8,198 (308)          |
 | games with prices (currencies)              | 606 (33)         | 531 (31)             |
 | `psnprofilesUrl` / platinum                 | 770 / 256        | 734 / 434            |
-| store status available / delisted / unknown | 601 / 19 / 273   | 767 / 2 / 125        |
+| store status available / delisted / unknown | 601 / 28 / 265   | 767 / 2 / 125        |
 
 Both files together: 1,787 games, 1,341 digital only, 11,302 DLC, 33 currencies. Game `id`s are unique across both files (checked: no overlap), so the user list stays one flat map keyed by `id` with no platform prefix. 109 titles (115 by `igdbId`) exist on both platforms as separate entries with different ids.
 
 `Game` fields:
 
-| Field                                                                                    | Description                                                                                                                                                                                    |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                                                                                     | stable UUID, **the per-user key in localStorage and Firestore, never change it**                                                                                                               |
-| `platform`                                                                               | `PS3` or `PS VITA`; the discriminator between platforms, see "Platforms"                                                                                                                       |
-| `title`, `alternativeNames`                                                              | name and alternative names (useful for search)                                                                                                                                                 |
-| `regions`                                                                                | subset of `NA`, `EU`, `JP`                                                                                                                                                                     |
-| `digitalOnly`                                                                            | about the **game itself**: show only `true` by default; `false` means the game has a physical release (disc or game card). It says nothing about its DLC, see "Digital only and disc releases" |
-| `prices`                                                                                 | array of `{ currency, amount }` in many currencies (USD, PLN, EUR, and more); may be empty                                                                                                     |
-| `storeStatus`                                                                            | `available`, `delisted` or `unknown`                                                                                                                                                           |
-| `trophies`                                                                               | `{ supported, hasPlatinum }`, plus `psnprofilesUrl`                                                                                                                                            |
-| `dlc`                                                                                    | array of `{ id, name, trophies, prices }`                                                                                                                                                      |
-| `notes`                                                                                  | array of strings, e.g. a note about a physical release inside a collection, or `Store prices are for "<title>"`                                                                                |
-| `igdbId`, `igdbUrl`, `coverPhoto`, `screenshots`                                         | IGDB data and images                                                                                                                                                                           |
-| `genres`, `description`, `developers`, `publishers`, `releaseDate`, `playerPerspectives` | IGDB metadata                                                                                                                                                                                  |
+| Field                                                                                    | Description                                                                                                                                                                                     |
+| ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                                                                                     | stable UUID, **the per-user key in localStorage and Firestore, never change it**                                                                                                                |
+| `platform`                                                                               | `PS3` or `PS VITA`; the discriminator between platforms, see "Platforms"                                                                                                                        |
+| `title`, `alternativeNames`                                                              | name and alternative names (useful for search)                                                                                                                                                  |
+| `regions`                                                                                | subset of `NA`, `EU`, `JP`                                                                                                                                                                      |
+| `digitalOnly`                                                                            | about the **game itself**: show only `true` by default; `false` means the game has a physical release (disc or game card). It says nothing about its DLC, see "Digital only and disc releases"  |
+| `prices`                                                                                 | array of `{ currency, amount }` in many currencies (USD, PLN, EUR, and more); may be empty                                                                                                      |
+| `storeStatus`                                                                            | `available`, `delisted` or `unknown`                                                                                                                                                            |
+| `storeSkus`                                                                              | PlayStation Store SKU ids per store catalog (`NA`, `EU`, `JP`, or a currency code for stores with their own catalog); used only by the Add to Basket button, see "Add to Basket and store data" |
+| `trophies`                                                                               | `{ supported, hasPlatinum }`, plus `psnprofilesUrl`                                                                                                                                             |
+| `dlc`                                                                                    | array of `{ id, name, trophies, prices }`                                                                                                                                                       |
+| `notes`                                                                                  | array of strings, e.g. a note about a physical release inside a collection, or `Store prices are for "<title>"`                                                                                 |
+| `igdbId`, `igdbUrl`, `coverPhoto`, `screenshots`                                         | IGDB data and images                                                                                                                                                                            |
+| `genres`, `description`, `developers`, `publishers`, `releaseDate`, `playerPerspectives` | IGDB metadata                                                                                                                                                                                   |
 
 ### Implications for the app
 
@@ -110,6 +111,8 @@ On desktop (1280px and wider) the content takes at most 80% of the width (10% gu
 11. Currency selector with a browser-based default and a USD fallback, see "Currency selection".
 12. Links to report a missing game, a game to remove or correct, or a bug, see "Community reports".
 13. "Total of this list" badge on My list: the summed last known price of the games and DLC in the active tab (and platform filter). Uses the currency fallback chain without converting, so it can read `$74.96 + 7.99 EUR`. Items without a price and physical-release games (no digital price of their own) are not counted; the tooltip says how many. Bought is today's store prices, not what the user paid (`sumPrices` in `src/lib/currency/price.ts`).
+
+14. "Add to Basket" button on the game details page, see "Add to Basket and store data".
 
 Later: sign-in and Firebase sync, export/import of the list as JSON.
 
@@ -203,6 +206,22 @@ Each game can show a button linking to its PSNProfiles trophy page, so users can
 - The label, tooltip and `aria-label` come from the i18n catalog (both `en` and `pl`). The site name "PSNProfiles" is not translated.
 - DLC entries have a `trophies` field but no URL of their own; link DLC trophy checks to the parent game's `psnprofilesUrl`.
 - Use a plain link, not an embed or API call. Do not scrape PSNProfiles or copy its content into the repo.
+
+## Add to Basket and store data
+
+The game details page has an "Add to Basket" button that works like the one on https://ps-store-searcher.pages.dev/ (a third-party site; we copied its behavior, not its code). It is a plain link to `https://checkout.playstation.com/add/<sku>?clientId=<id>`, the URL the PlayStation Store website itself builds. The user must be signed in to the store in the same browser and the PSN account must belong to the same store region as the SKU. Default `clientId` is the web client `2eb25762-877f-4140-b341-7c7e14c19f98` (`WEB_CLIENT_ID` in `src/lib/store.ts`); `?clientid=...` on the site's address overrides it.
+
+- SKUs live in `storeSkus` on each game, one per store catalog: `NA` (US, CA, BR, MX, HN), `EU` (Europe, Oceania, South Africa, India, Israel, Turkey, ...), `JP`, or a currency code (KRW, HKD, SGD, TWD, THB, MYR, IDR, AED, SAR) for stores with their own catalog. SKUs differ per catalog; `src/lib/store.ts` maps the selected currency to the catalog and `basketOptions` puts that store first. When the selected store has no SKU, the button shows another store and the note says it works only with an account of that region.
+- Do not hide the risk: Sony's terms may treat buying PS3 and Vita content through the web store as not allowed. The About page ("About the Add to Basket button", `#basket`) says so, and the button links there. The site still sells nothing and does not process any purchase.
+- DLC has `storeSkus` too (same keys) and a compact basket button in the DLC list of the game page. Only about a third of the DLC have one (PS3 1,728 of 3,095, Vita 2,130 of 8,198, as of 2026-11): a DLC gets a SKU only when its parent game was found by exact title in a store and the DLC name matched an add-on of that product (optionally without the game title in front). Catalog DLC rows have no basket button.
+
+**Scripts** (Node 26 runs the `.ts` files directly; they are type-checked by `npm run check`):
+
+- `scripts/fetch-store-data.ts --platform ps3|psvita` crawls the unofficial store API (`commerce1.api.np.km.playstation.net/store/api/chihiro/00_09_000`). It searches each game by exact normalized title in one store per shared catalog (US, GB) and in each own-catalog store, takes the SKU, then fetches that product's price in every store of the shared catalog (`container/<CC>/<lang>/19/<productId>`). A result must be a game-type product playable on the game's platform; ambiguous matches are skipped. Output goes to `.store-cache/<platform>.json` (ignored by git, resumable). About 6 to 8 seconds per game; polite rate limit (one request per 60 ms overall).
+- `scripts/apply-store-data.ts --platform ps3|psvita` merges the results into `data/*.json`: adds only prices for currencies the game does not have yet (existing prices are never changed), sets `storeSkus`. It keeps each file's own formatting (the PS3 file uses 4 spaces, `42.0` amounts and `'` escapes; the Vita file uses tabs), so the diff holds only added data. Use `--dry-run` first.
+- API facts: `price` is in minor units (`999` = 9.99), but not for every currency (INR comes as `900` for "Rs 900"), so the amount is cross-checked against `display_price`. In a pilot, all 175 prices that the data already had matched the API exactly.
+- `scripts/fetch-dlc-store-data.ts` does the same for DLC: a game's product page lists all its add-ons, so it takes one search and a few `container` requests per game and catalog (NA, EU, JP), not one per DLC. It also records the DLC price in the searched store (USD, GBP, JPY). `apply-store-data.ts` merges it when `.store-cache/<platform>-dlc.json` exists.
+- Not covered: DLC prices in the other stores (about 11,000 entries, one request per store each), and games the store no longer lists.
 
 ## Internationalization (i18n)
 

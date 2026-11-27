@@ -29,6 +29,8 @@ export interface RawDlc {
 	name: string;
 	trophies?: number | null;
 	prices?: Price[];
+	/** see `RawGame.storeSkus` */
+	storeSkus?: Record<string, string>;
 }
 
 export interface RawGame {
@@ -40,6 +42,8 @@ export interface RawGame {
 	digitalOnly?: boolean;
 	prices?: Price[];
 	storeStatus?: StoreStatus;
+	/** PlayStation Store SKU ids by store (`NA`, `EU`, `JP` or a currency code for stores with their own catalog) */
+	storeSkus?: Record<string, string>;
 	trophies?: { supported?: boolean; hasPlatinum?: boolean } | null;
 	psnprofilesUrl?: string | null;
 	dlc?: RawDlc[];
@@ -124,6 +128,8 @@ export interface GameDetail {
 	digitalOnly: boolean;
 	storeStatus: StoreStatus;
 	prices: Price[];
+	/** validated SKU ids, see `RawGame.storeSkus` */
+	storeSkus: Record<string, string>;
 	trophiesSupported: boolean;
 	hasPlatinum: boolean;
 	/** validated: only psnprofiles.com URLs */
@@ -141,5 +147,11 @@ export interface GameDetail {
 	notes: string[];
 	/** the same game on the other platform, matched by IGDB id */
 	alsoOn: { id: string; platform: string } | null;
-	dlc: { id: string; name: string; trophies: number | null; prices: Price[] }[];
+	dlc: {
+		id: string;
+		name: string;
+		trophies: number | null;
+		prices: Price[];
+		storeSkus: Record<string, string>;
+	}[];
 }

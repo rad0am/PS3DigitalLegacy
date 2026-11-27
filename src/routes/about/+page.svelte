@@ -6,6 +6,7 @@
 	import { issueUrl, siteConfig } from '#lib/config.js';
 	import { formatNumber } from '#lib/i18n.js';
 	import { m } from '#lib/paraglide/messages.js';
+	import { WEB_CLIENT_ID } from '#lib/store.js';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
@@ -95,6 +96,23 @@
 					>
 					<p>{m.about_digital_dlc()}</p>
 				</div>
+			</div>
+		</section>
+
+		<section class="card prose prose-l" id="basket">
+			<h2 class="h2" style="margin-bottom:12px">{m.about_basket_title()}</h2>
+			<p>{m.about_basket_1()}</p>
+			<p>{m.about_basket_2()}</p>
+			<ol>
+				<li>{m.about_basket_step_1()}</li>
+				<li>{m.about_basket_step_2()}</li>
+				<li>{m.about_basket_step_3()}</li>
+			</ol>
+			<p>{m.about_basket_stores()}</p>
+			<p>{m.about_basket_clientid({ clientId: WEB_CLIENT_ID })}</p>
+			<div class="note warn" style="margin-top:12px">
+				<Icon name="alert" />
+				<div><b>{m.about_basket_risk_title()}</b> {m.about_basket_risk()}</div>
 			</div>
 		</section>
 

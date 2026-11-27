@@ -2,6 +2,7 @@
 // arrays and per-game details. Never imported by browser code.
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
+import { isStoreKey } from '#lib/store.js';
 import {
 	REGION_BIT,
 	STORE_STATUSES,
@@ -42,6 +43,15 @@ export function safePsnUrl(url: string | null | undefined): string | null {
 	if (!url) return null;
 	const host = hostOf(url);
 	return host === 'psnprofiles.com' || host === 'www.psnprofiles.com' ? url : null;
+}
+
+/** Only well-formed SKU ids under known store keys reach the page (they end up in checkout links). */
+export function safeStoreSkus(skus: Record<string, string> | undefined): Record<string, string> {
+	const safe: Record<string, string> = {};
+	for (const [store, sku] of Object.entries(skus ?? {})) {
+		if (isStoreKey(store) && /^[A-Z0-9_-]{8,80}$/i.test(sku)) safe[store] = sku;
+	}
+	return safe;
 }
 
 export function safeIgdbUrl(url: string | null | undefined): string | null {
@@ -130,6 +140,7 @@ export function toGameDetail(game: RawGame, alsoOn: GameDetail['alsoOn'] = null)
 		digitalOnly: game.digitalOnly !== false,
 		storeStatus: game.storeStatus ?? 'unknown',
 		prices: game.prices ?? [],
+		storeSkus: safeStoreSkus(game.storeSkus),
 		trophiesSupported: game.trophies?.supported === true,
 		hasPlatinum: game.trophies?.hasPlatinum === true,
 		psnprofilesUrl: safePsnUrl(game.psnprofilesUrl),
@@ -151,7 +162,8 @@ export function toGameDetail(game: RawGame, alsoOn: GameDetail['alsoOn'] = null)
 			id: dlc.id,
 			name: dlc.name,
 			trophies: dlc.trophies ?? null,
-			prices: dlc.prices ?? []
+			prices: dlc.prices ?? [],
+			storeSkus: safeStoreSkus(dlc.storeSkus)
 		}))
 	};
 }
